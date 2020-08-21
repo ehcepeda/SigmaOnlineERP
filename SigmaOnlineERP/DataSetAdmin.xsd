@@ -1,0 +1,424 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<xs:schema id="DataSetAdmin" targetNamespace="http://tempuri.org/DataSetAdmin.xsd" xmlns:mstns="http://tempuri.org/DataSetAdmin.xsd" xmlns="http://tempuri.org/DataSetAdmin.xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:msdata="urn:schemas-microsoft-com:xml-msdata" xmlns:msprop="urn:schemas-microsoft-com:xml-msprop" attributeFormDefault="qualified" elementFormDefault="qualified">
+  <xs:annotation>
+    <xs:appinfo source="urn:schemas-microsoft-com:xml-msdatasource">
+      <DataSource DefaultConnectionIndex="1" FunctionsComponentName="QueriesTableAdapter" Modifier="AutoLayout, AnsiClass, Class, Public" SchemaSerializationMode="IncludeSchema" xmlns="urn:schemas-microsoft-com:xml-msdatasource">
+        <Connections>
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionStringSigma" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionStringSigma (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionStringSigma.ConnectionString" Provider="System.Data.OleDb" />
+          <Connection AppSettingsObjectName="Web.config" AppSettingsPropertyName="ConnectionStringRNC" ConnectionStringObject="" IsAppSettingsProperty="true" Modifier="Assembly" Name="ConnectionStringRNC (Web.config)" PropertyReference="AppConfig.System.Configuration.ConfigurationManager.0.ConnectionStrings.ConnectionStringRNC.ConnectionString" Provider="System.Data.OleDb" />
+        </Connections>
+        <Tables>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="countryTableAdapter" GeneratorDataComponentClassName="countryTableAdapter" Name="country" UserDataComponentName="countryTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringSigma (Web.config)" DbObjectName="sigmaweb.dbo.country" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select
+countryid, name, code
+from
+country
+order by
+1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="countryid" DataSetColumn="countryid" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="currencyTableAdapter" GeneratorDataComponentClassName="currencyTableAdapter" Name="currency" UserDataComponentName="currencyTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringSigma (Web.config)" DbObjectName="sigmaweb.dbo.currency" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select
+currencyid, name, code
+from
+currency
+order by
+1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="currencyid" DataSetColumn="currencyid" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="code" DataSetColumn="code" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="rncTableAdapter" GeneratorDataComponentClassName="rncTableAdapter" Name="rnc" UserDataComponentName="rncTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringRNC (Web.config)" DbObjectName="rncdb.dbo.rnc" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataBy_RNC" GetMethodModifier="Public" GetMethodName="GetDataBy_RNC" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataBy_RNC" UserSourceName="GetDataBy_RNC">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select
+razon_social, nombre_comercial
+from
+rnc
+where
+rnc_cedula = ltrim(rtrim(?))</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param1" ColumnName="rnc_cedula" DataSourceName="rncdb.dbo.rnc" DataTypeServer="varchar(30)" DbType="AnsiString" Direction="Input" ParameterName="rnc_cedula" Precision="0" ProviderType="Char" Scale="0" Size="30" SourceColumn="rnc_cedula" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="razon_social" DataSetColumn="razon_social" />
+              <Mapping SourceColumn="nombre_comercial" DataSetColumn="nombre_comercial" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="company_ncfTableAdapter" GeneratorDataComponentClassName="company_ncfTableAdapter" Name="company_ncf" UserDataComponentName="company_ncfTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringSigma (Web.config)" DbObjectName="sigmaweb.dbo.company_ncf" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataBy_Company" GetMethodModifier="Public" GetMethodName="GetDataBy_Company" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataBy_Company" UserSourceName="GetDataBy_Company">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select
+ncfid, companyid, ncftipoid, serie, desde, hasta, isenabled, ncf_vence, secuencia
+from
+company_ncf
+where
+companyid = ?
+order by
+1</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param1" ColumnName="companyid" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="companyid" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="companyid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ncfid" DataSetColumn="ncfid" />
+              <Mapping SourceColumn="companyid" DataSetColumn="companyid" />
+              <Mapping SourceColumn="ncftipoid" DataSetColumn="ncftipoid" />
+              <Mapping SourceColumn="serie" DataSetColumn="serie" />
+              <Mapping SourceColumn="desde" DataSetColumn="desde" />
+              <Mapping SourceColumn="hasta" DataSetColumn="hasta" />
+              <Mapping SourceColumn="isenabled" DataSetColumn="isenabled" />
+              <Mapping SourceColumn="ncf_vence" DataSetColumn="ncf_vence" />
+              <Mapping SourceColumn="secuencia" DataSetColumn="secuencia" />
+            </Mappings>
+            <Sources>
+              <DbSource ConnectionRef="ConnectionStringSigma (Web.config)" DbObjectName="sigmaweb.dbo.company_ncf" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="true" GeneratorGetMethodName="GetDataBy_ID" GetMethodModifier="Public" GetMethodName="GetDataBy_ID" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy_ID" UserSourceName="GetDataBy_ID">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select
+ncfid, companyid, ncftipoid, serie, desde, hasta, isenabled, ncf_vence, secuencia
+from
+company_ncf
+where
+companyid = ?
+and ncftipoid = ?
+order by
+1</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param1" ColumnName="companyid" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="companyid" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="companyid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param2" ColumnName="ncftipoid" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="ncftipoid" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="ncftipoid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringSigma (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateEstatus" Modifier="Public" Name="UpdateEstatus" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy1" UserSourceName="UpdateEstatus">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE
+company_ncf
+set
+isenabled = ?
+where
+companyid = ?
+and ncfid = ?</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param1" ColumnName="isenabled" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="isenabled" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="isenabled" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param2" ColumnName="companyid" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="Original_companyid" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="companyid" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param3" ColumnName="ncfid" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="Original_ncfid" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="ncfid" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+              <DbSource ConnectionRef="ConnectionStringSigma (Web.config)" DbObjectName="" DbObjectType="Unknown" GenerateShortCommands="true" GeneratorSourceName="UpdateNCF" Modifier="Public" Name="UpdateNCF" QueryType="NoData" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="true" UserGetMethodName="GetDataBy" UserSourceName="UpdateNCF">
+                <UpdateCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>UPDATE
+company_ncf
+set
+serie = ltrim(rtrim(?)),
+desde = ?,
+hasta = ?,
+ncf_vence = ?,
+secuencia = ?
+where
+companyid = ?
+and ncfid = ?</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param1" ColumnName="serie" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="varchar(3)" DbType="AnsiString" Direction="Input" ParameterName="serie" Precision="0" ProviderType="Char" Scale="0" Size="3" SourceColumn="serie" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param2" ColumnName="desde" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="desde" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="desde" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param3" ColumnName="hasta" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="hasta" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="hasta" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="true" AutogeneratedName="Param4" ColumnName="ncf_vence" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="datetime" DbType="DateTime" Direction="Input" ParameterName="ncf_vence" Precision="0" ProviderType="DBTimeStamp" Scale="0" Size="8" SourceColumn="ncf_vence" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param5" ColumnName="secuencia" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="secuencia" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="secuencia" SourceColumnNullMapping="false" SourceVersion="Current" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param6" ColumnName="companyid" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="Original_companyid" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="companyid" SourceColumnNullMapping="false" SourceVersion="Original" />
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param7" ColumnName="ncfid" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="Original_ncfid" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="ncfid" SourceColumnNullMapping="false" SourceVersion="Original" />
+                    </Parameters>
+                  </DbCommand>
+                </UpdateCommand>
+              </DbSource>
+            </Sources>
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="ncfTableAdapter" GeneratorDataComponentClassName="ncfTableAdapter" Name="ncf" UserDataComponentName="ncfTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringSigma (Web.config)" DbObjectName="sigmaweb.dbo.ncf" DbObjectType="Table" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetData" GetMethodModifier="Public" GetMethodName="GetData" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetData" UserSourceName="GetData">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select
+ncftipoid, name, serie, sales, shopping, own
+from
+ncf
+order by
+1</CommandText>
+                    <Parameters />
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ncftipoid" DataSetColumn="ncftipoid" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="serie" DataSetColumn="serie" />
+              <Mapping SourceColumn="sales" DataSetColumn="sales" />
+              <Mapping SourceColumn="shopping" DataSetColumn="shopping" />
+              <Mapping SourceColumn="own" DataSetColumn="own" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+          <TableAdapter BaseClass="System.ComponentModel.Component" DataAccessorModifier="AutoLayout, AnsiClass, Class, Public" DataAccessorName="list_company_ncfTableAdapter" GeneratorDataComponentClassName="list_company_ncfTableAdapter" Name="list_company_ncf" UserDataComponentName="list_company_ncfTableAdapter">
+            <MainSource>
+              <DbSource ConnectionRef="ConnectionStringSigma (Web.config)" DbObjectType="Unknown" GenerateMethods="Get" GenerateShortCommands="false" GeneratorGetMethodName="GetDataBy_Company" GetMethodModifier="Public" GetMethodName="GetDataBy_Company" QueryType="Rowset" ScalarCallRetval="System.Object, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" UseOptimisticConcurrency="false" UserGetMethodName="GetDataBy_Company" UserSourceName="GetDataBy_Company">
+                <SelectCommand>
+                  <DbCommand CommandType="Text" ModifiedByUser="true">
+                    <CommandText>select 
+c.ncfid, c.ncftipoid, c.companyid, n.name, c.serie, c.desde, c.hasta,
+c.secuencia, c.isenabled,
+case when c.ncf_vence is null then '' else convert(varchar(10), c.ncf_vence, 105) end as ncf_vence,
+c.serie+REPLICATE('0', 8-len(ltrim(rtrim(cast(c.secuencia as varchar(8)))))) as vista
+from
+company_ncf c, ncf n
+where
+c.ncftipoid = n.ncftipoid
+and c.companyid = ?
+order by
+1</CommandText>
+                    <Parameters>
+                      <Parameter AllowDbNull="false" AutogeneratedName="Param1" ColumnName="companyid" DataSourceName="sigmaweb.dbo.company_ncf" DataTypeServer="int" DbType="Int32" Direction="Input" ParameterName="companyid" Precision="0" ProviderType="Integer" Scale="0" Size="4" SourceColumn="companyid" SourceColumnNullMapping="false" SourceVersion="Current" />
+                    </Parameters>
+                  </DbCommand>
+                </SelectCommand>
+              </DbSource>
+            </MainSource>
+            <Mappings>
+              <Mapping SourceColumn="ncfid" DataSetColumn="ncfid" />
+              <Mapping SourceColumn="ncftipoid" DataSetColumn="ncftipoid" />
+              <Mapping SourceColumn="companyid" DataSetColumn="companyid" />
+              <Mapping SourceColumn="name" DataSetColumn="name" />
+              <Mapping SourceColumn="serie" DataSetColumn="serie" />
+              <Mapping SourceColumn="desde" DataSetColumn="desde" />
+              <Mapping SourceColumn="hasta" DataSetColumn="hasta" />
+              <Mapping SourceColumn="secuencia" DataSetColumn="secuencia" />
+              <Mapping SourceColumn="isenabled" DataSetColumn="isenabled" />
+              <Mapping SourceColumn="ncf_vence" DataSetColumn="ncf_vence" />
+              <Mapping SourceColumn="vista" DataSetColumn="vista" />
+            </Mappings>
+            <Sources />
+          </TableAdapter>
+        </Tables>
+        <Sources />
+      </DataSource>
+    </xs:appinfo>
+  </xs:annotation>
+  <xs:element name="DataSetAdmin" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetAdmin" msprop:Generator_UserDSName="DataSetAdmin">
+    <xs:complexType>
+      <xs:choice minOccurs="0" maxOccurs="unbounded">
+        <xs:element name="country" msprop:Generator_TableClassName="countryDataTable" msprop:Generator_TableVarName="tablecountry" msprop:Generator_RowChangedName="countryRowChanged" msprop:Generator_TablePropName="country" msprop:Generator_RowDeletingName="countryRowDeleting" msprop:Generator_RowChangingName="countryRowChanging" msprop:Generator_RowEvHandlerName="countryRowChangeEventHandler" msprop:Generator_RowDeletedName="countryRowDeleted" msprop:Generator_RowClassName="countryRow" msprop:Generator_UserTableName="country" msprop:Generator_RowEvArgName="countryRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="countryid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncountryid" msprop:Generator_ColumnPropNameInRow="countryid" msprop:Generator_ColumnPropNameInTable="countryidColumn" msprop:Generator_UserColumnName="countryid" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="100" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="20" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="currency" msprop:Generator_TableClassName="currencyDataTable" msprop:Generator_TableVarName="tablecurrency" msprop:Generator_RowChangedName="currencyRowChanged" msprop:Generator_TablePropName="currency" msprop:Generator_RowDeletingName="currencyRowDeleting" msprop:Generator_RowChangingName="currencyRowChanging" msprop:Generator_RowEvHandlerName="currencyRowChangeEventHandler" msprop:Generator_RowDeletedName="currencyRowDeleted" msprop:Generator_RowClassName="currencyRow" msprop:Generator_UserTableName="currency" msprop:Generator_RowEvArgName="currencyRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="currencyid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncurrencyid" msprop:Generator_ColumnPropNameInRow="currencyid" msprop:Generator_ColumnPropNameInTable="currencyidColumn" msprop:Generator_UserColumnName="currencyid" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="code" msprop:Generator_ColumnVarNameInTable="columncode" msprop:Generator_ColumnPropNameInRow="code" msprop:Generator_ColumnPropNameInTable="codeColumn" msprop:Generator_UserColumnName="code">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="5" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="rnc" msprop:Generator_TableClassName="rncDataTable" msprop:Generator_TableVarName="tablernc" msprop:Generator_RowChangedName="rncRowChanged" msprop:Generator_TablePropName="rnc" msprop:Generator_RowDeletingName="rncRowDeleting" msprop:Generator_RowChangingName="rncRowChanging" msprop:Generator_RowEvHandlerName="rncRowChangeEventHandler" msprop:Generator_RowDeletedName="rncRowDeleted" msprop:Generator_RowClassName="rncRow" msprop:Generator_UserTableName="rnc" msprop:Generator_RowEvArgName="rncRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="razon_social" msprop:Generator_ColumnVarNameInTable="columnrazon_social" msprop:Generator_ColumnPropNameInRow="razon_social" msprop:Generator_ColumnPropNameInTable="razon_socialColumn" msprop:Generator_UserColumnName="razon_social" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="nombre_comercial" msprop:Generator_ColumnVarNameInTable="columnnombre_comercial" msprop:Generator_ColumnPropNameInRow="nombre_comercial" msprop:Generator_ColumnPropNameInTable="nombre_comercialColumn" msprop:Generator_UserColumnName="nombre_comercial" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="200" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="company_ncf" msprop:Generator_TableClassName="company_ncfDataTable" msprop:Generator_TableVarName="tablecompany_ncf" msprop:Generator_RowChangedName="company_ncfRowChanged" msprop:Generator_TablePropName="company_ncf" msprop:Generator_RowDeletingName="company_ncfRowDeleting" msprop:Generator_RowChangingName="company_ncfRowChanging" msprop:Generator_RowEvHandlerName="company_ncfRowChangeEventHandler" msprop:Generator_RowDeletedName="company_ncfRowDeleted" msprop:Generator_RowClassName="company_ncfRow" msprop:Generator_UserTableName="company_ncf" msprop:Generator_RowEvArgName="company_ncfRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ncfid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnncfid" msprop:Generator_ColumnPropNameInRow="ncfid" msprop:Generator_ColumnPropNameInTable="ncfidColumn" msprop:Generator_UserColumnName="ncfid" type="xs:int" />
+              <xs:element name="companyid" msprop:Generator_ColumnVarNameInTable="columncompanyid" msprop:Generator_ColumnPropNameInRow="companyid" msprop:Generator_ColumnPropNameInTable="companyidColumn" msprop:Generator_UserColumnName="companyid" type="xs:int" />
+              <xs:element name="ncftipoid" msprop:Generator_ColumnVarNameInTable="columnncftipoid" msprop:Generator_ColumnPropNameInRow="ncftipoid" msprop:Generator_ColumnPropNameInTable="ncftipoidColumn" msprop:Generator_UserColumnName="ncftipoid" type="xs:int" />
+              <xs:element name="serie" msprop:Generator_ColumnVarNameInTable="columnserie" msprop:Generator_ColumnPropNameInRow="serie" msprop:Generator_ColumnPropNameInTable="serieColumn" msprop:Generator_UserColumnName="serie">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="desde" msprop:Generator_ColumnVarNameInTable="columndesde" msprop:Generator_ColumnPropNameInRow="desde" msprop:Generator_ColumnPropNameInTable="desdeColumn" msprop:Generator_UserColumnName="desde" type="xs:int" />
+              <xs:element name="hasta" msprop:Generator_ColumnVarNameInTable="columnhasta" msprop:Generator_ColumnPropNameInRow="hasta" msprop:Generator_ColumnPropNameInTable="hastaColumn" msprop:Generator_UserColumnName="hasta" type="xs:int" />
+              <xs:element name="isenabled" msprop:Generator_ColumnVarNameInTable="columnisenabled" msprop:Generator_ColumnPropNameInRow="isenabled" msprop:Generator_ColumnPropNameInTable="isenabledColumn" msprop:Generator_UserColumnName="isenabled" type="xs:int" />
+              <xs:element name="ncf_vence" msprop:Generator_ColumnVarNameInTable="columnncf_vence" msprop:Generator_ColumnPropNameInRow="ncf_vence" msprop:Generator_ColumnPropNameInTable="ncf_venceColumn" msprop:Generator_UserColumnName="ncf_vence" type="xs:dateTime" minOccurs="0" />
+              <xs:element name="secuencia" msprop:Generator_ColumnVarNameInTable="columnsecuencia" msprop:Generator_ColumnPropNameInRow="secuencia" msprop:Generator_ColumnPropNameInTable="secuenciaColumn" msprop:Generator_UserColumnName="secuencia" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="ncf" msprop:Generator_TableClassName="ncfDataTable" msprop:Generator_TableVarName="tablencf" msprop:Generator_RowChangedName="ncfRowChanged" msprop:Generator_TablePropName="ncf" msprop:Generator_RowDeletingName="ncfRowDeleting" msprop:Generator_RowChangingName="ncfRowChanging" msprop:Generator_RowEvHandlerName="ncfRowChangeEventHandler" msprop:Generator_RowDeletedName="ncfRowDeleted" msprop:Generator_RowClassName="ncfRow" msprop:Generator_UserTableName="ncf" msprop:Generator_RowEvArgName="ncfRowChangeEvent">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ncftipoid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnncftipoid" msprop:Generator_ColumnPropNameInRow="ncftipoid" msprop:Generator_ColumnPropNameInTable="ncftipoidColumn" msprop:Generator_UserColumnName="ncftipoid" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="serie" msprop:Generator_ColumnVarNameInTable="columnserie" msprop:Generator_ColumnPropNameInRow="serie" msprop:Generator_ColumnPropNameInTable="serieColumn" msprop:Generator_UserColumnName="serie">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="sales" msprop:Generator_ColumnVarNameInTable="columnsales" msprop:Generator_ColumnPropNameInRow="sales" msprop:Generator_ColumnPropNameInTable="salesColumn" msprop:Generator_UserColumnName="sales" type="xs:int" />
+              <xs:element name="shopping" msprop:Generator_ColumnVarNameInTable="columnshopping" msprop:Generator_ColumnPropNameInRow="shopping" msprop:Generator_ColumnPropNameInTable="shoppingColumn" msprop:Generator_UserColumnName="shopping" type="xs:int" />
+              <xs:element name="own" msprop:Generator_ColumnVarNameInTable="columnown" msprop:Generator_ColumnPropNameInRow="own" msprop:Generator_ColumnPropNameInTable="ownColumn" msprop:Generator_UserColumnName="own" type="xs:int" />
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+        <xs:element name="list_company_ncf" msprop:Generator_TableClassName="list_company_ncfDataTable" msprop:Generator_TableVarName="tablelist_company_ncf" msprop:Generator_TablePropName="list_company_ncf" msprop:Generator_RowDeletingName="list_company_ncfRowDeleting" msprop:Generator_RowChangingName="list_company_ncfRowChanging" msprop:Generator_RowEvHandlerName="list_company_ncfRowChangeEventHandler" msprop:Generator_RowDeletedName="list_company_ncfRowDeleted" msprop:Generator_UserTableName="list_company_ncf" msprop:Generator_RowChangedName="list_company_ncfRowChanged" msprop:Generator_RowEvArgName="list_company_ncfRowChangeEvent" msprop:Generator_RowClassName="list_company_ncfRow">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="ncfid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnncfid" msprop:Generator_ColumnPropNameInRow="ncfid" msprop:Generator_ColumnPropNameInTable="ncfidColumn" msprop:Generator_UserColumnName="ncfid" type="xs:int" />
+              <xs:element name="ncftipoid" msprop:Generator_ColumnVarNameInTable="columnncftipoid" msprop:Generator_ColumnPropNameInRow="ncftipoid" msprop:Generator_ColumnPropNameInTable="ncftipoidColumn" msprop:Generator_UserColumnName="ncftipoid" type="xs:int" />
+              <xs:element name="companyid" msprop:Generator_ColumnVarNameInTable="columncompanyid" msprop:Generator_ColumnPropNameInRow="companyid" msprop:Generator_ColumnPropNameInTable="companyidColumn" msprop:Generator_UserColumnName="companyid" type="xs:int" />
+              <xs:element name="name" msprop:Generator_ColumnVarNameInTable="columnname" msprop:Generator_ColumnPropNameInRow="name" msprop:Generator_ColumnPropNameInTable="nameColumn" msprop:Generator_UserColumnName="name">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="50" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="serie" msprop:Generator_ColumnVarNameInTable="columnserie" msprop:Generator_ColumnPropNameInRow="serie" msprop:Generator_ColumnPropNameInTable="serieColumn" msprop:Generator_UserColumnName="serie">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="3" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="desde" msprop:Generator_ColumnVarNameInTable="columndesde" msprop:Generator_ColumnPropNameInRow="desde" msprop:Generator_ColumnPropNameInTable="desdeColumn" msprop:Generator_UserColumnName="desde" type="xs:int" />
+              <xs:element name="hasta" msprop:Generator_ColumnVarNameInTable="columnhasta" msprop:Generator_ColumnPropNameInRow="hasta" msprop:Generator_ColumnPropNameInTable="hastaColumn" msprop:Generator_UserColumnName="hasta" type="xs:int" />
+              <xs:element name="secuencia" msprop:Generator_ColumnVarNameInTable="columnsecuencia" msprop:Generator_ColumnPropNameInRow="secuencia" msprop:Generator_ColumnPropNameInTable="secuenciaColumn" msprop:Generator_UserColumnName="secuencia" type="xs:int" />
+              <xs:element name="isenabled" msprop:Generator_ColumnVarNameInTable="columnisenabled" msprop:Generator_ColumnPropNameInRow="isenabled" msprop:Generator_ColumnPropNameInTable="isenabledColumn" msprop:Generator_UserColumnName="isenabled" type="xs:int" />
+              <xs:element name="ncf_vence" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnncf_vence" msprop:Generator_ColumnPropNameInRow="ncf_vence" msprop:Generator_ColumnPropNameInTable="ncf_venceColumn" msprop:Generator_UserColumnName="ncf_vence" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="10" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+              <xs:element name="vista" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnvista" msprop:Generator_ColumnPropNameInRow="vista" msprop:Generator_ColumnPropNameInTable="vistaColumn" msprop:Generator_UserColumnName="vista" minOccurs="0">
+                <xs:simpleType>
+                  <xs:restriction base="xs:string">
+                    <xs:maxLength value="8000" />
+                  </xs:restriction>
+                </xs:simpleType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:choice>
+    </xs:complexType>
+    <xs:unique name="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:country" />
+      <xs:field xpath="mstns:countryid" />
+    </xs:unique>
+    <xs:unique name="currency_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:currency" />
+      <xs:field xpath="mstns:currencyid" />
+    </xs:unique>
+    <xs:unique name="company_ncf_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:company_ncf" />
+      <xs:field xpath="mstns:ncfid" />
+    </xs:unique>
+    <xs:unique name="ncf_Constraint1" msdata:ConstraintName="Constraint1" msdata:PrimaryKey="true">
+      <xs:selector xpath=".//mstns:ncf" />
+      <xs:field xpath="mstns:ncftipoid" />
+    </xs:unique>
+  </xs:element>
+  <xs:annotation>
+    <xs:appinfo>
+      <msdata:Relationship name="FK_company_ncf_ncf" msdata:parent="ncf" msdata:child="company_ncf" msdata:parentkey="ncftipoid" msdata:childkey="ncftipoid" msprop:Generator_UserChildTable="company_ncf" msprop:Generator_ChildPropName="Getcompany_ncfRows" msprop:Generator_UserRelationName="FK_company_ncf_ncf" msprop:Generator_ParentPropName="ncfRow" msprop:Generator_RelationVarName="relationFK_company_ncf_ncf" msprop:Generator_UserParentTable="ncf" />
+      <msdata:Relationship name="FK_company_ncf_ncf1" msdata:parent="ncf" msdata:child="list_company_ncf" msdata:parentkey="ncftipoid" msdata:childkey="ncftipoid" msprop:Generator_UserChildTable="list_company_ncf" msprop:Generator_ChildPropName="Getlist_company_ncfRows" msprop:Generator_UserRelationName="FK_company_ncf_ncf1" msprop:Generator_ParentPropName="ncfRow" msprop:Generator_RelationVarName="relationFK_company_ncf_ncf1" msprop:Generator_UserParentTable="ncf" />
+    </xs:appinfo>
+  </xs:annotation>
+</xs:schema>

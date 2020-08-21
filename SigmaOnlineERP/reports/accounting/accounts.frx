@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report ScriptLanguage="CSharp" ReportInfo.Name="rptaccounts" ReportInfo.Created="08/19/2020 22:04:48" ReportInfo.Modified="08/20/2020 15:41:56" ReportInfo.CreatorVersion="2020.3.7.0">
+  <Styles Name="Gray">
+    <Style Name="Title" Font="Arial, 12pt, style=Bold"/>
+    <Style Name="Header" Fill.Color="Gainsboro" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Group" Font="Arial, 10pt, style=Bold"/>
+    <Style Name="Data" Font="Arial, 10pt"/>
+    <Style Name="Footer" Fill.Color="Gainsboro" Font="Arial, 10pt"/>
+    <Style Name="EvenRows" Fill.Color="WhiteSmoke" Font="Arial, 10pt"/>
+  </Styles>
+  <Dictionary>
+    <OleDbDataConnection Name="ConnectionSigmaWeb" ConnectionString="rijcmlqVzFGsc+BVENiWJhr/EarGhTlJJq69WvDbRAFdfNGr90M8liUg2SgKZgPoKL+0HgJmQ8znvhySv4LDCo/oJ+9YwnSuoOvlPd4WyAlY0HNC1oyLOufNEJ0dG4CMTBkf9cBkt/jSuecYBH5tAj1LPKEGWngX9k2BHbxrVIM0mpE2BA=">
+      <TableDataSource Name="Table" Alias="company_accounts" DataType="System.Int32" Enabled="true" SelectCommand="select&#13;&#10;companyid, accountid, name,&#13;&#10;case account_type when 'AC' then 'Activo'&#13;&#10;when 'PA' then 'Pasivo'&#13;&#10;when 'CA' then 'Capital'&#13;&#10;when 'IN' then 'Ingreso'&#13;&#10;when 'CO' then 'Costo'&#13;&#10;when 'GA' then 'Gasto' end as account_type,&#13;&#10;case origin when 'D' then 'Débito'&#13;&#10;when 'C' then 'Crédito' end as origin,&#13;&#10;case isdetail when 1 then 'Si' else 'No' end as isdetail,&#13;&#10;controlid&#13;&#10;from&#13;&#10;company_accounts&#13;&#10;where&#13;&#10;companyid = ?&#13;&#10;and isenabled = 1&#13;&#10;order by&#13;&#10;2">
+        <Column Name="companyid" DataType="System.Int32"/>
+        <Column Name="accountid" DataType="System.String"/>
+        <Column Name="name" DataType="System.String"/>
+        <Column Name="account_type" DataType="System.String"/>
+        <Column Name="origin" DataType="System.String"/>
+        <Column Name="controlid" DataType="System.String"/>
+        <Column Name="isdetail" DataType="System.Int32"/>
+        <CommandParameter Name="companyid" DataType="3" Expression="[vcompanyid]" DefaultValue="1"/>
+      </TableDataSource>
+    </OleDbDataConnection>
+    <Parameter Name="vcompanyid" DataType="System.Int32" Description="Código de la Empresa"/>
+  </Dictionary>
+  <ReportPage Name="Page1" Watermark.Font="Arial, 60pt">
+    <ReportTitleBand Name="ReportTitle1" Width="718.2" Height="37.8">
+      <TextObject Name="Text1" Width="718.2" Height="37.8" Dock="Fill" Text="Catálogo de Cuentas" HorzAlign="Center" VertAlign="Center" Font="Arial, 12pt, style=Bold" Style="Title"/>
+    </ReportTitleBand>
+    <PageHeaderBand Name="PageHeader1" Top="41.8" Width="718.2" Height="28.35">
+      <TextObject Name="Text3" Width="85.05" Height="28.35" Border.Lines="All" Fill.Color="Gainsboro" Text="Cuenta" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text5" Left="85.05" Width="321.3" Height="28.35" Border.Lines="All" Fill.Color="Gainsboro" Text="Nombre de la cuenta" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text7" Left="406.35" Width="75.6" Height="28.35" Border.Lines="All" Fill.Color="Gainsboro" Text="Tipo" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text9" Left="481.95" Width="56.7" Height="28.35" Border.Lines="All" Fill.Color="Gainsboro" Text="Origen" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text11" Left="538.65" Width="85.05" Height="28.35" Border.Lines="All" Fill.Color="Gainsboro" Text="Control" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+      <TextObject Name="Text13" Left="623.7" Width="94.5" Height="28.35" Border.Lines="All" Fill.Color="Gainsboro" Text="¿Es detalle?" HorzAlign="Center" VertAlign="Center" Font="Arial, 10pt, style=Bold" Style="Header"/>
+    </PageHeaderBand>
+    <DataBand Name="Data1" Top="74.15" Width="718.2" Height="18.9" EvenStyle="EvenRows" DataSource="Table">
+      <TextObject Name="Text2" Width="85.05" Height="18.9" Text="[company_accounts.accountid]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text4" Left="85.05" Width="321.3" Height="18.9" Text="[company_accounts.name]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text6" Left="406.35" Width="75.6" Height="18.9" Text="[company_accounts.account_type]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text8" Left="481.95" Width="56.7" Height="18.9" Text="[company_accounts.origin]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text10" Left="538.65" Width="85.05" Height="18.9" Text="[company_accounts.controlid]" Font="Arial, 10pt" Style="Data"/>
+      <TextObject Name="Text12" Left="623.7" Width="94.5" Height="18.9" Text="[company_accounts.isdetail]" HorzAlign="Center" Font="Arial, 10pt" Style="Data"/>
+    </DataBand>
+    <PageFooterBand Name="PageFooter1" Top="97.05" Width="718.2" Height="18.9">
+      <TextObject Name="Text14" Width="718.2" Height="18.9" Dock="Fill" Fill.Color="Gainsboro" Text="[PageN]" HorzAlign="Right" VertAlign="Center" Font="Arial, 10pt" Style="Footer"/>
+    </PageFooterBand>
+  </ReportPage>
+</Report>
