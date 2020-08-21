@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="newaccount.aspx.cs" Inherits="SigmaOnlineERP.newaccount" %>
+﻿<%@ Page Title="SigmaWeb - Cuenta contable" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="newaccount.aspx.cs" Inherits="SigmaOnlineERP.newaccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">

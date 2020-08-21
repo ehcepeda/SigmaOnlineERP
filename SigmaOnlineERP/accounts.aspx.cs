@@ -156,5 +156,10 @@ namespace SigmaOnlineERP
             /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
                server control at run time. */
         }
+
+        protected void btn_refresh_Click(object sender, EventArgs e)
+        {
+            refresh();
+        }
     }
 }

@@ -316,9 +316,9 @@
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><a href="accounts.aspx">Catálogo</a></li>
+                                    <li><a href="journalentry.aspx">Entraras de diario</a></li>
                                     <li><a href="ecommerce-product-detail.html">Grupos contables</a></li>
                                     <li><a href="ecommerce-orders.html">Presupuesto</a></li>
-                                    <li><a href="ecommerce-customers.html">Entraras de diario</a></li>
                                     <li><a href="ecommerce-cart.html">Estados financieros</a></li>
                                     <li><a href="ecommerce-checkout.html">Listados de RNC</a></li>
                                     <li><a href="ecommerce-shops.html">Dashboard</a></li>

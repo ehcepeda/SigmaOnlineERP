@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="companies.aspx.cs" Inherits="SigmaOnlineERP.companies"
+﻿<%@ Page Title="SigmaWeb - Empresas" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="companies.aspx.cs" Inherits="SigmaOnlineERP.companies"
     MaintainScrollPositionOnPostback="true" EnableEventValidation="false" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>

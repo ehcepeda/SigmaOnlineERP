@@ -1091,6 +1091,7 @@
     <Content Include="config.aspx" />
     <Content Include="default.aspx" />
     <Content Include="Global.asax" />
+    <Content Include="journalentry.aspx" />
     <Content Include="login.aspx" />
     <Content Include="newaccount.aspx" />
     <Content Include="newcompany.aspx" />
@@ -1144,6 +1145,13 @@
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="journalentry.aspx.cs">
+      <DependentUpon>journalentry.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="journalentry.aspx.designer.cs">
+      <DependentUpon>journalentry.aspx</DependentUpon>
     </Compile>
     <Compile Include="login.aspx.cs">
       <DependentUpon>login.aspx</DependentUpon>

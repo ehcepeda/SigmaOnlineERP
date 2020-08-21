@@ -1,4 +1,4 @@
-﻿<%@ Page Title="SigmaWeb - Catálogo de Cuentas" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="accounts.aspx.cs" Inherits="SigmaOnlineERP.accounts"
+﻿<%@ Page Title="SigmaWeb - Entradas de diario" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="journalentry.aspx.cs" Inherits="SigmaOnlineERP.journalentry"
     EnableEventValidation="false" MaintainScrollPositionOnPostback="true" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
@@ -16,6 +16,11 @@
             vertical-align: middle;
         }
 
+        .table-normal-header-number th{
+            vertical-align: middle;
+            text-align: right;
+        }
+
         .modal {
             top: 0;
             left: 0;
@@ -24,7 +29,7 @@
             min-height: 100%;
             width: 100%;
         }
- 
+
         .loading {
             font-family: Arial;
             font-size: 10pt;
@@ -130,7 +135,7 @@
                                                     <div class="button-items mb-0">
                                                         <asp:LinkButton ID="btn_add" CssClass="btn btn-success waves-effect btn-label waves-light" runat="server"
                                                             OnClick="btn_add_Click">
-                                                            <i class="bx bx-plus label-icon"></i> Nueva cuenta
+                                                            <i class="bx bx-plus label-icon"></i> Nueva entrada
                                                         </asp:LinkButton>
                                                         <asp:LinkButton ID="btn_refresh" CssClass="btn btn-outline-success waves-effect btn-label waves-light" runat="server"
                                                             OnClick="btn_refresh_Click">
@@ -160,60 +165,36 @@
                                                 </div>
                                             </div>
                                             <div class="table-responsive mb-0" data-pattern="priority-columns">
-                                                <asp:GridView ID="gvaccounts" runat="server" CssClass="table table-normal mb-0 table-bordered" 
+                                                <asp:GridView ID="gvjournal" runat="server" CssClass="table table-normal mb-0 table-bordered" 
                                                     AutoGenerateColumns="false" AllowPaging="true" PageSize="40" GridLines="Vertical" Font-Size="Smaller"
-                                                    DataKeyNames="accountid" ShowFooter="false" OnPageIndexChanging="gvaccounts_PageIndexChanging"
-                                                    OnRowCommand="gvaccounts_RowCommand" OnRowDataBound="gvaccounts_RowDataBound">
+                                                    DataKeyNames="journalid" ShowFooter="true" OnPageIndexChanging="gvjournal_PageIndexChanging"
+                                                    OnRowCommand="gvjournal_RowCommand" OnRowDataBound="gvjournal_RowDataBound">
                                                     <Columns>
                                                         <asp:TemplateField HeaderText="Acción" ItemStyle-Width="110" HeaderStyle-HorizontalAlign="Center" ItemStyle-Wrap="false">
                                                             <ItemTemplate>
-                                                                <div style="text-align: center;" runat="server" visible='<%# Eval("accountid").ToString().Length > 0 %>'>
+                                                                <div style="text-align: center;" runat="server" visible='<%# Eval("journalid").ToString().Length > 0 %>'>
                                                                     <asp:LinkButton ID="lkedit" runat="server" CssClass="btn btn-outline-info btn-sm" 
-                                                                        CommandArgument='<%# Eval("accountid").ToString() %>' CommandName="edit" AlternateText="Modifcar datos" 
+                                                                        CommandArgument='<%# Eval("journalid").ToString() %>' CommandName="edit" AlternateText="Modifcar datos" 
                                                                         CausesValidation="false"><i class="mdi mdi-pencil font-size-12"></i></asp:LinkButton>
 
-                                                                    <asp:LinkButton ID="lkcancel" runat="server" CssClass="btn btn-outline-danger btn-sm" 
-                                                                        CommandArgument='<%# Eval("accountid").ToString() %>'
-                                                                        CommandName="inactivate" Visible='<%# Eval("isenabled").ToString() == "1" %>' CausesValidation="false"
-                                                                        AlternateText="Inactivar"><i class="mdi mdi-cancel font-size-12"></i>
-                                                                    </asp:LinkButton>
-
-                                                                    <asp:LinkButton ID="lkactive" runat="server" CssClass="btn btn-outline-success btn-sm" 
-                                                                        CommandArgument='<%# Eval("accountid").ToString() %>'
-                                                                        CommandName="reactivate" Visible='<%# Eval("isenabled").ToString() == "0" %>' CausesValidation="false"
-                                                                        AlternateText="activar"><i class="mdi mdi-check font-size-12"></i>
-                                                                    </asp:LinkButton>
-
                                                                     <asp:LinkButton ID="lkdelete" runat="server" CssClass="btn btn-outline-danger btn-sm" 
-                                                                        CommandArgument='<%# Eval("accountid").ToString() %>'
+                                                                        CommandArgument='<%# Eval("journalid").ToString() %>'
                                                                         CommandName="erase" CausesValidation="false" AlternateText="Eliminar">
                                                                         <i class="mdi mdi-trash-can font-size-12"></i>
                                                                     </asp:LinkButton>
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:BoundField DataField="accountid" HeaderText="Cuenta" ItemStyle-Width="120" HeaderStyle-HorizontalAlign="Center" />
-                                                        <asp:BoundField DataField="name" HeaderText="Nombre de la cuenta" ItemStyle-Width="280" HeaderStyle-HorizontalAlign="Center" />
-                                                        <asp:BoundField DataField="account_type" HeaderText="Tipo" ItemStyle-Width="110" />
-                                                        <asp:BoundField DataField="origin" HeaderText="Origen" ItemStyle-Width="110" />
-                                                        <asp:BoundField DataField="controlid" HeaderText="Control" ItemStyle-Width="110" />
-                                                        <asp:TemplateField ItemStyle-VerticalAlign="Middle" ItemStyle-Width="30" ItemStyle-HorizontalAlign="Center" HeaderText="¿Detalle?">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbisdetail" runat="server" Text='<%# Eval("isdetail").ToString() == "1" ? "Si" : "No" %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField ItemStyle-VerticalAlign="Middle" ItemStyle-Width="30" ItemStyle-HorizontalAlign="Center" HeaderText="¿Directa?">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbdirect" runat="server" Text='<%# Eval("direct").ToString() == "1" ? "Si" : "No" %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:TemplateField ItemStyle-VerticalAlign="Middle" ItemStyle-Width="30" ItemStyle-HorizontalAlign="Center" HeaderText="Estatus">
-                                                            <ItemTemplate>
-                                                                <asp:Label ID="lbestatus" runat="server" Text='<%# Eval("isenabled").ToString() == "1" ? "Activa" : "Inactiva" %>'
-                                                                    ForeColor='<%# Eval("isenabled").ToString() == "1" ? System.Drawing.Color.FromName("#495057") : System.Drawing.Color.Red %>'></asp:Label>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
-                                                        <asp:BoundField DataField="create_date" HeaderText="Fecha creación" ItemStyle-Width="110" />
+                                                        <asp:BoundField DataField="journalid" HeaderText="ID" ItemStyle-Width="120" HeaderStyle-HorizontalAlign="Center" />
+                                                        <asp:BoundField DataField="doctype" HeaderText="Tipo de documento" ItemStyle-Width="180" HeaderStyle-HorizontalAlign="Center" />
+                                                        <asp:BoundField DataField="create_date" HeaderText="Fecha" ItemStyle-Width="110" />
+                                                        <asp:BoundField DataField="number" HeaderText="Número" ItemStyle-Width="110" />
+                                                        <asp:BoundField DataField="note" HeaderText="Concepto" ItemStyle-Width="210" />
+                                                        <asp:BoundField DataField="dimension" HeaderText="Dimensión" ItemStyle-Width="210" />
+                                                        <asp:BoundField DataField="debit" HeaderText="Débito" ItemStyle-Width="110" DataFormatString="{0:n}"
+                                                            HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
+                                                        <asp:BoundField DataField="credit" HeaderText="Crédito" ItemStyle-Width="110" DataFormatString="{0:n}"
+                                                           HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
                                                     </Columns>
                                                     <PagerSettings Visible="true" />
                                                     <PagerStyle CssClass="pagination-lg" />
@@ -230,7 +211,7 @@
                     <Triggers>
                         <asp:PostBackTrigger ControlID="btn_export" />
                         <asp:PostBackTrigger ControlID="btn_refresh" />
-                        <asp:PostBackTrigger ControlID="gvaccounts" />
+                        <asp:PostBackTrigger ControlID="gvjournal" />
                     </Triggers>
                 </asp:UpdatePanel>
             </div>
