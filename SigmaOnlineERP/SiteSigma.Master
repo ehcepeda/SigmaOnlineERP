@@ -309,28 +309,20 @@
 
                             <li class="menu-title">Apps</li>
 
-                            <li>
+                            <li id="maccounting" runat="server">
                                 <a href="javascript: void(0);" class="has-arrow waves-effect">
                                     <i class="bx bx-store"></i>
                                     <span>Contabilidad</span>
                                 </a>
                                 <ul class="sub-menu" aria-expanded="false">
-                                    <li><a href="accounts.aspx">Catálogo</a></li>
-                                    <li><a href="journalentry.aspx">Entraras de diario</a></li>
+                                    <li><asp:HyperLink ID="maccounting_accounts" runat="server" NavigateUrl="accounts.aspx">Catálogo</asp:HyperLink></li>
+                                    <li><asp:HyperLink ID="maccounting_journal" runat="server" NavigateUrl="journalentry.aspx">Entradas de diario</asp:HyperLink></li>
                                     <li><a href="ecommerce-product-detail.html">Grupos contables</a></li>
                                     <li><a href="ecommerce-orders.html">Presupuesto</a></li>
                                     <li><a href="ecommerce-cart.html">Estados financieros</a></li>
                                     <li><a href="ecommerce-checkout.html">Listados de RNC</a></li>
                                     <li><a href="ecommerce-shops.html">Dashboard</a></li>
                                 </ul>
-                            </li>
-
-                            <li>
-                                <a href="chat.html" class=" waves-effect">
-                                    <i class="bx bx-chat"></i>
-                                    <span class="badge badge-pill badge-success float-right">New</span>
-                                    <span>Chat</span>
-                                </a>
                             </li>
                         </ul>
                     </div>

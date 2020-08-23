@@ -30,23 +30,36 @@
                 </div>
                 <!-- end page title -->
 
-                <div class="row">
-                    <div class="col-lg-8">
-                        <div class="card">
-                            <div class="card-body">
-                                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
-                                    <ContentTemplate>
+                <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                    <ContentTemplate>
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="btn-group">
+                                            <asp:LinkButton ID="btn_save" CssClass="btn btn-info waves-effect btn-label waves-light" runat="server"
+                                                OnClick="btn_save_Click" CausesValidation="true">
+                                                <i class="bx bx-save label-icon"></i> Grabar
+                                            </asp:LinkButton>
+                                        </div>
+                                        <div class="btn-group">
+                                            <asp:LinkButton ID="lk_close" runat="server" CssClass="btn btn-danger waves-effect btn-label waves-light"
+                                                ausesValidation="false" OnClick="lk_close_Click">
+                                                <i class="bx bx-exit label-icon"></i>Salir
+                                            </asp:LinkButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+                        <div class="row">
+                            <div class="col-lg-8">
+                                <div class="card">
+                                    <div class="card-body">
                                         <div class="row mb-2">
                                             <div class="col-sm-4">
                                                 <h4 class="card-title mb-4">Datos de mi Empresa</h4>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="text-sm-right">
-                                                    <asp:Button ID="btn_save" runat="server" Text="Grabar" CssClass="btn btn-info waves-effect waves-light" 
-                                                        CausesValidation="true" OnClick="btn_save_Click" />
-                                                    <asp:LinkButton ID="lk_close" runat="server" CssClass="btn btn-danger waves-effect waves-light"
-                                                        ausesValidation="false" OnClick="lk_close_Click">Salir</asp:LinkButton>
-                                                </div>
                                             </div>
                                         </div>
                                         <div role="form">
@@ -221,58 +234,59 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </ContentTemplate>
-                                </asp:UpdatePanel>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-4">
-                        <div class="card overflow-hidden">
-                            <div class="bg-soft-primary">
-                                <div class="row">
-                                    <div class="col-7">
-                                        <div class="text-primary p-3">
-                                            <h5 class="text-primary">Hola !</h5>
-                                            <p>En esta sección propircionas los datos generales de tu Empresa, información de contacto y redes sociales.</p>
+                            <div class="col-lg-4">
+                                <div class="card overflow-hidden">
+                                    <div class="bg-soft-primary">
+                                        <div class="row">
+                                            <div class="col-7">
+                                                <div class="text-primary p-3">
+                                                    <h5 class="text-primary">Hola !</h5>
+                                                    <p>En esta sección proporcionas los datos generales de tu Empresa, información de contacto y redes sociales.</p>
+                                                </div>
+                                            </div>
+                                            <div class="col-5 align-self-end">
+                                                <img src="assets/images/profile-img.png" alt="" class="img-fluid" />
+                                            </div>
                                         </div>
                                     </div>
-                                    <div class="col-5 align-self-end">
-                                        <img src="assets/images/profile-img.png" alt="" class="img-fluid" />
+                                </div>
+                                <div class="card">
+                                    <div class="card-body">
+                                        <h2 class="card-title">Imagén para el Logo y el Sello</h2>
+                                        <p></p>
+                                        <p class="card-title-desc">
+                                        </p>
+                                        <div class="row">
+                                            <div class="col-md-6" style="text-align: center;">
+                                                <asp:Button ID="btsaveimage" runat="server" Text="Button" Style="display: none;" OnClick="btsaveimage_Click" />
+                                                <asp:FileUpload ID="FileUpload1" runat="server" Style="display: none;" onchange="SaveImage();" />
+                                                <asp:UpdatePanel ID="UpdatePanel3" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:ImageButton ID="img_logo" runat="server" class="rounded mr-2" Height="80" OnClientClick="OpenFiledialog();" CausesValidation="true" />
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                            </div>
+                                            <div class="col-md-6" style="text-align: center;">
+                                                <asp:Button ID="btsaveimage_stamp" runat="server" Text="Button" Style="display: none;" OnClick="btsaveimage_stamp_Click" />
+                                                <asp:FileUpload ID="FileUpload2" runat="server" Style="display: none;" onchange="SaveImageStamp();" />
+                                                <asp:UpdatePanel ID="UpdatePanel4" runat="server">
+                                                    <ContentTemplate>
+                                                        <asp:ImageButton ID="img_stamp" runat="server" class="rounded mr-2" Height="80" OnClientClick="OpenFiledialogStamp();" CausesValidation="true" />
+                                                    </ContentTemplate>
+                                                </asp:UpdatePanel>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                        <div class="card">
-                            <div class="card-body">
-                                <h2 class="card-title">Imagén para el Logo y el Sello</h2>
-                                <p></p>
-                                <p class="card-title-desc">
-                                </p>
-                                <div class="row">
-                                    <div class="col-md-6" style="text-align: center;">
-                                        <asp:Button ID="btsaveimage" runat="server" Text="Button" Style="display: none;" OnClick="btsaveimage_Click" />
-                                        <asp:FileUpload ID="FileUpload1" runat="server" Style="display: none;" onchange="SaveImage();" />
-                                        <asp:UpdatePanel ID="UpdatePanel3" runat="server">
-                                            <ContentTemplate>
-                                                <asp:ImageButton ID="img_logo" runat="server" class="rounded mr-2" Height="80" OnClientClick="OpenFiledialog();" CausesValidation="true" />
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                    <div class="col-md-6" style="text-align: center;">
-                                        <asp:Button ID="btsaveimage_stamp" runat="server" Text="Button" Style="display: none;" OnClick="btsaveimage_stamp_Click" />
-                                        <asp:FileUpload ID="FileUpload2" runat="server" Style="display: none;" onchange="SaveImageStamp();" />
-                                        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                                            <ContentTemplate>
-                                                <asp:ImageButton ID="img_stamp" runat="server" class="rounded mr-2" Height="80" OnClientClick="OpenFiledialogStamp();" CausesValidation="true" />
-                                            </ContentTemplate>
-                                        </asp:UpdatePanel>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <!-- end row -->
+                        <!-- end row -->
+                    </ContentTemplate>
+                </asp:UpdatePanel>
+
                 <asp:UpdatePanel ID="UpdatePanel2" runat="server">
                     <ContentTemplate>
                         <div class="row">
@@ -385,6 +399,13 @@
                 </asp:UpdatePanel>
             </div>
         </div>
+
+    <!-- Footer Start -->
+    <%
+        Response.WriteFile("assets/footer.html");
+    %>
+    <!-- end Footer -->
+
     </div>
 
     <!-- bootstrap datepicker -->

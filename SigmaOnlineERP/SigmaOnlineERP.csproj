@@ -1095,6 +1095,7 @@
     <Content Include="login.aspx" />
     <Content Include="newaccount.aspx" />
     <Content Include="newcompany.aspx" />
+    <Content Include="newjournal.aspx" />
     <Content Include="register.aspx" />
     <Content Include="user-profile.aspx" />
     <Content Include="Web.config" />
@@ -1125,6 +1126,11 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetAccounting.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="DataSetAccountsPayable.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetAccountsPayable.xsd</DependentUpon>
     </Compile>
     <Compile Include="DataSetAdmin.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -1173,6 +1179,13 @@
     </Compile>
     <Compile Include="newcompany.aspx.designer.cs">
       <DependentUpon>newcompany.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="newjournal.aspx.cs">
+      <DependentUpon>newjournal.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="newjournal.aspx.designer.cs">
+      <DependentUpon>newjournal.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="register.aspx.cs">
@@ -1329,6 +1342,17 @@
     </None>
     <Content Include="DataSetAccounting.xss">
       <DependentUpon>DataSetAccounting.xsd</DependentUpon>
+    </Content>
+    <Content Include="DataSetAccountsPayable.xsc">
+      <DependentUpon>DataSetAccountsPayable.xsd</DependentUpon>
+    </Content>
+    <None Include="DataSetAccountsPayable.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetAccountsPayable.Designer.cs</LastGenOutput>
+    </None>
+    <Content Include="DataSetAccountsPayable.xss">
+      <DependentUpon>DataSetAccountsPayable.xsd</DependentUpon>
     </Content>
     <None Include="DataSetAdmin.xsd">
       <SubType>Designer</SubType>

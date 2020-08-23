@@ -1,4 +1,5 @@
-﻿<%@ Page Title="SigmaWeb - Cuenta contable" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="newaccount.aspx.cs" Inherits="SigmaOnlineERP.newaccount" %>
+﻿<%@ Page Title="SigmaWeb - Cuenta contable" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="newaccount.aspx.cs" 
+    Inherits="SigmaOnlineERP.newaccount" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -80,20 +81,34 @@
                 <asp:UpdatePanel ID="UpdatePanel1" runat="server">
                     <ContentTemplate>
                         <div class="row">
+                            <div class="col-lg-9">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="btn-group">
+                                            <asp:LinkButton ID="btn_save" CssClass="btn btn-info waves-effect btn-label waves-light" runat="server"
+                                                OnClick="btn_save_Click" CausesValidation="true">
+                                                <i class="bx bx-save label-icon"></i> Grabar
+                                            </asp:LinkButton>
+                                        </div>
+                                        <div class="btn-group">
+                                            <asp:LinkButton ID="lk_close" runat="server" CssClass="btn btn-danger waves-effect btn-label waves-light"
+                                                ausesValidation="false" OnClick="lk_close_Click">
+                                                <i class="bx bx-exit label-icon"></i>Salir
+                                            </asp:LinkButton>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- end row -->
+
+                        <div class="row">
                             <div class="col-lg-8">
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="row mb-2">
                                             <div class="col-sm-4">
                                                 <h4 class="card-title mb-4">Datos de la cuenta</h4>
-                                            </div>
-                                            <div class="col-sm-8">
-                                                <div class="text-sm-right">
-                                                    <asp:Button ID="btn_save" runat="server" Text="Grabar" CssClass="btn btn-info waves-effect waves-light"
-                                                        CausesValidation="true" OnClick="btn_save_Click" />
-                                                    <asp:LinkButton ID="lk_close" runat="server" CssClass="btn btn-danger waves-effect waves-light"
-                                                        ausesValidation="false" OnClick="lk_close_Click">Salir</asp:LinkButton>
-                                                </div>
                                             </div>
                                         </div>
                                         <div role="form">
@@ -235,8 +250,8 @@
                                                         <Columns>
                                                             <asp:BoundField DataField="accountid" HeaderText="CUENTA" ItemStyle-Width="110" HeaderStyle-HorizontalAlign="Center" />
                                                             <asp:BoundField DataField="name" HeaderText="NOMBRE DE LA CUENTA" ItemStyle-Width="320" HeaderStyle-HorizontalAlign="Center" />
-                                                            <asp:BoundField DataField="account_type" HeaderText="TYPO" />
-                                                            <asp:BoundField DataField="origin" HeaderText="Origen" />
+                                                            <asp:BoundField DataField="account_type" HeaderText="TiPO" />
+                                                            <asp:BoundField DataField="origin" HeaderText="ORIGEN" />
                                                         </Columns>
                                                         <PagerSettings Visible="true" />
                                                     </asp:GridView>
@@ -252,6 +267,12 @@
                 </asp:UpdatePanel>
             </div>
         </div>
+
+    <!-- Footer Start -->
+    <%
+        Response.WriteFile("assets/footer.html");
+    %>
+    <!-- end Footer -->
     </div>
 
     <!-- bootstrap datepicker -->

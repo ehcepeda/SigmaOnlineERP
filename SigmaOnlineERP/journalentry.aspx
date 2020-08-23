@@ -4,6 +4,9 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <link href="assets/libs/bootstrap-datepicker/css/bootstrap-datepicker.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="assets/libs/@chenfengyuan/datepicker/datepicker.min.css">
+
     <style>
         .table-normal td{
             padding: .40rem;
@@ -111,11 +114,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Empresas</h4>
+                            <h4 class="mb-0 font-size-18">Entradas</h4>
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Inicio</a></li>
-                                    <li class="breadcrumb-item active">Empresas</li>
+                                    <li class="breadcrumb-item"><a href="default.aspx">Inicio</a></li>
+                                    <li class="breadcrumb-item active">Entradas de diario</li>
                                 </ol>
                             </div>
                         </div>
@@ -131,36 +134,66 @@
                                     <div class="card-body">
                                         <div class="table-rep-plugin">
                                             <div class="row mb-2">
-                                                <div class="btn-toolbar col-sm-8">
-                                                    <div class="button-items mb-0">
+                                                <div class="col-sm-10">
+                                                    <ul class="list-inline user-chat-nav mb-0">
+                                                        <div class="d-inline-block">
+                                                            <div class="position-relative">
+                                                                <asp:TextBox ID="tbsearch" CssClass="form-control" runat="server" placeholder="Buscar..." 
+                                                                    AutoCompleteType="Disabled"></asp:TextBox>
+                                                                <div class="chat-input-links">
+                                                                    <ul class="list-inline mb-0">
+                                                                        <li class="list-inline-item">
+                                                                            <asp:LinkButton ID="btn_search" runat="server" OnClick="btn_search_Click">
+                                                                                <i class="mdi mdi-magnify"></i>
+                                                                            </asp:LinkButton>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text"><i class="bx bx-calendar label-icon"></i></div>
+                                                                </div>
+                                                                <asp:TextBox ID="date_start" runat="server" placeholder="Inicio" CssClass="form-control" Width="120px"
+                                                                    data-date-format="dd-mm-yyyy" data-provide="datepicker" data-date-autoclose="true"
+                                                                    MaxLength="10" oninput="setCustomValidity('')"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <div class="input-group">
+                                                                <div class="input-group-prepend">
+                                                                    <div class="input-group-text"><i class="bx bx-calendar label-icon"></i></div>
+                                                                </div>
+                                                                <asp:TextBox ID="date_end" runat="server" placeholder="Fin" CssClass="form-control" Width="120px"
+                                                                    data-date-format="dd-mm-yyyy" data-provide="datepicker" data-date-autoclose="true"
+                                                                    MaxLength="10" oninput="setCustomValidity('')"></asp:TextBox>
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <asp:DropDownList ID="cbconcept" runat="server" CssClass="form-control" DataValueField="conceptid" AutoPostBack="true"
+                                                                DataTextField="name" OnSelectedIndexChanged="cbconcept_SelectedIndexChanged">
+                                                            </asp:DropDownList>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <asp:LinkButton ID="btn_refresh" CssClass="btn btn-light waves-effect btn-label waves-light" runat="server"
+                                                                OnClick="btn_refresh_Click">
+                                                                <i class="bx bx-repost label-icon"></i> Refrescar
+                                                            </asp:LinkButton>
+                                                        </div>
+                                                        <asp:LinkButton ID="btn_export" CssClass="btn btn-light waves-effect btn-label waves-light" runat="server"
+                                                            OnClientClick="setTimeout(function () {document.body.removeChild(modal);loading.style.display='none';}, 2000);ShowProgress()">
+                                                            <i class="bx bx-printer label-icon"></i> Imprimir
+                                                        </asp:LinkButton>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="text-sm-right">
                                                         <asp:LinkButton ID="btn_add" CssClass="btn btn-success waves-effect btn-label waves-light" runat="server"
                                                             OnClick="btn_add_Click">
                                                             <i class="bx bx-plus label-icon"></i> Nueva entrada
                                                         </asp:LinkButton>
-                                                        <asp:LinkButton ID="btn_refresh" CssClass="btn btn-outline-success waves-effect btn-label waves-light" runat="server"
-                                                            OnClick="btn_refresh_Click">
-                                                            <i class="bx bx-loader label-icon"></i> Refrescar
-                                                        </asp:LinkButton>
-                                                        <asp:LinkButton ID="btn_export" CssClass="btn btn-outline-dark waves-effect btn-label waves-light" runat="server"
-                                                            OnClick="btn_export_Click"
-                                                            OnClientClick="setTimeout(function () {document.body.removeChild(modal);loading.style.display='none';}, 2000);ShowProgress()">
-                                                            <i class="bx bx-printer label-icon"></i> Imprimir
-                                                        </asp:LinkButton>
-                                                    </div>
-                                                </div>
-                                                <div class="col-sm-4 text-sm-righ">
-                                                    <div class="input-group mb-2 mr-sm-3">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text"><i class="bx bx-search label-icon"></i></div>
-                                                        </div>
-                                                        <asp:TextBox ID="tbsearch" CssClass="form-control" runat="server" placeholder="Texto a buscar..."></asp:TextBox>
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <asp:LinkButton ID="btn_search" runat="server" OnClick="btn_search_Click">
-                                                                    Buscar
-                                                                </asp:LinkButton>
-                                                            </div>
-                                                        </div>
                                                     </div>
                                                 </div>
                                             </div>
@@ -168,32 +201,43 @@
                                                 <asp:GridView ID="gvjournal" runat="server" CssClass="table table-normal mb-0 table-bordered" 
                                                     AutoGenerateColumns="false" AllowPaging="true" PageSize="40" GridLines="Vertical" Font-Size="Smaller"
                                                     DataKeyNames="journalid" ShowFooter="true" OnPageIndexChanging="gvjournal_PageIndexChanging"
-                                                    OnRowCommand="gvjournal_RowCommand" OnRowDataBound="gvjournal_RowDataBound">
+                                                    OnRowCommand="gvjournal_RowCommand" OnRowDataBound="gvjournal_RowDataBound" FooterStyle-Font-Bold="true"
+                                                    FooterStyle-BackColor="#EAFAF1">
                                                     <Columns>
-                                                        <asp:TemplateField HeaderText="Acción" ItemStyle-Width="110" HeaderStyle-HorizontalAlign="Center" ItemStyle-Wrap="false">
+                                                        <asp:TemplateField HeaderText="Acción" ItemStyle-Width="5%" HeaderStyle-CssClass="text-center" ItemStyle-Wrap="false">
                                                             <ItemTemplate>
                                                                 <div style="text-align: center;" runat="server" visible='<%# Eval("journalid").ToString().Length > 0 %>'>
+                                                                    <asp:LinkButton ID="lkprint" runat="server" CssClass="btn btn-outline-info btn-sm"
+                                                                        data-toggle="tooltip" data-placement="top" title="Imprimir entrada"
+                                                                        CommandArgument='<%# Eval("journalid").ToString() %>' CommandName="print"
+                                                                        CausesValidation="false"><i class="mdi mdi-printer font-size-12"></i></asp:LinkButton>
+
                                                                     <asp:LinkButton ID="lkedit" runat="server" CssClass="btn btn-outline-info btn-sm" 
-                                                                        CommandArgument='<%# Eval("journalid").ToString() %>' CommandName="edit" AlternateText="Modifcar datos" 
+                                                                        data-toggle="tooltip" data-placement="top" title="Modifcar entrada"
+                                                                        CommandArgument='<%# Eval("journalid").ToString() %>' CommandName="edit"
                                                                         CausesValidation="false"><i class="mdi mdi-pencil font-size-12"></i></asp:LinkButton>
 
                                                                     <asp:LinkButton ID="lkdelete" runat="server" CssClass="btn btn-outline-danger btn-sm" 
+                                                                        data-toggle="tooltip" data-placement="top" title="Eliminar entrada"
                                                                         CommandArgument='<%# Eval("journalid").ToString() %>'
-                                                                        CommandName="erase" CausesValidation="false" AlternateText="Eliminar">
+                                                                        CommandName="erase" CausesValidation="false">
                                                                         <i class="mdi mdi-trash-can font-size-12"></i>
                                                                     </asp:LinkButton>
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:BoundField DataField="journalid" HeaderText="ID" ItemStyle-Width="120" HeaderStyle-HorizontalAlign="Center" />
-                                                        <asp:BoundField DataField="doctype" HeaderText="Tipo de documento" ItemStyle-Width="180" HeaderStyle-HorizontalAlign="Center" />
-                                                        <asp:BoundField DataField="create_date" HeaderText="Fecha" ItemStyle-Width="110" />
-                                                        <asp:BoundField DataField="number" HeaderText="Número" ItemStyle-Width="110" />
-                                                        <asp:BoundField DataField="note" HeaderText="Concepto" ItemStyle-Width="210" />
-                                                        <asp:BoundField DataField="dimension" HeaderText="Dimensión" ItemStyle-Width="210" />
-                                                        <asp:BoundField DataField="debit" HeaderText="Débito" ItemStyle-Width="110" DataFormatString="{0:n}"
+                                                        <asp:BoundField DataField="journalid" HeaderText="ID" ItemStyle-Width="50" HeaderStyle-CssClass="text-center"
+                                                            ItemStyle-HorizontalAlign="Center" />
+                                                        <asp:BoundField DataField="doctype" HeaderText="Tipo de documento" ItemStyle-Width="120" HeaderStyle-HorizontalAlign="Center" />
+                                                        <asp:BoundField DataField="create_date" HeaderText="Fecha" ItemStyle-Width="80" HeaderStyle-CssClass="text-center"
+                                                            ItemStyle-HorizontalAlign="Center" />
+                                                        <asp:BoundField DataField="number" HeaderText="Número" ItemStyle-Width="80" />
+                                                        <asp:BoundField DataField="concept" HeaderText="Concepto" ItemStyle-Width="150" />
+                                                        <asp:BoundField DataField="note" HeaderText="Nota" ItemStyle-Width="210" />
+                                                        <asp:BoundField DataField="dimension" HeaderText="Dimensión" ItemStyle-Width="90" />
+                                                        <asp:BoundField DataField="debit" HeaderText="Débito" ItemStyle-Width="90" DataFormatString="{0:n}"
                                                             HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
-                                                        <asp:BoundField DataField="credit" HeaderText="Crédito" ItemStyle-Width="110" DataFormatString="{0:n}"
+                                                        <asp:BoundField DataField="credit" HeaderText="Crédito" ItemStyle-Width="90" DataFormatString="{0:n}"
                                                            HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
                                                     </Columns>
                                                     <PagerSettings Visible="true" />
@@ -209,7 +253,6 @@
                         <!-- end row -->
                     </ContentTemplate>
                     <Triggers>
-                        <asp:PostBackTrigger ControlID="btn_export" />
                         <asp:PostBackTrigger ControlID="btn_refresh" />
                         <asp:PostBackTrigger ControlID="gvjournal" />
                     </Triggers>
@@ -218,21 +261,11 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>document.write(new Date().getFullYear())</script>
-                    © Skote.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-right d-none d-sm-block">
-                        Design & Develop by Themesbrand
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Start -->
+    <%
+        Response.WriteFile("assets/footer.html");
+    %>
+    <!-- end Footer -->
 
     <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
     <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>
@@ -276,4 +309,9 @@
                 });
         }
     </script>
+
+    <script src="assets/libs/jquery/jquery.min.js"></script>
+    <script src="assets/libs/select2/js/select2.min.js"></script>
+    <script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
+
 </asp:Content>

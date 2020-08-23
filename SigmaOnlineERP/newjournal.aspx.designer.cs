@@ -11,7 +11,7 @@ namespace SigmaOnlineERP
 {
 
 
-    public partial class journalentry
+    public partial class newjournal
     {
 
         /// <summary>
@@ -33,40 +33,85 @@ namespace SigmaOnlineERP
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// tbsearch control.
+        /// btn_save control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbsearch;
+        protected global::System.Web.UI.WebControls.LinkButton btn_save;
 
         /// <summary>
-        /// btn_search control.
+        /// lk_close control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_search;
+        protected global::System.Web.UI.WebControls.LinkButton lk_close;
 
         /// <summary>
-        /// date_start control.
+        /// journalid control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox date_start;
+        protected global::System.Web.UI.WebControls.TextBox journalid;
 
         /// <summary>
-        /// date_end control.
+        /// create_date control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox date_end;
+        protected global::System.Web.UI.WebControls.TextBox create_date;
+
+        /// <summary>
+        /// cbtype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cbtype;
+
+        /// <summary>
+        /// cbdimension control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cbdimension;
+
+        /// <summary>
+        /// number control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox number;
+
+        /// <summary>
+        /// reference control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox reference;
+
+        /// <summary>
+        /// cbsupplier control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cbsupplier;
 
         /// <summary>
         /// cbconcept control.
@@ -78,39 +123,21 @@ namespace SigmaOnlineERP
         protected global::System.Web.UI.WebControls.DropDownList cbconcept;
 
         /// <summary>
-        /// btn_refresh control.
+        /// note control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_refresh;
+        protected global::System.Web.UI.WebControls.TextBox note;
 
         /// <summary>
-        /// btn_export control.
+        /// gvdetail control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_export;
-
-        /// <summary>
-        /// btn_add control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_add;
-
-        /// <summary>
-        /// gvjournal control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.GridView gvjournal;
+        protected global::System.Web.UI.WebControls.GridView gvdetail;
     }
 }

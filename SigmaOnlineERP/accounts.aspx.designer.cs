@@ -33,13 +33,22 @@ namespace SigmaOnlineERP
         protected global::System.Web.UI.UpdatePanel UpdatePanel1;
 
         /// <summary>
-        /// btn_add control.
+        /// tbsearch control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_add;
+        protected global::System.Web.UI.WebControls.TextBox tbsearch;
+
+        /// <summary>
+        /// btn_search control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btn_search;
 
         /// <summary>
         /// btn_refresh control.
@@ -60,22 +69,13 @@ namespace SigmaOnlineERP
         protected global::System.Web.UI.WebControls.LinkButton btn_export;
 
         /// <summary>
-        /// tbsearch control.
+        /// btn_add control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.TextBox tbsearch;
-
-        /// <summary>
-        /// btn_search control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton btn_search;
+        protected global::System.Web.UI.WebControls.LinkButton btn_add;
 
         /// <summary>
         /// gvaccounts control.

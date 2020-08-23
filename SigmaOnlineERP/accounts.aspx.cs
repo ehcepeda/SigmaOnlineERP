@@ -21,6 +21,15 @@ namespace SigmaOnlineERP
             }
         }
 
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl option_main = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("maccounting");
+            option_main.Attributes.Add("class", "active mm-active");
+
+            HyperLink option_menu = (HyperLink)Master.FindControl("maccounting_accounts");
+            option_menu.Attributes.Add("class", "active");
+        }
+
         protected void refresh()
         {
             DataSetAccountingTableAdapters.list_company_accountsTableAdapter taaccounts = new DataSetAccountingTableAdapters.list_company_accountsTableAdapter();
@@ -145,7 +154,6 @@ namespace SigmaOnlineERP
 
         protected void btn_export_Click(object sender, EventArgs e)
         {
-
             string _abre = "<script>window.open('http://localhost:81/api/reports/1?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
                 "&vuser=" + Session["userid_hash"] + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
             ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);

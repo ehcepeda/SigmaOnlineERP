@@ -262,21 +262,11 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>document.write(new Date().getFullYear())</script>
-                    © Sigma Sistemas de Gestión
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-right d-none d-sm-block">
-                        Diseñado y Desarrollado por <a href="https://www.sigma.net.do" target="_blank">Sigma</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Start -->
+    <%
+        Response.WriteFile("assets/footer.html");
+    %>
+    <!-- end Footer -->
 
     <!-- apexcharts -->
     <script src="assets/libs/apexcharts/apexcharts.min.js"></script>

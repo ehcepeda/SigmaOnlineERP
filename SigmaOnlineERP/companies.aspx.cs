@@ -134,5 +134,10 @@ namespace SigmaOnlineERP
 
             refresh();
         }
+
+        protected void btn_search_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

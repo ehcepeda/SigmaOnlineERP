@@ -47,6 +47,16 @@ namespace SigmaOnlineERP
                 }
             }
         }
+
+        protected void Page_PreInit(object sender, EventArgs e)
+        {
+            System.Web.UI.HtmlControls.HtmlGenericControl option_main = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("maccounting");
+            option_main.Attributes.Add("class", "active mm-active");
+
+            HyperLink option_menu = (HyperLink)Master.FindControl("maccounting_accounts");
+            option_menu.Attributes.Add("class", "active");
+        }
+
         protected void btn_save_Click(object sender, EventArgs e)
         {
             util utilclass = new util();

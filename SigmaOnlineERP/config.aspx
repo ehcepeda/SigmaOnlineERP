@@ -109,32 +109,37 @@
                                                                 OnRowCancelingEdit="gvncf_RowCancelingEdit" OnRowUpdating="gvncf_RowUpdating" 
                                                                 EditRowStyle-CssClass="table table-normal mb-0 table-bordered">
                                                                 <Columns>
-                                                                    <asp:TemplateField HeaderText="Acción" ItemStyle-Width="90" HeaderStyle-HorizontalAlign="Center">
+                                                                    <asp:TemplateField HeaderText="Acción" ItemStyle-Width="5%" HeaderStyle-CssClass="text-center" ItemStyle-Wrap="false">
                                                                         <ItemTemplate>
                                                                             <div style="text-align: center;" runat="server">
                                                                                 <asp:LinkButton ID="lkedit" runat="server" CssClass="btn btn-outline-info btn-sm" 
                                                                                     CommandArgument='<%# Eval("ncfid").ToString() %>'
-                                                                                    CommandName="Edit" AlternateText="Modifcar datos" CausesValidation="false">
+                                                                                    data-toggle="tooltip" data-placement="top" title="Modificar datos"
+                                                                                    CommandName="Edit" CausesValidation="false">
                                                                                     <i class="mdi mdi-pencil font-size-12"></i>
                                                                                 </asp:LinkButton>
                                                                                 <asp:LinkButton ID="lkcancel" runat="server" CssClass="btn btn-outline-danger btn-sm" 
                                                                                     CommandArgument='<%# Eval("ncfid").ToString() %>'
                                                                                     CommandName="inactivate" Visible='<%# Eval("isenabled").ToString() == "1" %>' CausesValidation="false"
-                                                                                    AlternateText="Inactivar"><i class="mdi mdi-close font-size-12"></i>
+                                                                                    data-toggle="tooltip" data-placement="top" title="Inactivar comprobante">
+                                                                                    <i class="mdi mdi-close font-size-12"></i>
                                                                                 </asp:LinkButton>
                                                                                 <asp:LinkButton ID="lkactive" runat="server" CssClass="btn btn-outline-success btn-sm" CommandArgument='<%# Eval("ncfid").ToString() %>'
                                                                                     CommandName="activate" Visible='<%# Eval("isenabled").ToString() == "0" %>' CausesValidation="false"
-                                                                                    AlternateText="activar"><i class="mdi mdi-check font-size-12"></i>
+                                                                                    data-toggle="tooltip" data-placement="top" title="Activar comprobante">
+                                                                                    <i class="mdi mdi-check font-size-12"></i>
                                                                                 </asp:LinkButton>
                                                                             </div>
                                                                         </ItemTemplate>
                                                                         <EditItemTemplate>
                                                                             <div style="text-align: center;" runat="server">
                                                                                 <asp:LinkButton ID="lkcancel" runat="server" CssClass="btn btn-outline-danger btn-sm" 
-                                                                                    CommandArgument='<%# Eval("ncfid").ToString() %>' CommandName="Cancel" CausesValidation="false">
+                                                                                    CommandArgument='<%# Eval("ncfid").ToString() %>' CommandName="Cancel" CausesValidation="false"
+                                                                                    data-toggle="tooltip" data-placement="top" title="Deshacer datos digitados">
                                                                                         <i class="mdi mdi-cancel font-size-12"></i>
                                                                                 </asp:LinkButton>
                                                                                 <asp:LinkButton ID="lksave" runat="server" CssClass="btn btn-outline-info btn-sm" 
+                                                                                    data-toggle="tooltip" data-placement="top" title="Grabar datos"
                                                                                     CommandArgument='<%# Eval("ncfid").ToString() %>' CommandName="Update" CausesValidation="false">
                                                                                         <i class="fas fa-save font-size-12"></i>
                                                                                 </asp:LinkButton>
@@ -261,9 +266,13 @@
         </div>
     </div>
 
+    <!-- Footer Start -->
+    <%
+        Response.WriteFile("assets/footer.html");
+    %>
+    <!-- end Footer -->
+
     <script src="assets/libs/jquery/jquery.min.js"></script>
-    <script src="assets/libs/select2/js/select2.min.js"></script>
     <script src="assets/libs/bootstrap-datepicker/js/bootstrap-datepicker.min.js"></script>
-    <script src="assets/libs/@chenfengyuan/datepicker/datepicker.min.js"></script>
 
 </asp:Content>

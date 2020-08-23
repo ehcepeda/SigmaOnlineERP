@@ -126,67 +126,77 @@
                                     <div class="card-body">
                                         <div class="table-rep-plugin">
                                             <div class="row mb-2">
-                                                <div class="btn-toolbar col-sm-8">
-                                                    <div class="button-items mb-0">
-                                                        <asp:LinkButton ID="btn_add" CssClass="btn btn-success waves-effect btn-label waves-light" runat="server"
-                                                            OnClick="btn_add_Click">
-                                                            <i class="bx bx-plus label-icon"></i> Nueva cuenta
-                                                        </asp:LinkButton>
-                                                        <asp:LinkButton ID="btn_refresh" CssClass="btn btn-outline-success waves-effect btn-label waves-light" runat="server"
-                                                            OnClick="btn_refresh_Click">
-                                                            <i class="bx bx-loader label-icon"></i> Refrescar
-                                                        </asp:LinkButton>
-                                                        <asp:LinkButton ID="btn_export" CssClass="btn btn-outline-dark waves-effect btn-label waves-light" runat="server"
+                                                <div class="col-sm-10">
+                                                    <ul class="list-inline user-chat-nav mb-0">
+                                                        <div class="d-inline-block">
+                                                            <div class="position-relative">
+                                                                <asp:TextBox ID="tbsearch" CssClass="form-control" runat="server" placeholder="Buscar..." 
+                                                                    AutoCompleteType="Disabled"></asp:TextBox>
+                                                                <div class="chat-input-links">
+                                                                    <ul class="list-inline mb-0">
+                                                                        <li class="list-inline-item">
+                                                                            <asp:LinkButton ID="btn_search" runat="server" OnClick="btn_search_Click">
+                                                                                <i class="mdi mdi-magnify"></i>
+                                                                            </asp:LinkButton>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="btn-group">
+                                                            <asp:LinkButton ID="btn_refresh" CssClass="btn btn-light waves-effect btn-label waves-light" runat="server"
+                                                                OnClick="btn_refresh_Click">
+                                                                <i class="bx bx-repost label-icon"></i> Refrescar
+                                                            </asp:LinkButton>
+                                                        </div>
+                                                        <asp:LinkButton ID="btn_export" CssClass="btn btn-light waves-effect btn-label waves-light" runat="server"
                                                             OnClick="btn_export_Click"
                                                             OnClientClick="setTimeout(function () {document.body.removeChild(modal);loading.style.display='none';}, 2000);ShowProgress()">
                                                             <i class="bx bx-printer label-icon"></i> Imprimir
                                                         </asp:LinkButton>
-                                                    </div>
+                                                    </ul>
                                                 </div>
-                                                <div class="col-sm-4 text-sm-righ">
-                                                    <div class="input-group mb-2 mr-sm-3">
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text"><i class="bx bx-search label-icon"></i></div>
-                                                        </div>
-                                                        <asp:TextBox ID="tbsearch" CssClass="form-control" runat="server" placeholder="Texto a buscar..."></asp:TextBox>
-                                                        <div class="input-group-prepend">
-                                                            <div class="input-group-text">
-                                                                <asp:LinkButton ID="btn_search" runat="server" OnClick="btn_search_Click">
-                                                                    Buscar
-                                                                </asp:LinkButton>
-                                                            </div>
-                                                        </div>
+                                                <div class="col-sm-2">
+                                                    <div class="text-sm-right">
+                                                        <asp:LinkButton ID="btn_add" CssClass="btn btn-success waves-effect btn-label waves-light" runat="server"
+                                                            OnClick="btn_add_Click">
+                                                            <i class="bx bx-plus label-icon"></i> Nueva cuenta
+                                                        </asp:LinkButton>
                                                     </div>
                                                 </div>
                                             </div>
+
                                             <div class="table-responsive mb-0" data-pattern="priority-columns">
                                                 <asp:GridView ID="gvaccounts" runat="server" CssClass="table table-normal mb-0 table-bordered" 
                                                     AutoGenerateColumns="false" AllowPaging="true" PageSize="40" GridLines="Vertical" Font-Size="Smaller"
                                                     DataKeyNames="accountid" ShowFooter="false" OnPageIndexChanging="gvaccounts_PageIndexChanging"
                                                     OnRowCommand="gvaccounts_RowCommand" OnRowDataBound="gvaccounts_RowDataBound">
                                                     <Columns>
-                                                        <asp:TemplateField HeaderText="Acción" ItemStyle-Width="110" HeaderStyle-HorizontalAlign="Center" ItemStyle-Wrap="false">
+                                                        <asp:TemplateField HeaderText="Acción" ItemStyle-Width="5%" HeaderStyle-CssClass="text-center" ItemStyle-Wrap="false">
                                                             <ItemTemplate>
                                                                 <div style="text-align: center;" runat="server" visible='<%# Eval("accountid").ToString().Length > 0 %>'>
                                                                     <asp:LinkButton ID="lkedit" runat="server" CssClass="btn btn-outline-info btn-sm" 
-                                                                        CommandArgument='<%# Eval("accountid").ToString() %>' CommandName="edit" AlternateText="Modifcar datos" 
+                                                                        data-toggle="tooltip" data-placement="top" title="Modificar cuenta"
+                                                                        CommandArgument='<%# Eval("accountid").ToString() %>' CommandName="edit"
                                                                         CausesValidation="false"><i class="mdi mdi-pencil font-size-12"></i></asp:LinkButton>
-
                                                                     <asp:LinkButton ID="lkcancel" runat="server" CssClass="btn btn-outline-danger btn-sm" 
                                                                         CommandArgument='<%# Eval("accountid").ToString() %>'
-                                                                        CommandName="inactivate" Visible='<%# Eval("isenabled").ToString() == "1" %>' CausesValidation="false"
-                                                                        AlternateText="Inactivar"><i class="mdi mdi-cancel font-size-12"></i>
+                                                                        data-toggle="tooltip" data-placement="top" title="Inactivar cuenta"
+                                                                        CommandName="inactivate" Visible='<%# Eval("isenabled").ToString() == "1" %>' CausesValidation="false">
+                                                                        <i class="mdi mdi-cancel font-size-12"></i>
                                                                     </asp:LinkButton>
 
                                                                     <asp:LinkButton ID="lkactive" runat="server" CssClass="btn btn-outline-success btn-sm" 
                                                                         CommandArgument='<%# Eval("accountid").ToString() %>'
-                                                                        CommandName="reactivate" Visible='<%# Eval("isenabled").ToString() == "0" %>' CausesValidation="false"
-                                                                        AlternateText="activar"><i class="mdi mdi-check font-size-12"></i>
+                                                                        data-toggle="tooltip" data-placement="top" title="Aactivar cuenta"
+                                                                        CommandName="reactivate" Visible='<%# Eval("isenabled").ToString() == "0" %>' CausesValidation="false">
+                                                                        <i class="mdi mdi-check font-size-12"></i>
                                                                     </asp:LinkButton>
 
                                                                     <asp:LinkButton ID="lkdelete" runat="server" CssClass="btn btn-outline-danger btn-sm" 
                                                                         CommandArgument='<%# Eval("accountid").ToString() %>'
-                                                                        CommandName="erase" CausesValidation="false" AlternateText="Eliminar">
+                                                                        data-toggle="tooltip" data-placement="top" title="Eliminar cuenta"
+                                                                        CommandName="erase" CausesValidation="false">
                                                                         <i class="mdi mdi-trash-can font-size-12"></i>
                                                                     </asp:LinkButton>
                                                                 </div>
@@ -237,21 +247,11 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>document.write(new Date().getFullYear())</script>
-                    © Skote.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-right d-none d-sm-block">
-                        Design & Develop by Themesbrand
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Start -->
+    <%
+        Response.WriteFile("assets/footer.html");
+    %>
+    <!-- end Footer -->
 
     <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
     <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>

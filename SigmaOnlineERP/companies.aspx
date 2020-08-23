@@ -65,7 +65,7 @@
                             <h4 class="mb-0 font-size-18">Empresas</h4>
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
-                                    <li class="breadcrumb-item"><a href="javascript: void(0);">Inicio</a></li>
+                                    <li class="breadcrumb-item"><a href="default.aspx">Inicio</a></li>
                                     <li class="breadcrumb-item active">Empresas</li>
                                 </ol>
                             </div>
@@ -81,19 +81,33 @@
                                 <div class="card">
                                     <div class="card-body">
                                         <div class="table-rep-plugin">
-                                            <div class="btn-toolbar">
-                                                <div class="button-items mb-0">
-                                                    <asp:LinkButton ID="btn_add" CssClass="btn btn-success waves-effect btn-label waves-light" runat="server" OnClick="btn_add_Click">
-                                                        <i class="bx bx-plus label-icon"></i> Nueva empresa
-                                                    </asp:LinkButton>
-                                                    <asp:LinkButton ID="btn_refresh" CssClass="btn btn-outline-success waves-effect btn-label waves-light" runat="server"
-                                                        OnClick="btn_refresh_Click">
-                                                        <i class="bx bx-loader label-icon"></i> Refrescar
-                                                    </asp:LinkButton>
-                                                    <asp:LinkButton ID="btn_export" CssClass="btn btn-outline-dark waves-effect btn-label waves-light" runat="server"
-                                                        OnClick="btn_export_Click">
-                                                        <i class="bx bx-export label-icon"></i> Exportar
-                                                    </asp:LinkButton>
+                                            <div class="row mb-2">
+                                                <div class="col-sm-10">
+                                                    <ul class="list-inline user-chat-nav mb-0">
+                                                        <div class="d-inline-block">
+                                                            <div class="position-relative">
+                                                                <asp:TextBox ID="tbsearch" CssClass="form-control" runat="server" placeholder="Buscar..." 
+                                                                    AutoCompleteType="Disabled"></asp:TextBox>
+                                                                <div class="chat-input-links">
+                                                                    <ul class="list-inline mb-0">
+                                                                        <li class="list-inline-item">
+                                                                            <asp:LinkButton ID="btn_search" runat="server" OnClick="btn_search_Click">
+                                                                                <i class="mdi mdi-magnify"></i>
+                                                                            </asp:LinkButton>
+                                                                        </li>
+                                                                    </ul>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </ul>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <div class="text-sm-right">
+                                                        <asp:LinkButton ID="btn_add" CssClass="btn btn-success waves-effect btn-label waves-light" runat="server"
+                                                            OnClick="btn_add_Click">
+                                                            <i class="bx bx-plus label-icon"></i> Nueva empresa
+                                                        </asp:LinkButton>
+                                                    </div>
                                                 </div>
                                             </div>
 
@@ -102,21 +116,24 @@
                                                     AutoGenerateColumns="false" AllowPaging="true" PageSize="50" GridLines="Vertical" Font-Size="Smaller"
                                                     DataKeyNames="companyid" ShowFooter="true" OnRowCommand="gvcompanies_RowCommand">
                                                     <Columns>
-                                                        <asp:TemplateField HeaderText="Acción" ItemStyle-Width="90" HeaderStyle-HorizontalAlign="Center">
+                                                        <asp:TemplateField HeaderText="Acción" ItemStyle-Width="5%" HeaderStyle-CssClass="text-center" ItemStyle-Wrap="false">
                                                             <ItemTemplate>
                                                                 <div style="text-align: center;" runat="server" visible='<%# Eval("companyid").ToString().Length > 0 %>'>
-                                                                    <asp:LinkButton ID="lkedit" runat="server" CssClass="mr-2 text-primary" CommandArgument='<%# Eval("companyid").ToString() %>'
-                                                                        CommandName="edit" AlternateText="Modifcar datos" CausesValidation="false" 
+                                                                    <asp:LinkButton ID="lkedit" runat="server" CssClass="btn btn-outline-info btn-sm" CommandArgument='<%# Eval("companyid").ToString() %>'
+                                                                        CommandName="edit" CausesValidation="false"
+                                                                        data-toggle="tooltip" data-placement="top" title="Modificar datos"
                                                                         Visible='<%# Eval("isenabled").ToString() == "1" %>'><i class="mdi mdi-pencil font-size-18"></i></asp:LinkButton>
 
-                                                                    <asp:LinkButton ID="lkcancel" runat="server" CssClass="mr-2 text-danger" CommandArgument='<%# Eval("companyid").ToString() %>'
+                                                                    <asp:LinkButton ID="lkcancel" runat="server" CssClass="btn btn-outline-danger btn-sm" CommandArgument='<%# Eval("companyid").ToString() %>'
                                                                         CommandName="inactivate" Visible='<%# Eval("isenabled").ToString() == "1" %>' CausesValidation="false"
-                                                                        AlternateText="Inactivar"><i class="mdi mdi-cancel font-size-18"></i>
+                                                                        data-toggle="tooltip" data-placement="top" title="Inactivar empresa">
+                                                                        <i class="mdi mdi-cancel font-size-18"></i>
                                                                     </asp:LinkButton>
 
-                                                                    <asp:LinkButton ID="lkactive" runat="server" CssClass="mr-2 text-danger" CommandArgument='<%# Eval("companyid").ToString() %>'
+                                                                    <asp:LinkButton ID="lkactive" runat="server" CssClass="btn btn-outline-success btn-sm" CommandArgument='<%# Eval("companyid").ToString() %>'
                                                                         CommandName="reactivate" Visible='<%# Eval("isenabled").ToString() == "0" %>' CausesValidation="false"
-                                                                        AlternateText="activar"><i class="mdi mdi-check font-size-18"></i>
+                                                                        data-toggle="tooltip" data-placement="top" title="Activar empresa">
+                                                                        <i class="mdi mdi-check font-size-18"></i>
                                                                     </asp:LinkButton>
                                                                 </div>
                                                             </ItemTemplate>
@@ -147,8 +164,6 @@
                         <!-- end row -->
                     </ContentTemplate>
                     <Triggers>
-                        <asp:PostBackTrigger ControlID="btn_export" />
-                        <asp:PostBackTrigger ControlID="btn_refresh" />
                         <asp:PostBackTrigger ControlID="gvcompanies" />
                     </Triggers>
                 </asp:UpdatePanel>
@@ -156,21 +171,11 @@
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-sm-6">
-                    <script>document.write(new Date().getFullYear())</script>
-                    © Skote.
-                </div>
-                <div class="col-sm-6">
-                    <div class="text-sm-right d-none d-sm-block">
-                        Design & Develop by Themesbrand
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
+    <!-- Footer Start -->
+    <%
+        Response.WriteFile("assets/footer.html");
+    %>
+    <!-- end Footer -->
 
     <script type="text/javascript">
         function Confirm(ctl, event) {
