@@ -212,103 +212,137 @@ namespace SigmaOnlineERP
 
         protected void btn_save_Click(object sender, EventArgs e)
         {
-            DataTable myDetail = (DataTable)ViewState["myDetail"];
-            decimal debit = myDetail.AsEnumerable().Sum(row => row.Field<Decimal>("debit"));
-            decimal credit = myDetail.AsEnumerable().Sum(row => row.Field<Decimal>("credit"));
-            if (debit + credit > 0 && debit != credit)
+            if (gvdetail.EditIndex >= 0)
             {
                 util utilclass = new util();
-                utilclass.messageinfo(this, "Error!", "Este número de documento está descuadrado!", "error", "");
+                utilclass.messageinfo(this, "Error!", "Debes grabar la Línea del detalle que estás cambiando!", "error", "");
                 number.Focus();
             }
             else
             {
-                DataSetAccountingTableAdapters.doctypeTableAdapter tatype = new DataSetAccountingTableAdapters.doctypeTableAdapter();
-                DataTable dttype = tatype.GetDataBy_ID(Convert.ToInt32(cbtype.SelectedValue));
-
-                DataSetAccountingTableAdapters.journalTableAdapter tajournal = new DataSetAccountingTableAdapters.journalTableAdapter();
-
-                Nullable<Int32> dimensionid = null;
-                Nullable<Int32> supplierid = null;
-                Nullable<Int32> conceptid = null;
-
-                if (Request["c"] == null)
+                DataTable myDetail = (DataTable)ViewState["myDetail"];
+                decimal debit = myDetail.AsEnumerable().Sum(row => row.Field<Decimal>("debit"));
+                decimal credit = myDetail.AsEnumerable().Sum(row => row.Field<Decimal>("credit"));
+                if (debit + credit > 0 && debit != credit)
                 {
-                    //verificando si el numero existe
-                    DataTable dtjournal = tajournal.GetDataBy_Number(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue), number.Text.Trim());
-                    if (dtjournal.Rows.Count > 0)
-                    {
-                        util utilclass = new util();
-                        utilclass.messageinfo(this, "Error!", "Este número de documento ya existe para este tipo!", "error", "");
-                        number.Focus();
-                    }
-                    else
-                    {
-                        //buscando número del mes
-                        int lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue),
-                            new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), 1),
-                            new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), Convert.ToInt32(create_date.Text.Substring(0, 2)))).Value;
-
-                        int journalid = tajournal.LastJournal(Convert.ToInt32(Session["companyid"])).Value + 1;
-
-                        //insertando maestro
-                        tajournal.InsertJournal(Convert.ToInt32(Session["companyid"]), journalid, Convert.ToInt32(cbtype.SelectedValue),
-                            new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), Convert.ToInt32(create_date.Text.Substring(0, 2))),
-                            number.Text.Trim(), Convert.ToInt32(Session["userid"]), note.Text.Trim(),
-                            (cbdimension.SelectedValue == "0" || cbdimension.SelectedValue.Length == 0) ? dimensionid : Convert.ToInt32(cbdimension.SelectedValue),
-                            dttype.Rows[0]["code"].ToString(), FormsAuthentication.HashPasswordForStoringInConfigFile(journalid.ToString(), "SHA1"),
-                            (cbsupplier.SelectedValue == "0" || cbsupplier.SelectedValue.Length == 0) ? supplierid : Convert.ToInt32(cbsupplier.SelectedValue),
-                            lastSequence + 1, reference.Text.Trim(),
-                            (cbconcept.SelectedValue == "0" || cbconcept.SelectedValue.Length == 0) ? conceptid : Convert.ToInt32(cbconcept.SelectedValue));
-
-                        //insertando detalle
-                        myDetail = (DataTable)ViewState["myDetail"];
-                        DataSetAccountingTableAdapters.journal_detailTableAdapter tadetail = new DataSetAccountingTableAdapters.journal_detailTableAdapter();
-
-                        for (int i = 0; i < myDetail.Rows.Count; i++)
-                        {
-                            tadetail.InsertDetail(Convert.ToInt32(Session["companyid"]), journalid, Convert.ToInt32(myDetail.Rows[i]["detailid"]),
-                                myDetail.Rows[i]["accountid"].ToString().Trim(), myDetail.Rows[i]["origin"].ToString().Trim(), Convert.ToDecimal(myDetail.Rows[i]["debit"]),
-                                Convert.ToDecimal(myDetail.Rows[i]["credit"]), dimensionid, myDetail.Rows[i]["note"].ToString().Trim());
-                        }
-
-                        ViewState["myDetail"] = null;
-                        create_date.Text = DateTime.Now.Day.ToString("00") + "-" + DateTime.Now.Month.ToString("00") + "-" + DateTime.Now.Year.ToString();
-                        note.Text = "";
-                        number.Text = "";
-                        reference.Text = "";
-                        cbconcept.SelectedValue = "0";
-                        cbsupplier.SelectedValue = "0";
-                        cbdimension.SelectedValue = "0";
-                        cbtype_SelectedIndexChanged(sender, e);
-
-                        refresh();
-                        number.Focus();
-                    }
+                    util utilclass = new util();
+                    utilclass.messageinfo(this, "Error!", "Este número de documento está descuadrado!", "error", "");
+                    number.Focus();
                 }
                 else
                 {
-                    DataTable dtjournal = tajournal.GetDataBy_Number(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue), number.Text.Trim());
-                    if (dtjournal.Rows.Count > 0 && dtjournal.Rows[0]["hashid"].ToString() != Request["c"].ToString())
+                    DataSetAccountingTableAdapters.doctypeTableAdapter tatype = new DataSetAccountingTableAdapters.doctypeTableAdapter();
+                    DataTable dttype = tatype.GetDataBy_ID(Convert.ToInt32(cbtype.SelectedValue));
+
+                    DataSetAccountingTableAdapters.journalTableAdapter tajournal = new DataSetAccountingTableAdapters.journalTableAdapter();
+
+                    Nullable<Int32> dimensionid = null;
+                    Nullable<Int32> supplierid = null;
+                    Nullable<Int32> conceptid = null;
+
+                    if (Request["c"] == null)
                     {
-                        util utilclass = new util();
-                        utilclass.messageinfo(this, "Error!", "Este número de documento ya existe para este tipo!", "error", "");
-                        number.Focus();
+                        //verificando si el numero existe
+                        DataTable dtjournal = tajournal.GetDataBy_Number(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue), number.Text.Trim());
+                        if (dtjournal.Rows.Count > 0)
+                        {
+                            util utilclass = new util();
+                            utilclass.messageinfo(this, "Error!", "Este número de documento ya existe para este tipo!", "error", "");
+                            number.Focus();
+                        }
+                        else
+                        {
+                            //buscando número del mes
+                            int lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue),
+                                new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), 1),
+                                new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)),
+                                DateTime.DaysInMonth(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2))))).Value;
+
+                            int journalid = tajournal.LastJournal(Convert.ToInt32(Session["companyid"])).Value + 1;
+
+                            //insertando maestro
+                            tajournal.InsertJournal(Convert.ToInt32(Session["companyid"]), journalid, Convert.ToInt32(cbtype.SelectedValue),
+                                new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), Convert.ToInt32(create_date.Text.Substring(0, 2))),
+                                number.Text.Trim(), Convert.ToInt32(Session["userid"]), note.Text.Trim(),
+                                (cbdimension.SelectedValue == "0" || cbdimension.SelectedValue.Length == 0) ? dimensionid : Convert.ToInt32(cbdimension.SelectedValue),
+                                dttype.Rows[0]["code"].ToString(), FormsAuthentication.HashPasswordForStoringInConfigFile(journalid.ToString(), "SHA1"),
+                                (cbsupplier.SelectedValue == "0" || cbsupplier.SelectedValue.Length == 0) ? supplierid : Convert.ToInt32(cbsupplier.SelectedValue),
+                                lastSequence + 1, reference.Text.Trim(),
+                                (cbconcept.SelectedValue == "0" || cbconcept.SelectedValue.Length == 0) ? conceptid : Convert.ToInt32(cbconcept.SelectedValue));
+
+                            //insertando detalle
+                            myDetail = (DataTable)ViewState["myDetail"];
+                            DataSetAccountingTableAdapters.journal_detailTableAdapter tadetail = new DataSetAccountingTableAdapters.journal_detailTableAdapter();
+
+                            for (int i = 0; i < myDetail.Rows.Count; i++)
+                            {
+                                tadetail.InsertDetail(Convert.ToInt32(Session["companyid"]), journalid, Convert.ToInt32(myDetail.Rows[i]["detailid"]),
+                                    myDetail.Rows[i]["accountid"].ToString().Trim(), myDetail.Rows[i]["origin"].ToString().Trim(), Convert.ToDecimal(myDetail.Rows[i]["debit"]),
+                                    Convert.ToDecimal(myDetail.Rows[i]["credit"]), dimensionid, myDetail.Rows[i]["note"].ToString().Trim());
+                            }
+
+                            ViewState["myDetail"] = null;
+                            create_date.Text = DateTime.Now.Day.ToString("00") + "-" + DateTime.Now.Month.ToString("00") + "-" + DateTime.Now.Year.ToString();
+                            note.Text = "";
+                            number.Text = "";
+                            reference.Text = "";
+                            cbconcept.SelectedValue = "0";
+                            cbsupplier.SelectedValue = "0";
+                            cbdimension.SelectedValue = "0";
+
+                            //buscando número del mes
+                            lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue),
+                                new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), 1),
+                                new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)),
+                                DateTime.DaysInMonth(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2))))).Value;
+
+                            number.Text = create_date.Text.Substring(6, 4) + create_date.Text.Substring(3, 2) + "-" + (lastSequence + 1).ToString("00");
+
+                            cbtype_SelectedIndexChanged(sender, e);
+
+                            refresh();
+                            number.Focus();
+                        }
                     }
                     else
                     {
-                        dtjournal = tajournal.GetDataBy_hash(Convert.ToInt32(Session["companyid"]), Request["c"]);
-                        if (dtjournal.Rows.Count > 0)
+                        DataTable dtjournal = tajournal.GetDataBy_Number(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue), number.Text.Trim());
+                        if (dtjournal.Rows.Count > 0 && dtjournal.Rows[0]["hashid"].ToString() != Request["c"].ToString())
                         {
-                            tajournal.UpdateJournal(Convert.ToInt32(cbtype.SelectedValue), new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)),
-                                Convert.ToInt32(create_date.Text.Substring(3, 2)), Convert.ToInt32(create_date.Text.Substring(0, 2))), number.Text.Trim(),
-                                note.Text.Trim(), (cbdimension.SelectedValue == "0" || cbdimension.SelectedValue.Length == 0) ? dimensionid : Convert.ToInt32(cbdimension.SelectedValue),
-                                dttype.Rows[0]["code"].ToString(), (cbsupplier.SelectedValue == "0" || cbsupplier.SelectedValue.Length == 0) ? supplierid : Convert.ToInt32(cbsupplier.SelectedValue),
-                                reference.Text.Trim(), (cbconcept.SelectedValue == "0" || cbconcept.SelectedValue.Length == 0) ? conceptid : Convert.ToInt32(cbconcept.SelectedValue),
-                                Convert.ToInt32(Session["companyid"]), Convert.ToInt32(dtjournal.Rows[0]["journalid"]));
+                            util utilclass = new util();
+                            utilclass.messageinfo(this, "Error!", "Este número de documento ya existe para este tipo!", "error", "");
+                            number.Focus();
+                        }
+                        else
+                        {
+                            dtjournal = tajournal.GetDataBy_hash(Convert.ToInt32(Session["companyid"]), Request["c"]);
+                            if (dtjournal.Rows.Count > 0)
+                            {
+                                //actualizando journal
+                                tajournal.UpdateJournal(Convert.ToInt32(cbtype.SelectedValue), new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)),
+                                    Convert.ToInt32(create_date.Text.Substring(3, 2)), Convert.ToInt32(create_date.Text.Substring(0, 2))), number.Text.Trim(),
+                                    note.Text.Trim(), (cbdimension.SelectedValue == "0" || cbdimension.SelectedValue.Length == 0) ? dimensionid : Convert.ToInt32(cbdimension.SelectedValue),
+                                    dttype.Rows[0]["code"].ToString(), (cbsupplier.SelectedValue == "0" || cbsupplier.SelectedValue.Length == 0) ? supplierid : Convert.ToInt32(cbsupplier.SelectedValue),
+                                    reference.Text.Trim(), (cbconcept.SelectedValue == "0" || cbconcept.SelectedValue.Length == 0) ? conceptid : Convert.ToInt32(cbconcept.SelectedValue),
+                                    Convert.ToInt32(Session["companyid"]), Convert.ToInt32(dtjournal.Rows[0]["journalid"]));
 
-                            ViewState["myDetail"] = null;
-                            Response.Redirect("journalentry.aspx");
+                                //eliminando anteriores
+                                DataSetAccountingTableAdapters.journal_detailTableAdapter tadetail = new DataSetAccountingTableAdapters.journal_detailTableAdapter();
+                                tadetail.DeleteJournal(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(dtjournal.Rows[0]["journalid"]));
+
+                                //insertando detalle
+                                myDetail = (DataTable)ViewState["myDetail"];
+
+                                for (int i = 0; i < myDetail.Rows.Count; i++)
+                                {
+                                    tadetail.InsertDetail(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(dtjournal.Rows[0]["journalid"]), Convert.ToInt32(myDetail.Rows[i]["detailid"]),
+                                        myDetail.Rows[i]["accountid"].ToString().Trim(), myDetail.Rows[i]["origin"].ToString().Trim(), Convert.ToDecimal(myDetail.Rows[i]["debit"]),
+                                        Convert.ToDecimal(myDetail.Rows[i]["credit"]), dimensionid, myDetail.Rows[i]["note"].ToString().Trim());
+                                }
+
+                                ViewState["myDetail"] = null;
+                                Response.Redirect("journalentry.aspx?t=" + Request["t"] + "&p=" + Request["p"]);
+                            }
                         }
                     }
                 }
@@ -318,13 +352,11 @@ namespace SigmaOnlineERP
         protected void lk_close_Click(object sender, EventArgs e)
         {
             ViewState["myDetail"] = null;
-            Response.Redirect("journalentry.aspx");
+            Response.Redirect("journalentry.aspx?t=" + Request["t"] + "&p=" + Request["p"]);
         }
 
         protected void gvdetail_RowEditing(object sender, GridViewEditEventArgs e)
         {
-            btn_save.Enabled = false;
-
             gvdetail.EditIndex = e.NewEditIndex;
             refresh();
 
@@ -512,16 +544,14 @@ namespace SigmaOnlineERP
 
         protected void cbtype_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (Request["c"] == null)
-            {
-                //buscando número del mes
-                DataSetAccountingTableAdapters.journalTableAdapter tajournal = new DataSetAccountingTableAdapters.journalTableAdapter();
-                int lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue),
-                    new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), 1),
-                    new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), Convert.ToInt32(create_date.Text.Substring(0, 2)))).Value;
+            //buscando número del mes
+            DataSetAccountingTableAdapters.journalTableAdapter tajournal = new DataSetAccountingTableAdapters.journalTableAdapter();
+            int lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue),
+                new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), 1),
+                new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)),
+                DateTime.DaysInMonth(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2))))).Value;
 
-                number.Text = create_date.Text.Substring(6, 4) + create_date.Text.Substring(3, 2) + "-" + (lastSequence + 1).ToString("00");
-            }
+            number.Text = create_date.Text.Substring(6, 4) + create_date.Text.Substring(3, 2) + "-" + (lastSequence + 1).ToString("00");
         }
 
         protected void cbconcept_SelectedIndexChanged(object sender, EventArgs e)

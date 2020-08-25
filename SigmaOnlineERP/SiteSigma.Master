@@ -317,11 +317,8 @@
                                 <ul class="sub-menu" aria-expanded="false">
                                     <li><asp:HyperLink ID="maccounting_accounts" runat="server" NavigateUrl="accounts.aspx">Catálogo</asp:HyperLink></li>
                                     <li><asp:HyperLink ID="maccounting_journal" runat="server" NavigateUrl="journalentry.aspx">Entradas de diario</asp:HyperLink></li>
-                                    <li><a href="ecommerce-product-detail.html">Grupos contables</a></li>
-                                    <li><a href="ecommerce-orders.html">Presupuesto</a></li>
-                                    <li><a href="ecommerce-cart.html">Estados financieros</a></li>
-                                    <li><a href="ecommerce-checkout.html">Listados de RNC</a></li>
-                                    <li><a href="ecommerce-shops.html">Dashboard</a></li>
+                                    <li><asp:HyperLink ID="maccounting_diary" runat="server" NavigateUrl="generaldiary.aspx">Diario general</asp:HyperLink></li>
+                                    <li><asp:HyperLink ID="maccounting_checking_balance" runat="server" NavigateUrl="checkingbalance.aspx">Bce. de comprobación</asp:HyperLink></li>
                                 </ul>
                             </li>
                         </ul>

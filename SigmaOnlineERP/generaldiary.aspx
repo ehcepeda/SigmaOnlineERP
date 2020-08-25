@@ -1,6 +1,5 @@
-﻿<%@ Page Title="SigmaWeb - Entradas de diario" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="journalentry.aspx.cs" Inherits="SigmaOnlineERP.journalentry"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="generaldiary.aspx.cs" Inherits="SigmaOnlineERP.generaldiary"
     EnableEventValidation="false" MaintainScrollPositionOnPostback="true" %>
-
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
@@ -82,7 +81,7 @@
             z-index: 999;
         }
     </style>
-    
+
     <!-- Sweet Alerts js -->
     <script type="text/javascript" src="assets/js/sweetalert.min.js"></script>
     <link href="assets/js/sweetalert.min.css" rel="stylesheet" type="text/css" />
@@ -114,11 +113,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Entradas</h4>
+                            <h4 class="mb-0 font-size-18">Diario General</h4>
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="default.aspx">Inicio</a></li>
-                                    <li class="breadcrumb-item active">Entradas de diario</li>
+                                    <li class="breadcrumb-item active">Diario general</li>
                                 </ol>
                             </div>
                         </div>
@@ -207,61 +206,31 @@
                                                         </asp:LinkButton>
                                                     </ul>
                                                 </div>
-                                                <div class="col-sm-2">
-                                                    <div class="text-sm-right">
-                                                        <asp:LinkButton ID="btn_add" CssClass="btn btn-success waves-effect btn-label waves-light" runat="server"
-                                                            OnClick="btn_add_Click">
-                                                            <i class="bx bx-plus label-icon"></i> Nueva entrada
-                                                        </asp:LinkButton>
-                                                    </div>
-                                                </div>
                                             </div>
                                             <div class="table-responsive mb-0" data-pattern="priority-columns">
                                                 <asp:GridView ID="gvjournal" runat="server" CssClass="table table-normal mb-0 table-bordered" 
                                                     AutoGenerateColumns="false" AllowPaging="true" PageSize="40" GridLines="Vertical" Font-Size="Smaller"
-                                                    DataKeyNames="journalid" ShowFooter="true" OnPageIndexChanging="gvjournal_PageIndexChanging"
-                                                    OnRowCommand="gvjournal_RowCommand" OnRowDataBound="gvjournal_RowDataBound" FooterStyle-Font-Bold="true"
+                                                    DataKeyNames="journalid" ShowFooter="false" OnRowCreated="gvjournal_RowCreated" OnDataBound="gvjournal_DataBound"
+                                                    FooterStyle-Font-Bold="true"
                                                     FooterStyle-BackColor="#EAFAF1">
                                                     <Columns>
-                                                        <asp:TemplateField HeaderText="Acción" ItemStyle-Width="5%" HeaderStyle-CssClass="text-center" ItemStyle-Wrap="false">
-                                                            <ItemTemplate>
-                                                                <div style="text-align: center;" runat="server" visible='<%# Eval("journalid").ToString().Length > 0 %>'>
-                                                                    <asp:LinkButton ID="lkprint" runat="server" CssClass="btn btn-outline-info btn-sm"
-                                                                        data-toggle="tooltip" data-placement="top" title="Imprimir entrada"
-                                                                        CommandArgument='<%# Eval("journalid").ToString() %>' CommandName="print"
-                                                                        CausesValidation="false"><i class="mdi mdi-printer font-size-12"></i></asp:LinkButton>
-
-                                                                    <asp:LinkButton ID="lkedit" runat="server" CssClass="btn btn-outline-info btn-sm" 
-                                                                        data-toggle="tooltip" data-placement="top" title="Modifcar entrada"
-                                                                        CommandArgument='<%# Eval("journalid").ToString() %>' CommandName="editjournal"
-                                                                        CausesValidation="false"><i class="mdi mdi-pencil font-size-12"></i></asp:LinkButton>
-
-                                                                    <asp:LinkButton ID="lkdelete" runat="server" CssClass="btn btn-outline-danger btn-sm" 
-                                                                        data-toggle="tooltip" data-placement="top" title="Eliminar entrada"
-                                                                        CommandArgument='<%# Eval("journalid").ToString() %>'
-                                                                        CommandName="erase" CausesValidation="false">
-                                                                        <i class="mdi mdi-trash-can font-size-12"></i>
-                                                                    </asp:LinkButton>
-                                                                </div>
-                                                            </ItemTemplate>
-                                                        </asp:TemplateField>
                                                         <asp:BoundField DataField="journalid" HeaderText="ID" ItemStyle-Width="50" HeaderStyle-CssClass="text-center"
                                                             ItemStyle-HorizontalAlign="Center" />
-                                                        <asp:BoundField DataField="doctype" HeaderText="Tipo de documento" ItemStyle-Width="120" HeaderStyle-HorizontalAlign="Center" />
-                                                        <asp:BoundField DataField="create_date" HeaderText="Fecha" ItemStyle-Width="80" HeaderStyle-CssClass="text-center"
-                                                            ItemStyle-HorizontalAlign="Center" />
-                                                        <asp:BoundField DataField="number" HeaderText="Número" ItemStyle-Width="80" />
-                                                        <asp:BoundField DataField="concept" HeaderText="Concepto" ItemStyle-Width="150" />
-                                                        <asp:BoundField DataField="note" HeaderText="Nota" ItemStyle-Width="210" />
-                                                        <asp:BoundField DataField="dimension" HeaderText="Dimensión" ItemStyle-Width="90" />
-                                                        <asp:BoundField DataField="debit" HeaderText="Débito" ItemStyle-Width="90" DataFormatString="{0:n}"
-                                                            HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
-                                                        <asp:BoundField DataField="credit" HeaderText="Crédito" ItemStyle-Width="90" DataFormatString="{0:n}"
-                                                           HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
+                                                        <asp:BoundField DataField="number" HeaderText="Número" ItemStyle-Width="110" />
+                                                        <asp:BoundField DataField="doctype" HeaderText="Tipo de documento" ItemStyle-Width="210" />
+                                                        <asp:BoundField DataField="create_date" HeaderText="Fecha" ItemStyle-Width="110" />
+                                                        <asp:BoundField DataField="concept" HeaderText="Concepto" ItemStyle-Width="210" />
+                                                        <asp:BoundField DataField="accountid" HeaderText="Cuenta" ItemStyle-Width="110" />
+                                                        <asp:BoundField DataField="name" HeaderText="Nombre de la cuenta" ItemStyle-Width="250" />
+                                                        <asp:BoundField DataField="debit" ItemStyle-Width="110" HeaderText="Débito" HeaderStyle-CssClass="text-center"                                                            
+                                                            ItemStyle-HorizontalAlign="Right" DataFormatString="{0:n}" />
+                                                        <asp:BoundField DataField="credit" ItemStyle-Width="110" HeaderText="Crédito" HeaderStyle-CssClass="text-center"
+                                                            ItemStyle-HorizontalAlign="Right" DataFormatString="{0:n}" />
                                                     </Columns>
                                                     <PagerSettings Visible="true" />
                                                     <PagerStyle CssClass="pagination-lg" />
                                                 </asp:GridView>
+
                                             </div>
                                         </div>
                                     </div>

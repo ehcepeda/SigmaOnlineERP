@@ -12,16 +12,37 @@ namespace SigmaOnlineERP
     {
         protected void Page_Load(object sender, EventArgs e)
         {
-            if (!IsPostBack)
+            if (Session["userid"] == null)
             {
+                Response.Redirect("Login.aspx");
+            }
+            else if (!IsPostBack)
+            {
+                ViewState["doctype"] = "";
+                ViewState["concept"] = "";
+                ViewState["conceptid"] = "0";
+                ViewState["doctypeid"] = "0";
+
+                if (Request["t"] != null)
+                {
+                    ViewState["doctypeid"] = Request["t"];
+                }
+
+                if (Request["p"] != null)
+                {
+                    ViewState["conceptid"] = Request["p"];
+                }
+
+                date_start.Text = "01-" + DateTime.Now.Month.ToString("00") + "-" + DateTime.Now.Year.ToString();
+                date_end.Text = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month).ToString("00") + "-" + DateTime.Now.Month.ToString("00") + "-" + DateTime.Now.Year.ToString("00");
+
+                DataSetAccountingTableAdapters.list_doctypeTableAdapter tadoctype = new DataSetAccountingTableAdapters.list_doctypeTableAdapter();
+                dldoctype.DataSource = tadoctype.GetData();
+                dldoctype.DataBind();
+
                 DataSetAdminTableAdapters.list_company_conceptsTableAdapter taconcept = new DataSetAdminTableAdapters.list_company_conceptsTableAdapter();
-                cbconcept.DataSource = taconcept.GetData(Convert.ToInt32(Session["companyid"]));
-                cbconcept.DataBind();
-                cbconcept.SelectedValue = "0";
-
-
-                date_start.Text = "01 -" + DateTime.Now.Month.ToString("00") + "-" + DateTime.Now.Year.ToString();
-                date_end.Text = DateTime.Now.Day.ToString("00") + "-" + DateTime.Now.Month.ToString("00") + "-" + DateTime.Now.Year.ToString("00");
+                dlconcept.DataSource = taconcept.GetData(Convert.ToInt32(Session["companyid"]));
+                dlconcept.DataBind();
 
                 refresh();
             }
@@ -38,12 +59,37 @@ namespace SigmaOnlineERP
 
         protected void refresh()
         {
+            //buscando concepto
+            if (ViewState["conceptid"].ToString() != "0")
+            {
+                DataSetAdminTableAdapters.company_conceptsTableAdapter taconcept = new DataSetAdminTableAdapters.company_conceptsTableAdapter();
+                DataTable dtconcept = taconcept.GetDataBy_ID(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(ViewState["conceptid"]));
+                ViewState["concept"] = dtconcept.Rows[0]["name"].ToString();
+            }
+            else
+            {
+                ViewState["concept"] = "";
+            }
+
+            //buscando concepto
+            if (ViewState["doctypeid"].ToString() != "0")
+            {
+                DataSetAccountingTableAdapters.doctypeTableAdapter tadoctype = new DataSetAccountingTableAdapters.doctypeTableAdapter();
+                DataTable dtdoctype = tadoctype.GetDataBy_ID(Convert.ToInt32(ViewState["doctypeid"]));
+                ViewState["doctype"] = dtdoctype.Rows[0]["name"].ToString();
+            }
+            else
+            {
+                ViewState["doctype"] = "";
+            }
+
             DataSetAccountingTableAdapters.list_journalTableAdapter tajouornal = new DataSetAccountingTableAdapters.list_journalTableAdapter();
             var qjournal = tajouornal.GetDataBy_Date(Convert.ToInt32(Session["companyid"]),
-                new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1),
-                new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day)).AsEnumerable().
+                new DateTime(Convert.ToInt32(date_start.Text.Substring(6, 4)), Convert.ToInt32(date_start.Text.Substring(3, 2)), Convert.ToInt32(date_start.Text.Substring(0, 2))),
+                new DateTime(Convert.ToInt32(date_end.Text.Substring(6, 4)), Convert.ToInt32(date_end.Text.Substring(3, 2)), Convert.ToInt32(date_end.Text.Substring(0, 2)))).AsEnumerable().
                 Where(row => (row.Field<String>("number").ToUpper() + row.Field<String>("note").ToUpper()).Contains(tbsearch.Text.Trim().ToUpper())
-                && row.Field<String>("concept").ToUpper().Contains(cbconcept.SelectedItem.Text.ToUpper())).ToList();
+                && row.Field<String>("doctype").ToUpper().ToUpper().Contains(ViewState["doctype"].ToString().ToUpper())
+                && row.Field<String>("concept").ToUpper().ToUpper().Contains(ViewState["concept"].ToString().ToUpper())).ToList();
 
             gvjournal.DataSource = qjournal;
             gvjournal.DataBind();
@@ -73,6 +119,10 @@ namespace SigmaOnlineERP
                 gvjournal.DataSource = myCompany;
                 gvjournal.DataBind();
             }
+            else
+            {
+                gvjournal.FooterRow.Cells[2].Text = qjournal.Count.ToString() + " Registros";
+            }
 
             decimal debit = qjournal.Sum(row => row.Field<Decimal>("debit"));
             decimal credit = qjournal.Sum(row => row.Field<Decimal>("credit"));
@@ -84,7 +134,7 @@ namespace SigmaOnlineERP
 
         protected void btn_add_Click(object sender, EventArgs e)
         {
-            Response.Redirect("newjournal.aspx");
+            Response.Redirect("newjournal.aspx?t=" + ViewState["doctypeid"] + "&p=" + ViewState["conceptid"]);
         }
 
         protected void btn_refresh_Click(object sender, EventArgs e)
@@ -94,10 +144,15 @@ namespace SigmaOnlineERP
 
         protected void btn_export_Click(object sender, EventArgs e)
         {
-            string _abre = "<script>window.open('http://localhost:81/api/reports/2?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
-            "&vuser=" + Session["userid_hash"] + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
+            refresh();
+            string dateini = date_start.Text.Trim().Substring(3, 2) + "/" + date_start.Text.Trim().Substring(0, 2) + "/" + date_start.Text.Trim().Substring(6, 4);
+            string datefin = date_end.Text.Trim().Substring(3, 2) + "/" + date_end.Text.Trim().Substring(0, 2) + "/" + date_end.Text.Trim().Substring(6, 4);
+
+            string _abre = "<script>window.open('http://localhost:81/api/reports/3?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
+                "&vdateini=" + dateini + "&vdatefin=" + datefin + "&vuser=" + Session["userid_hash"] + "&vdoctype=" + ViewState["doctypeid"] +
+                "&vconcept=" + ViewState["conceptid"] + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
             ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
-        }
+         }
 
         protected void btn_search_Click(object sender, EventArgs e)
         {
@@ -106,12 +161,14 @@ namespace SigmaOnlineERP
 
         protected void gvjournal_PageIndexChanging(object sender, GridViewPageEventArgs e)
         {
-
+            gvjournal.PageIndex = e.NewPageIndex;
+            gvjournal.SelectedIndex = -1;
+            refresh();
         }
 
         protected void gvjournal_RowCommand(object sender, GridViewCommandEventArgs e)
         {
-            if (e.CommandName == "edit")
+            if (e.CommandName == "editjournal")
             {
                 int journalid = Convert.ToInt32(e.CommandArgument.ToString());
 
@@ -120,7 +177,7 @@ namespace SigmaOnlineERP
 
                 if (dtjournal.Rows.Count > 0)
                 {
-                    Response.Redirect("newjournal.aspx?c=" + dtjournal.Rows[0]["hashid"].ToString());
+                    Response.Redirect("newjournal.aspx?c=" + dtjournal.Rows[0]["hashid"].ToString() + "&t=" + ViewState["doctypeid"] + "&p=" + ViewState["conceptid"]);
                 }
             }
             else if (e.CommandName == "erase")
@@ -157,6 +214,36 @@ namespace SigmaOnlineERP
 
         protected void cbconcept_SelectedIndexChanged(object sender, EventArgs e)
         {
+            refresh();
+        }
+
+        public override void VerifyRenderingInServerForm(Control control)
+        {
+            /* Confirms that an HtmlForm control is rendered for the specified ASP.NET
+               server control at run time. */
+        }
+
+        protected void cbdoctype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        protected void dldoctype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            lbtype.Text = dldoctype.SelectedValue.ToString();
+        }
+
+        protected void dldoctype_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            ViewState["doctypeid"] = e.CommandArgument.ToString();
+            ViewState["doctype"] = e.CommandName;
+            refresh();
+        }
+
+        protected void dlconcept_ItemCommand(object source, DataListCommandEventArgs e)
+        {
+            ViewState["conceptid"] = e.CommandArgument.ToString();
+            ViewState["concept"] = e.CommandName;
             refresh();
         }
     }

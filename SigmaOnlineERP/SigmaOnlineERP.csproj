@@ -1087,9 +1087,11 @@
     <Content Include="assets\libs\twitter-bootstrap-wizard\MIT-LICENSE.txt" />
     <Content Include="assets\libs\twitter-bootstrap-wizard\prettify.css" />
     <Content Include="assets\libs\twitter-bootstrap-wizard\prettify.js" />
+    <Content Include="checkingbalance.aspx" />
     <Content Include="companies.aspx" />
     <Content Include="config.aspx" />
     <Content Include="default.aspx" />
+    <Content Include="generaldiary.aspx" />
     <Content Include="Global.asax" />
     <Content Include="journalentry.aspx" />
     <Content Include="login.aspx" />
@@ -1107,6 +1109,13 @@
     </Compile>
     <Compile Include="accounts.aspx.designer.cs">
       <DependentUpon>accounts.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="checkingbalance.aspx.cs">
+      <DependentUpon>checkingbalance.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="checkingbalance.aspx.designer.cs">
+      <DependentUpon>checkingbalance.aspx</DependentUpon>
     </Compile>
     <Compile Include="companies.aspx.cs">
       <DependentUpon>companies.aspx</DependentUpon>
@@ -1148,6 +1157,13 @@
     </Compile>
     <Compile Include="default.aspx.designer.cs">
       <DependentUpon>default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="generaldiary.aspx.cs">
+      <DependentUpon>generaldiary.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="generaldiary.aspx.designer.cs">
+      <DependentUpon>generaldiary.aspx</DependentUpon>
     </Compile>
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>

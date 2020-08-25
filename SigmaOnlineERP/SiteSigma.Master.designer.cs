@@ -96,6 +96,24 @@ namespace SigmaOnlineERP
         protected global::System.Web.UI.WebControls.HyperLink maccounting_journal;
 
         /// <summary>
+        /// maccounting_diary control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink maccounting_diary;
+
+        /// <summary>
+        /// maccounting_checking_balance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.HyperLink maccounting_checking_balance;
+
+        /// <summary>
         /// ContentPlaceHolder1 control.
         /// </summary>
         /// <remarks>

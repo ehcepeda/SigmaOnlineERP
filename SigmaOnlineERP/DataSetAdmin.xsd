@@ -326,7 +326,7 @@ order by
   <xs:element name="DataSetAdmin" msdata:IsDataSet="true" msdata:UseCurrentLocale="true" msprop:EnableTableAdapterManager="true" msprop:Generator_DataSetName="DataSetAdmin" msprop:Generator_UserDSName="DataSetAdmin">
     <xs:complexType>
       <xs:choice minOccurs="0" maxOccurs="unbounded">
-        <xs:element name="country" msprop:Generator_TableClassName="countryDataTable" msprop:Generator_TableVarName="tablecountry" msprop:Generator_TablePropName="country" msprop:Generator_RowDeletingName="countryRowDeleting" msprop:Generator_RowChangingName="countryRowChanging" msprop:Generator_RowEvHandlerName="countryRowChangeEventHandler" msprop:Generator_RowDeletedName="countryRowDeleted" msprop:Generator_UserTableName="country" msprop:Generator_RowChangedName="countryRowChanged" msprop:Generator_RowEvArgName="countryRowChangeEvent" msprop:Generator_RowClassName="countryRow">
+        <xs:element name="country" msprop:Generator_TableClassName="countryDataTable" msprop:Generator_TableVarName="tablecountry" msprop:Generator_RowChangedName="countryRowChanged" msprop:Generator_TablePropName="country" msprop:Generator_RowDeletingName="countryRowDeleting" msprop:Generator_RowChangingName="countryRowChanging" msprop:Generator_RowEvHandlerName="countryRowChangeEventHandler" msprop:Generator_RowDeletedName="countryRowDeleted" msprop:Generator_RowClassName="countryRow" msprop:Generator_UserTableName="country" msprop:Generator_RowEvArgName="countryRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="countryid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncountryid" msprop:Generator_ColumnPropNameInRow="countryid" msprop:Generator_ColumnPropNameInTable="countryidColumn" msprop:Generator_UserColumnName="countryid" type="xs:int" />
@@ -347,7 +347,7 @@ order by
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="currency" msprop:Generator_TableClassName="currencyDataTable" msprop:Generator_TableVarName="tablecurrency" msprop:Generator_TablePropName="currency" msprop:Generator_RowDeletingName="currencyRowDeleting" msprop:Generator_RowChangingName="currencyRowChanging" msprop:Generator_RowEvHandlerName="currencyRowChangeEventHandler" msprop:Generator_RowDeletedName="currencyRowDeleted" msprop:Generator_UserTableName="currency" msprop:Generator_RowChangedName="currencyRowChanged" msprop:Generator_RowEvArgName="currencyRowChangeEvent" msprop:Generator_RowClassName="currencyRow">
+        <xs:element name="currency" msprop:Generator_TableClassName="currencyDataTable" msprop:Generator_TableVarName="tablecurrency" msprop:Generator_RowChangedName="currencyRowChanged" msprop:Generator_TablePropName="currency" msprop:Generator_RowDeletingName="currencyRowDeleting" msprop:Generator_RowChangingName="currencyRowChanging" msprop:Generator_RowEvHandlerName="currencyRowChangeEventHandler" msprop:Generator_RowDeletedName="currencyRowDeleted" msprop:Generator_RowClassName="currencyRow" msprop:Generator_UserTableName="currency" msprop:Generator_RowEvArgName="currencyRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="currencyid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columncurrencyid" msprop:Generator_ColumnPropNameInRow="currencyid" msprop:Generator_ColumnPropNameInTable="currencyidColumn" msprop:Generator_UserColumnName="currencyid" type="xs:int" />
@@ -368,7 +368,7 @@ order by
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="rnc" msprop:Generator_TableClassName="rncDataTable" msprop:Generator_TableVarName="tablernc" msprop:Generator_TablePropName="rnc" msprop:Generator_RowDeletingName="rncRowDeleting" msprop:Generator_RowChangingName="rncRowChanging" msprop:Generator_RowEvHandlerName="rncRowChangeEventHandler" msprop:Generator_RowDeletedName="rncRowDeleted" msprop:Generator_UserTableName="rnc" msprop:Generator_RowChangedName="rncRowChanged" msprop:Generator_RowEvArgName="rncRowChangeEvent" msprop:Generator_RowClassName="rncRow">
+        <xs:element name="rnc" msprop:Generator_TableClassName="rncDataTable" msprop:Generator_TableVarName="tablernc" msprop:Generator_RowChangedName="rncRowChanged" msprop:Generator_TablePropName="rnc" msprop:Generator_RowDeletingName="rncRowDeleting" msprop:Generator_RowChangingName="rncRowChanging" msprop:Generator_RowEvHandlerName="rncRowChangeEventHandler" msprop:Generator_RowDeletedName="rncRowDeleted" msprop:Generator_RowClassName="rncRow" msprop:Generator_UserTableName="rnc" msprop:Generator_RowEvArgName="rncRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="razon_social" msprop:Generator_ColumnVarNameInTable="columnrazon_social" msprop:Generator_ColumnPropNameInRow="razon_social" msprop:Generator_ColumnPropNameInTable="razon_socialColumn" msprop:Generator_UserColumnName="razon_social" minOccurs="0">
@@ -388,7 +388,7 @@ order by
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="company_ncf" msprop:Generator_TableClassName="company_ncfDataTable" msprop:Generator_TableVarName="tablecompany_ncf" msprop:Generator_TablePropName="company_ncf" msprop:Generator_RowDeletingName="company_ncfRowDeleting" msprop:Generator_RowChangingName="company_ncfRowChanging" msprop:Generator_RowEvHandlerName="company_ncfRowChangeEventHandler" msprop:Generator_RowDeletedName="company_ncfRowDeleted" msprop:Generator_UserTableName="company_ncf" msprop:Generator_RowChangedName="company_ncfRowChanged" msprop:Generator_RowEvArgName="company_ncfRowChangeEvent" msprop:Generator_RowClassName="company_ncfRow">
+        <xs:element name="company_ncf" msprop:Generator_TableClassName="company_ncfDataTable" msprop:Generator_TableVarName="tablecompany_ncf" msprop:Generator_RowChangedName="company_ncfRowChanged" msprop:Generator_TablePropName="company_ncf" msprop:Generator_RowDeletingName="company_ncfRowDeleting" msprop:Generator_RowChangingName="company_ncfRowChanging" msprop:Generator_RowEvHandlerName="company_ncfRowChangeEventHandler" msprop:Generator_RowDeletedName="company_ncfRowDeleted" msprop:Generator_RowClassName="company_ncfRow" msprop:Generator_UserTableName="company_ncf" msprop:Generator_RowEvArgName="company_ncfRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ncfid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnncfid" msprop:Generator_ColumnPropNameInRow="ncfid" msprop:Generator_ColumnPropNameInTable="ncfidColumn" msprop:Generator_UserColumnName="ncfid" type="xs:int" />
@@ -409,7 +409,7 @@ order by
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="ncf" msprop:Generator_TableClassName="ncfDataTable" msprop:Generator_TableVarName="tablencf" msprop:Generator_TablePropName="ncf" msprop:Generator_RowDeletingName="ncfRowDeleting" msprop:Generator_RowChangingName="ncfRowChanging" msprop:Generator_RowEvHandlerName="ncfRowChangeEventHandler" msprop:Generator_RowDeletedName="ncfRowDeleted" msprop:Generator_UserTableName="ncf" msprop:Generator_RowChangedName="ncfRowChanged" msprop:Generator_RowEvArgName="ncfRowChangeEvent" msprop:Generator_RowClassName="ncfRow">
+        <xs:element name="ncf" msprop:Generator_TableClassName="ncfDataTable" msprop:Generator_TableVarName="tablencf" msprop:Generator_RowChangedName="ncfRowChanged" msprop:Generator_TablePropName="ncf" msprop:Generator_RowDeletingName="ncfRowDeleting" msprop:Generator_RowChangingName="ncfRowChanging" msprop:Generator_RowEvHandlerName="ncfRowChangeEventHandler" msprop:Generator_RowDeletedName="ncfRowDeleted" msprop:Generator_RowClassName="ncfRow" msprop:Generator_UserTableName="ncf" msprop:Generator_RowEvArgName="ncfRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ncftipoid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnncftipoid" msprop:Generator_ColumnPropNameInRow="ncftipoid" msprop:Generator_ColumnPropNameInTable="ncftipoidColumn" msprop:Generator_UserColumnName="ncftipoid" type="xs:int" />
@@ -433,7 +433,7 @@ order by
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="list_company_ncf" msprop:Generator_TableClassName="list_company_ncfDataTable" msprop:Generator_TableVarName="tablelist_company_ncf" msprop:Generator_RowChangedName="list_company_ncfRowChanged" msprop:Generator_TablePropName="list_company_ncf" msprop:Generator_RowDeletingName="list_company_ncfRowDeleting" msprop:Generator_RowChangingName="list_company_ncfRowChanging" msprop:Generator_RowEvHandlerName="list_company_ncfRowChangeEventHandler" msprop:Generator_RowDeletedName="list_company_ncfRowDeleted" msprop:Generator_RowClassName="list_company_ncfRow" msprop:Generator_UserTableName="list_company_ncf" msprop:Generator_RowEvArgName="list_company_ncfRowChangeEvent">
+        <xs:element name="list_company_ncf" msprop:Generator_TableClassName="list_company_ncfDataTable" msprop:Generator_TableVarName="tablelist_company_ncf" msprop:Generator_TablePropName="list_company_ncf" msprop:Generator_RowDeletingName="list_company_ncfRowDeleting" msprop:Generator_RowChangingName="list_company_ncfRowChanging" msprop:Generator_RowEvHandlerName="list_company_ncfRowChangeEventHandler" msprop:Generator_RowDeletedName="list_company_ncfRowDeleted" msprop:Generator_UserTableName="list_company_ncf" msprop:Generator_RowChangedName="list_company_ncfRowChanged" msprop:Generator_RowEvArgName="list_company_ncfRowChangeEvent" msprop:Generator_RowClassName="list_company_ncfRow">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="ncfid" msdata:ReadOnly="true" msdata:AutoIncrement="true" msdata:AutoIncrementSeed="-1" msdata:AutoIncrementStep="-1" msprop:Generator_ColumnVarNameInTable="columnncfid" msprop:Generator_ColumnPropNameInRow="ncfid" msprop:Generator_ColumnPropNameInTable="ncfidColumn" msprop:Generator_UserColumnName="ncfid" type="xs:int" />
@@ -474,7 +474,7 @@ order by
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="company_concepts" msprop:Generator_TableClassName="company_conceptsDataTable" msprop:Generator_TableVarName="tablecompany_concepts" msprop:Generator_TablePropName="company_concepts" msprop:Generator_RowDeletingName="company_conceptsRowDeleting" msprop:Generator_RowChangingName="company_conceptsRowChanging" msprop:Generator_RowEvHandlerName="company_conceptsRowChangeEventHandler" msprop:Generator_RowDeletedName="company_conceptsRowDeleted" msprop:Generator_UserTableName="company_concepts" msprop:Generator_RowChangedName="company_conceptsRowChanged" msprop:Generator_RowEvArgName="company_conceptsRowChangeEvent" msprop:Generator_RowClassName="company_conceptsRow">
+        <xs:element name="company_concepts" msprop:Generator_TableClassName="company_conceptsDataTable" msprop:Generator_TableVarName="tablecompany_concepts" msprop:Generator_RowChangedName="company_conceptsRowChanged" msprop:Generator_TablePropName="company_concepts" msprop:Generator_RowDeletingName="company_conceptsRowDeleting" msprop:Generator_RowChangingName="company_conceptsRowChanging" msprop:Generator_RowEvHandlerName="company_conceptsRowChangeEventHandler" msprop:Generator_RowDeletedName="company_conceptsRowDeleted" msprop:Generator_RowClassName="company_conceptsRow" msprop:Generator_UserTableName="company_concepts" msprop:Generator_RowEvArgName="company_conceptsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="companyid" msprop:Generator_ColumnVarNameInTable="columncompanyid" msprop:Generator_ColumnPropNameInRow="companyid" msprop:Generator_ColumnPropNameInTable="companyidColumn" msprop:Generator_UserColumnName="companyid" type="xs:int" />
@@ -503,7 +503,7 @@ order by
             </xs:sequence>
           </xs:complexType>
         </xs:element>
-        <xs:element name="list_company_concepts" msprop:Generator_TableClassName="list_company_conceptsDataTable" msprop:Generator_TableVarName="tablelist_company_concepts" msprop:Generator_TablePropName="list_company_concepts" msprop:Generator_RowDeletingName="list_company_conceptsRowDeleting" msprop:Generator_RowChangingName="list_company_conceptsRowChanging" msprop:Generator_RowEvHandlerName="list_company_conceptsRowChangeEventHandler" msprop:Generator_RowDeletedName="list_company_conceptsRowDeleted" msprop:Generator_UserTableName="list_company_concepts" msprop:Generator_RowChangedName="list_company_conceptsRowChanged" msprop:Generator_RowEvArgName="list_company_conceptsRowChangeEvent" msprop:Generator_RowClassName="list_company_conceptsRow">
+        <xs:element name="list_company_concepts" msprop:Generator_TableClassName="list_company_conceptsDataTable" msprop:Generator_TableVarName="tablelist_company_concepts" msprop:Generator_RowChangedName="list_company_conceptsRowChanged" msprop:Generator_TablePropName="list_company_concepts" msprop:Generator_RowDeletingName="list_company_conceptsRowDeleting" msprop:Generator_RowChangingName="list_company_conceptsRowChanging" msprop:Generator_RowEvHandlerName="list_company_conceptsRowChangeEventHandler" msprop:Generator_RowDeletedName="list_company_conceptsRowDeleted" msprop:Generator_RowClassName="list_company_conceptsRow" msprop:Generator_UserTableName="list_company_concepts" msprop:Generator_RowEvArgName="list_company_conceptsRowChangeEvent">
           <xs:complexType>
             <xs:sequence>
               <xs:element name="conceptid" msdata:ReadOnly="true" msprop:Generator_ColumnVarNameInTable="columnconceptid" msprop:Generator_ColumnPropNameInRow="conceptid" msprop:Generator_ColumnPropNameInTable="conceptidColumn" msprop:Generator_UserColumnName="conceptid" type="xs:int" minOccurs="0" />
@@ -543,8 +543,8 @@ order by
   </xs:element>
   <xs:annotation>
     <xs:appinfo>
-      <msdata:Relationship name="FK_company_ncf_ncf" msdata:parent="ncf" msdata:child="company_ncf" msdata:parentkey="ncftipoid" msdata:childkey="ncftipoid" msprop:Generator_UserChildTable="company_ncf" msprop:Generator_ChildPropName="Getcompany_ncfRows" msprop:Generator_UserRelationName="FK_company_ncf_ncf" msprop:Generator_RelationVarName="relationFK_company_ncf_ncf" msprop:Generator_UserParentTable="ncf" msprop:Generator_ParentPropName="ncfRow" />
-      <msdata:Relationship name="FK_company_ncf_ncf1" msdata:parent="ncf" msdata:child="list_company_ncf" msdata:parentkey="ncftipoid" msdata:childkey="ncftipoid" msprop:Generator_UserChildTable="list_company_ncf" msprop:Generator_ChildPropName="Getlist_company_ncfRows" msprop:Generator_UserRelationName="FK_company_ncf_ncf1" msprop:Generator_RelationVarName="relationFK_company_ncf_ncf1" msprop:Generator_UserParentTable="ncf" msprop:Generator_ParentPropName="ncfRow" />
+      <msdata:Relationship name="FK_company_ncf_ncf" msdata:parent="ncf" msdata:child="company_ncf" msdata:parentkey="ncftipoid" msdata:childkey="ncftipoid" msprop:Generator_UserChildTable="company_ncf" msprop:Generator_ChildPropName="Getcompany_ncfRows" msprop:Generator_UserRelationName="FK_company_ncf_ncf" msprop:Generator_ParentPropName="ncfRow" msprop:Generator_RelationVarName="relationFK_company_ncf_ncf" msprop:Generator_UserParentTable="ncf" />
+      <msdata:Relationship name="FK_company_ncf_ncf1" msdata:parent="ncf" msdata:child="list_company_ncf" msdata:parentkey="ncftipoid" msdata:childkey="ncftipoid" msprop:Generator_UserChildTable="list_company_ncf" msprop:Generator_ChildPropName="Getlist_company_ncfRows" msprop:Generator_UserRelationName="FK_company_ncf_ncf1" msprop:Generator_ParentPropName="ncfRow" msprop:Generator_RelationVarName="relationFK_company_ncf_ncf1" msprop:Generator_UserParentTable="ncf" />
     </xs:appinfo>
   </xs:annotation>
 </xs:schema>
