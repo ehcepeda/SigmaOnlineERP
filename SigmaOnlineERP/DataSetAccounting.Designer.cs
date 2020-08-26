@@ -50,6 +50,8 @@ namespace SigmaOnlineERP {
         
         private list_general_diaryDataTable tablelist_general_diary;
         
+        private list_account_movementDataTable tablelist_account_movement;
+        
         private global::System.Data.DataRelation relationFK_journal_company_dimension;
         
         private global::System.Data.DataRelation relationFK_journal_doctype;
@@ -126,6 +128,9 @@ namespace SigmaOnlineERP {
                 }
                 if ((ds.Tables["list_general_diary"] != null)) {
                     base.Tables.Add(new list_general_diaryDataTable(ds.Tables["list_general_diary"]));
+                }
+                if ((ds.Tables["list_account_movement"] != null)) {
+                    base.Tables.Add(new list_account_movementDataTable(ds.Tables["list_account_movement"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -277,6 +282,16 @@ namespace SigmaOnlineERP {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Browsable(false)]
+        [global::System.ComponentModel.DesignerSerializationVisibility(global::System.ComponentModel.DesignerSerializationVisibility.Content)]
+        public list_account_movementDataTable list_account_movement {
+            get {
+                return this.tablelist_account_movement;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.BrowsableAttribute(true)]
         [global::System.ComponentModel.DesignerSerializationVisibilityAttribute(global::System.ComponentModel.DesignerSerializationVisibility.Visible)]
         public override global::System.Data.SchemaSerializationMode SchemaSerializationMode {
@@ -380,6 +395,9 @@ namespace SigmaOnlineERP {
                 }
                 if ((ds.Tables["list_general_diary"] != null)) {
                     base.Tables.Add(new list_general_diaryDataTable(ds.Tables["list_general_diary"]));
+                }
+                if ((ds.Tables["list_account_movement"] != null)) {
+                    base.Tables.Add(new list_account_movementDataTable(ds.Tables["list_account_movement"]));
                 }
                 this.DataSetName = ds.DataSetName;
                 this.Prefix = ds.Prefix;
@@ -492,6 +510,12 @@ namespace SigmaOnlineERP {
                     this.tablelist_general_diary.InitVars();
                 }
             }
+            this.tablelist_account_movement = ((list_account_movementDataTable)(base.Tables["list_account_movement"]));
+            if ((initTable == true)) {
+                if ((this.tablelist_account_movement != null)) {
+                    this.tablelist_account_movement.InitVars();
+                }
+            }
             this.relationFK_journal_company_dimension = this.Relations["FK_journal_company_dimension"];
             this.relationFK_journal_doctype = this.Relations["FK_journal_doctype"];
             this.relationFK_journal_detail_company_accounts = this.Relations["FK_journal_detail_company_accounts"];
@@ -533,6 +557,8 @@ namespace SigmaOnlineERP {
             base.Tables.Add(this.tablelist_doctype);
             this.tablelist_general_diary = new list_general_diaryDataTable();
             base.Tables.Add(this.tablelist_general_diary);
+            this.tablelist_account_movement = new list_account_movementDataTable();
+            base.Tables.Add(this.tablelist_account_movement);
             this.relationFK_journal_company_dimension = new global::System.Data.DataRelation("FK_journal_company_dimension", new global::System.Data.DataColumn[] {
                         this.tablecompany_dimension.companyidColumn,
                         this.tablecompany_dimension.dimensionidColumn}, new global::System.Data.DataColumn[] {
@@ -643,6 +669,12 @@ namespace SigmaOnlineERP {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private bool ShouldSerializelist_account_movement() {
+            return false;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         private void SchemaChanged(object sender, global::System.ComponentModel.CollectionChangeEventArgs e) {
             if ((e.Action == global::System.ComponentModel.CollectionChangeAction.Remove)) {
                 this.InitVars();
@@ -734,6 +766,9 @@ namespace SigmaOnlineERP {
         
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         public delegate void list_general_diaryRowChangeEventHandler(object sender, list_general_diaryRowChangeEvent e);
+        
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public delegate void list_account_movementRowChangeEventHandler(object sender, list_account_movementRowChangeEvent e);
         
         /// <summary>
         ///Represents the strongly named DataTable class.
@@ -5233,6 +5268,408 @@ namespace SigmaOnlineERP {
         }
         
         /// <summary>
+        ///Represents the strongly named DataTable class.
+        ///</summary>
+        [global::System.Serializable()]
+        [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedTableSchema")]
+        public partial class list_account_movementDataTable : global::System.Data.TypedTableBase<list_account_movementRow> {
+            
+            private global::System.Data.DataColumn columnjournalid;
+            
+            private global::System.Data.DataColumn columndoctype;
+            
+            private global::System.Data.DataColumn columncreate_date;
+            
+            private global::System.Data.DataColumn columnnumber;
+            
+            private global::System.Data.DataColumn columndebit;
+            
+            private global::System.Data.DataColumn columncredit;
+            
+            private global::System.Data.DataColumn columndimension_detalle;
+            
+            private global::System.Data.DataColumn columndimension_general;
+            
+            private global::System.Data.DataColumn columnconcept;
+            
+            private global::System.Data.DataColumn columnnote;
+            
+            private global::System.Data.DataColumn columnnote_detail;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public list_account_movementDataTable() {
+                this.TableName = "list_account_movement";
+                this.BeginInit();
+                this.InitClass();
+                this.EndInit();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal list_account_movementDataTable(global::System.Data.DataTable table) {
+                this.TableName = table.TableName;
+                if ((table.CaseSensitive != table.DataSet.CaseSensitive)) {
+                    this.CaseSensitive = table.CaseSensitive;
+                }
+                if ((table.Locale.ToString() != table.DataSet.Locale.ToString())) {
+                    this.Locale = table.Locale;
+                }
+                if ((table.Namespace != table.DataSet.Namespace)) {
+                    this.Namespace = table.Namespace;
+                }
+                this.Prefix = table.Prefix;
+                this.MinimumCapacity = table.MinimumCapacity;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected list_account_movementDataTable(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+                    base(info, context) {
+                this.InitVars();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn journalidColumn {
+                get {
+                    return this.columnjournalid;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn doctypeColumn {
+                get {
+                    return this.columndoctype;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn create_dateColumn {
+                get {
+                    return this.columncreate_date;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn numberColumn {
+                get {
+                    return this.columnnumber;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn debitColumn {
+                get {
+                    return this.columndebit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn creditColumn {
+                get {
+                    return this.columncredit;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn dimension_detalleColumn {
+                get {
+                    return this.columndimension_detalle;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn dimension_generalColumn {
+                get {
+                    return this.columndimension_general;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn conceptColumn {
+                get {
+                    return this.columnconcept;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn noteColumn {
+                get {
+                    return this.columnnote;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataColumn note_detailColumn {
+                get {
+                    return this.columnnote_detail;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            [global::System.ComponentModel.Browsable(false)]
+            public int Count {
+                get {
+                    return this.Rows.Count;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public list_account_movementRow this[int index] {
+                get {
+                    return ((list_account_movementRow)(this.Rows[index]));
+                }
+            }
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event list_account_movementRowChangeEventHandler list_account_movementRowChanging;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event list_account_movementRowChangeEventHandler list_account_movementRowChanged;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event list_account_movementRowChangeEventHandler list_account_movementRowDeleting;
+            
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public event list_account_movementRowChangeEventHandler list_account_movementRowDeleted;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Addlist_account_movementRow(list_account_movementRow row) {
+                this.Rows.Add(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public list_account_movementRow Addlist_account_movementRow(int journalid, string doctype, System.DateTime create_date, string number, decimal debit, decimal credit, string dimension_detalle, string dimension_general, string concept, string note, string note_detail) {
+                list_account_movementRow rowlist_account_movementRow = ((list_account_movementRow)(this.NewRow()));
+                object[] columnValuesArray = new object[] {
+                        journalid,
+                        doctype,
+                        create_date,
+                        number,
+                        debit,
+                        credit,
+                        dimension_detalle,
+                        dimension_general,
+                        concept,
+                        note,
+                        note_detail};
+                rowlist_account_movementRow.ItemArray = columnValuesArray;
+                this.Rows.Add(rowlist_account_movementRow);
+                return rowlist_account_movementRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public override global::System.Data.DataTable Clone() {
+                list_account_movementDataTable cln = ((list_account_movementDataTable)(base.Clone()));
+                cln.InitVars();
+                return cln;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataTable CreateInstance() {
+                return new list_account_movementDataTable();
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal void InitVars() {
+                this.columnjournalid = base.Columns["journalid"];
+                this.columndoctype = base.Columns["doctype"];
+                this.columncreate_date = base.Columns["create_date"];
+                this.columnnumber = base.Columns["number"];
+                this.columndebit = base.Columns["debit"];
+                this.columncredit = base.Columns["credit"];
+                this.columndimension_detalle = base.Columns["dimension_detalle"];
+                this.columndimension_general = base.Columns["dimension_general"];
+                this.columnconcept = base.Columns["concept"];
+                this.columnnote = base.Columns["note"];
+                this.columnnote_detail = base.Columns["note_detail"];
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            private void InitClass() {
+                this.columnjournalid = new global::System.Data.DataColumn("journalid", typeof(int), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnjournalid);
+                this.columndoctype = new global::System.Data.DataColumn("doctype", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndoctype);
+                this.columncreate_date = new global::System.Data.DataColumn("create_date", typeof(global::System.DateTime), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncreate_date);
+                this.columnnumber = new global::System.Data.DataColumn("number", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnumber);
+                this.columndebit = new global::System.Data.DataColumn("debit", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndebit);
+                this.columncredit = new global::System.Data.DataColumn("credit", typeof(decimal), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columncredit);
+                this.columndimension_detalle = new global::System.Data.DataColumn("dimension_detalle", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndimension_detalle);
+                this.columndimension_general = new global::System.Data.DataColumn("dimension_general", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columndimension_general);
+                this.columnconcept = new global::System.Data.DataColumn("concept", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnconcept);
+                this.columnnote = new global::System.Data.DataColumn("note", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnote);
+                this.columnnote_detail = new global::System.Data.DataColumn("note_detail", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnnote_detail);
+                this.columnjournalid.AllowDBNull = false;
+                this.columndoctype.AllowDBNull = false;
+                this.columndoctype.MaxLength = 80;
+                this.columncreate_date.AllowDBNull = false;
+                this.columnnumber.AllowDBNull = false;
+                this.columnnumber.MaxLength = 50;
+                this.columndebit.AllowDBNull = false;
+                this.columndebit.ReadOnly = true;
+                this.columncredit.AllowDBNull = false;
+                this.columncredit.ReadOnly = true;
+                this.columndimension_detalle.MaxLength = 100;
+                this.columndimension_general.MaxLength = 100;
+                this.columnconcept.MaxLength = 100;
+                this.columnnote.MaxLength = 200;
+                this.columnnote_detail.MaxLength = 200;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public list_account_movementRow Newlist_account_movementRow() {
+                return ((list_account_movementRow)(this.NewRow()));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Data.DataRow NewRowFromBuilder(global::System.Data.DataRowBuilder builder) {
+                return new list_account_movementRow(builder);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override global::System.Type GetRowType() {
+                return typeof(list_account_movementRow);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanged(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanged(e);
+                if ((this.list_account_movementRowChanged != null)) {
+                    this.list_account_movementRowChanged(this, new list_account_movementRowChangeEvent(((list_account_movementRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowChanging(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowChanging(e);
+                if ((this.list_account_movementRowChanging != null)) {
+                    this.list_account_movementRowChanging(this, new list_account_movementRowChangeEvent(((list_account_movementRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleted(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleted(e);
+                if ((this.list_account_movementRowDeleted != null)) {
+                    this.list_account_movementRowDeleted(this, new list_account_movementRowChangeEvent(((list_account_movementRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            protected override void OnRowDeleting(global::System.Data.DataRowChangeEventArgs e) {
+                base.OnRowDeleting(e);
+                if ((this.list_account_movementRowDeleting != null)) {
+                    this.list_account_movementRowDeleting(this, new list_account_movementRowChangeEvent(((list_account_movementRow)(e.Row)), e.Action));
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Removelist_account_movementRow(list_account_movementRow row) {
+                this.Rows.Remove(row);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
+                global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
+                global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
+                DataSetAccounting ds = new DataSetAccounting();
+                global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
+                any1.Namespace = "http://www.w3.org/2001/XMLSchema";
+                any1.MinOccurs = new decimal(0);
+                any1.MaxOccurs = decimal.MaxValue;
+                any1.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any1);
+                global::System.Xml.Schema.XmlSchemaAny any2 = new global::System.Xml.Schema.XmlSchemaAny();
+                any2.Namespace = "urn:schemas-microsoft-com:xml-diffgram-v1";
+                any2.MinOccurs = new decimal(1);
+                any2.ProcessContents = global::System.Xml.Schema.XmlSchemaContentProcessing.Lax;
+                sequence.Items.Add(any2);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute1 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute1.Name = "namespace";
+                attribute1.FixedValue = ds.Namespace;
+                type.Attributes.Add(attribute1);
+                global::System.Xml.Schema.XmlSchemaAttribute attribute2 = new global::System.Xml.Schema.XmlSchemaAttribute();
+                attribute2.Name = "tableTypeName";
+                attribute2.FixedValue = "list_account_movementDataTable";
+                type.Attributes.Add(attribute2);
+                type.Particle = sequence;
+                global::System.Xml.Schema.XmlSchema dsSchema = ds.GetSchemaSerializable();
+                if (xs.Contains(dsSchema.TargetNamespace)) {
+                    global::System.IO.MemoryStream s1 = new global::System.IO.MemoryStream();
+                    global::System.IO.MemoryStream s2 = new global::System.IO.MemoryStream();
+                    try {
+                        global::System.Xml.Schema.XmlSchema schema = null;
+                        dsSchema.Write(s1);
+                        for (global::System.Collections.IEnumerator schemas = xs.Schemas(dsSchema.TargetNamespace).GetEnumerator(); schemas.MoveNext(); ) {
+                            schema = ((global::System.Xml.Schema.XmlSchema)(schemas.Current));
+                            s2.SetLength(0);
+                            schema.Write(s2);
+                            if ((s1.Length == s2.Length)) {
+                                s1.Position = 0;
+                                s2.Position = 0;
+                                for (; ((s1.Position != s1.Length) 
+                                            && (s1.ReadByte() == s2.ReadByte())); ) {
+                                    ;
+                                }
+                                if ((s1.Position == s1.Length)) {
+                                    return type;
+                                }
+                            }
+                        }
+                    }
+                    finally {
+                        if ((s1 != null)) {
+                            s1.Close();
+                        }
+                        if ((s2 != null)) {
+                            s2.Close();
+                        }
+                    }
+                }
+                xs.Add(dsSchema);
+                return type;
+            }
+        }
+        
+        /// <summary>
         ///Represents strongly named DataRow class.
         ///</summary>
         public partial class company_accountsRow : global::System.Data.DataRow {
@@ -7254,6 +7691,229 @@ namespace SigmaOnlineERP {
         }
         
         /// <summary>
+        ///Represents strongly named DataRow class.
+        ///</summary>
+        public partial class list_account_movementRow : global::System.Data.DataRow {
+            
+            private list_account_movementDataTable tablelist_account_movement;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            internal list_account_movementRow(global::System.Data.DataRowBuilder rb) : 
+                    base(rb) {
+                this.tablelist_account_movement = ((list_account_movementDataTable)(this.Table));
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public int journalid {
+                get {
+                    return ((int)(this[this.tablelist_account_movement.journalidColumn]));
+                }
+                set {
+                    this[this.tablelist_account_movement.journalidColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string doctype {
+                get {
+                    return ((string)(this[this.tablelist_account_movement.doctypeColumn]));
+                }
+                set {
+                    this[this.tablelist_account_movement.doctypeColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public System.DateTime create_date {
+                get {
+                    return ((global::System.DateTime)(this[this.tablelist_account_movement.create_dateColumn]));
+                }
+                set {
+                    this[this.tablelist_account_movement.create_dateColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string number {
+                get {
+                    return ((string)(this[this.tablelist_account_movement.numberColumn]));
+                }
+                set {
+                    this[this.tablelist_account_movement.numberColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public decimal debit {
+                get {
+                    return ((decimal)(this[this.tablelist_account_movement.debitColumn]));
+                }
+                set {
+                    this[this.tablelist_account_movement.debitColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public decimal credit {
+                get {
+                    return ((decimal)(this[this.tablelist_account_movement.creditColumn]));
+                }
+                set {
+                    this[this.tablelist_account_movement.creditColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string dimension_detalle {
+                get {
+                    try {
+                        return ((string)(this[this.tablelist_account_movement.dimension_detalleColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dimension_detalle\' in table \'list_account_movement\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tablelist_account_movement.dimension_detalleColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string dimension_general {
+                get {
+                    try {
+                        return ((string)(this[this.tablelist_account_movement.dimension_generalColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'dimension_general\' in table \'list_account_movement\' is DBNu" +
+                                "ll.", e);
+                    }
+                }
+                set {
+                    this[this.tablelist_account_movement.dimension_generalColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string concept {
+                get {
+                    try {
+                        return ((string)(this[this.tablelist_account_movement.conceptColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'concept\' in table \'list_account_movement\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablelist_account_movement.conceptColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string note {
+                get {
+                    try {
+                        return ((string)(this[this.tablelist_account_movement.noteColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'note\' in table \'list_account_movement\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablelist_account_movement.noteColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public string note_detail {
+                get {
+                    try {
+                        return ((string)(this[this.tablelist_account_movement.note_detailColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'note_detail\' in table \'list_account_movement\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tablelist_account_movement.note_detailColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isdimension_detalleNull() {
+                return this.IsNull(this.tablelist_account_movement.dimension_detalleColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setdimension_detalleNull() {
+                this[this.tablelist_account_movement.dimension_detalleColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isdimension_generalNull() {
+                return this.IsNull(this.tablelist_account_movement.dimension_generalColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setdimension_generalNull() {
+                this[this.tablelist_account_movement.dimension_generalColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsconceptNull() {
+                return this.IsNull(this.tablelist_account_movement.conceptColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetconceptNull() {
+                this[this.tablelist_account_movement.conceptColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool IsnoteNull() {
+                return this.IsNull(this.tablelist_account_movement.noteColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void SetnoteNull() {
+                this[this.tablelist_account_movement.noteColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public bool Isnote_detailNull() {
+                return this.IsNull(this.tablelist_account_movement.note_detailColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public void Setnote_detailNull() {
+                this[this.tablelist_account_movement.note_detailColumn] = global::System.Convert.DBNull;
+            }
+        }
+        
+        /// <summary>
         ///Row event argument class
         ///</summary>
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
@@ -7681,6 +8341,40 @@ namespace SigmaOnlineERP {
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
             public list_general_diaryRow Row {
+                get {
+                    return this.eventRow;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public global::System.Data.DataRowAction Action {
+                get {
+                    return this.eventAction;
+                }
+            }
+        }
+        
+        /// <summary>
+        ///Row event argument class
+        ///</summary>
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public class list_account_movementRowChangeEvent : global::System.EventArgs {
+            
+            private list_account_movementRow eventRow;
+            
+            private global::System.Data.DataRowAction eventAction;
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public list_account_movementRowChangeEvent(list_account_movementRow row, global::System.Data.DataRowAction action) {
+                this.eventRow = row;
+                this.eventAction = action;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+            public list_account_movementRow Row {
                 get {
                     return this.eventRow;
                 }
@@ -10722,6 +11416,204 @@ j.create_date, j.doctypeid, j.journalid, 13 desc, d.accountid
             this.Adapter.SelectCommand.Parameters[1].Value = ((System.DateTime)(create_date));
             this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(create_date1));
             DataSetAccounting.list_general_diaryDataTable dataTable = new DataSetAccounting.list_general_diaryDataTable();
+            this.Adapter.Fill(dataTable);
+            return dataTable;
+        }
+    }
+    
+    /// <summary>
+    ///Represents the connection and commands used to retrieve and save data.
+    ///</summary>
+    [global::System.ComponentModel.DesignerCategoryAttribute("code")]
+    [global::System.ComponentModel.ToolboxItem(true)]
+    [global::System.ComponentModel.DataObjectAttribute(true)]
+    [global::System.ComponentModel.DesignerAttribute("Microsoft.VSDesigner.DataSource.Design.TableAdapterDesigner, Microsoft.VSDesigner" +
+        ", Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a")]
+    [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+    public partial class list_account_movementTableAdapter : global::System.ComponentModel.Component {
+        
+        private global::System.Data.OleDb.OleDbDataAdapter _adapter;
+        
+        private global::System.Data.OleDb.OleDbConnection _connection;
+        
+        private global::System.Data.OleDb.OleDbTransaction _transaction;
+        
+        private global::System.Data.OleDb.OleDbCommand[] _commandCollection;
+        
+        private bool _clearBeforeFill;
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public list_account_movementTableAdapter() {
+            this.ClearBeforeFill = true;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected internal global::System.Data.OleDb.OleDbDataAdapter Adapter {
+            get {
+                if ((this._adapter == null)) {
+                    this.InitAdapter();
+                }
+                return this._adapter;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::System.Data.OleDb.OleDbConnection Connection {
+            get {
+                if ((this._connection == null)) {
+                    this.InitConnection();
+                }
+                return this._connection;
+            }
+            set {
+                this._connection = value;
+                if ((this.Adapter.InsertCommand != null)) {
+                    this.Adapter.InsertCommand.Connection = value;
+                }
+                if ((this.Adapter.DeleteCommand != null)) {
+                    this.Adapter.DeleteCommand.Connection = value;
+                }
+                if ((this.Adapter.UpdateCommand != null)) {
+                    this.Adapter.UpdateCommand.Connection = value;
+                }
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    if ((this.CommandCollection[i] != null)) {
+                        ((global::System.Data.OleDb.OleDbCommand)(this.CommandCollection[i])).Connection = value;
+                    }
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        internal global::System.Data.OleDb.OleDbTransaction Transaction {
+            get {
+                return this._transaction;
+            }
+            set {
+                this._transaction = value;
+                for (int i = 0; (i < this.CommandCollection.Length); i = (i + 1)) {
+                    this.CommandCollection[i].Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.DeleteCommand != null))) {
+                    this.Adapter.DeleteCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.InsertCommand != null))) {
+                    this.Adapter.InsertCommand.Transaction = this._transaction;
+                }
+                if (((this.Adapter != null) 
+                            && (this.Adapter.UpdateCommand != null))) {
+                    this.Adapter.UpdateCommand.Transaction = this._transaction;
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        protected global::System.Data.OleDb.OleDbCommand[] CommandCollection {
+            get {
+                if ((this._commandCollection == null)) {
+                    this.InitCommandCollection();
+                }
+                return this._commandCollection;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        public bool ClearBeforeFill {
+            get {
+                return this._clearBeforeFill;
+            }
+            set {
+                this._clearBeforeFill = value;
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitAdapter() {
+            this._adapter = new global::System.Data.OleDb.OleDbDataAdapter();
+            global::System.Data.Common.DataTableMapping tableMapping = new global::System.Data.Common.DataTableMapping();
+            tableMapping.SourceTable = "Table";
+            tableMapping.DataSetTable = "list_account_movement";
+            tableMapping.ColumnMappings.Add("journalid", "journalid");
+            tableMapping.ColumnMappings.Add("doctype", "doctype");
+            tableMapping.ColumnMappings.Add("create_date", "create_date");
+            tableMapping.ColumnMappings.Add("number", "number");
+            tableMapping.ColumnMappings.Add("debit", "debit");
+            tableMapping.ColumnMappings.Add("credit", "credit");
+            tableMapping.ColumnMappings.Add("dimension_detalle", "dimension_detalle");
+            tableMapping.ColumnMappings.Add("dimension_general", "dimension_general");
+            tableMapping.ColumnMappings.Add("concept", "concept");
+            tableMapping.ColumnMappings.Add("note", "note");
+            tableMapping.ColumnMappings.Add("note_detail", "note_detail");
+            this._adapter.TableMappings.Add(tableMapping);
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitConnection() {
+            this._connection = new global::System.Data.OleDb.OleDbConnection();
+            this._connection.ConnectionString = System.Configuration.ConfigurationManager.ConnectionStrings["ConnectionStringSigma"].ConnectionString;
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        private void InitCommandCollection() {
+            this._commandCollection = new global::System.Data.OleDb.OleDbCommand[1];
+            this._commandCollection[0] = new global::System.Data.OleDb.OleDbCommand();
+            this._commandCollection[0].Connection = this.Connection;
+            this._commandCollection[0].CommandText = @"select
+j.journalid, i.name as doctype, j.create_date, j.number, isnull(j.note,'') as note,
+d.debit, d.credit,
+isnull(o2.name,'') as dimension_detalle, isnull(o1.name,'') as dimension_general,
+isnull(s.name,'') as concept, d.note as note_detail
+from
+journal j
+left outer join company_concepts s on (j.companyid = s.companyid and j.conceptid = s.conceptid)
+left outer join company_dimension o1 on (j.companyid = o1.companyid and j.dimensionid = o1.dimensionid), journal_detail d
+left outer join company_dimension o2 on (d.companyid = o2.companyid and d.dimensionid = o2.dimensionid), doctype i, company_accounts g
+where
+d.journalid = j.journalid
+and d.companyid = j.companyid
+and j.doctypeid = i.doctypeid
+and d.accountid = g.accountid
+and d.companyid = g.companyid
+and j.companyid = ?
+and d.accountid = ltrim(rtrim(?))
+and j.create_date between ? and ?
+order by
+j.create_date, i.name, j.number
+";
+            this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
+            this._commandCollection[0].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("companyid", global::System.Data.OleDb.OleDbType.Integer, 4, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "companyid", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("accountid", global::System.Data.OleDb.OleDbType.Char, 15, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "accountid", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("create_date", global::System.Data.OleDb.OleDbType.DBTimeStamp, 8, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "create_date", global::System.Data.DataRowVersion.Current, false, null));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("create_date1", global::System.Data.OleDb.OleDbType.DBTimeStamp, 8, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "create_date", global::System.Data.DataRowVersion.Current, false, null));
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
+        public virtual DataSetAccounting.list_account_movementDataTable GetDataBy_Account(int companyid, string accountid, System.DateTime create_date, System.DateTime create_date1) {
+            this.Adapter.SelectCommand = this.CommandCollection[0];
+            this.Adapter.SelectCommand.Parameters[0].Value = ((int)(companyid));
+            if ((accountid == null)) {
+                throw new global::System.ArgumentNullException("accountid");
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(accountid));
+            }
+            this.Adapter.SelectCommand.Parameters[2].Value = ((System.DateTime)(create_date));
+            this.Adapter.SelectCommand.Parameters[3].Value = ((System.DateTime)(create_date1));
+            DataSetAccounting.list_account_movementDataTable dataTable = new DataSetAccounting.list_account_movementDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }

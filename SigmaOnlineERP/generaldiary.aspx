@@ -214,7 +214,7 @@
                                                     FooterStyle-Font-Bold="true"
                                                     FooterStyle-BackColor="#EAFAF1">
                                                     <Columns>
-                                                        <asp:BoundField DataField="journalid" HeaderText="ID" ItemStyle-Width="50" HeaderStyle-CssClass="text-center"
+                                                        <asp:BoundField DataField="journalid" HeaderText="ED#" ItemStyle-Width="50" HeaderStyle-CssClass="text-center"
                                                             ItemStyle-HorizontalAlign="Center" />
                                                         <asp:BoundField DataField="number" HeaderText="Número" ItemStyle-Width="110" />
                                                         <asp:BoundField DataField="doctype" HeaderText="Tipo de documento" ItemStyle-Width="210" />

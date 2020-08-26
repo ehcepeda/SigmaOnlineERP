@@ -178,6 +178,8 @@ namespace SigmaOnlineERP
                 "&vdateini=" + dateini + "&vdatefin=" + datefin + "&vuser=" + Session["userid_hash"] + "&vdoctype=" + ViewState["doctypeid"] +
                 "&vconcept=" + ViewState["conceptid"] + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
             ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
+
+            refresh();
         }
 
         protected void btn_add_Click(object sender, EventArgs e)

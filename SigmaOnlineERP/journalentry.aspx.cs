@@ -129,11 +129,11 @@ namespace SigmaOnlineERP
 
             gvjournal.FooterRow.Cells[8].Text = debit.ToString("$###,###,##0.00");
             gvjournal.FooterRow.Cells[9].Text = credit.ToString("$###,###,##0.00");
-
         }
 
         protected void btn_add_Click(object sender, EventArgs e)
         {
+            Session["RefUrl"] = "journalentry.aspx";
             Response.Redirect("newjournal.aspx?t=" + ViewState["doctypeid"] + "&p=" + ViewState["conceptid"]);
         }
 
@@ -177,6 +177,7 @@ namespace SigmaOnlineERP
 
                 if (dtjournal.Rows.Count > 0)
                 {
+                    Session["RefUrl"] = "journalentry.aspx";
                     Response.Redirect("newjournal.aspx?c=" + dtjournal.Rows[0]["hashid"].ToString() + "&t=" + ViewState["doctypeid"] + "&p=" + ViewState["conceptid"]);
                 }
             }
@@ -204,6 +205,8 @@ namespace SigmaOnlineERP
                     "&vjournalid=" + dtjournal.Rows[0]["hashid"]+"&vuser=" + Session["userid_hash"] + 
                     "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
                 ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
+
+                refresh();
             }
         }
 

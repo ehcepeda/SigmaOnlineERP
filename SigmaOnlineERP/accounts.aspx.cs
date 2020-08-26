@@ -157,6 +157,8 @@ namespace SigmaOnlineERP
             string _abre = "<script>window.open('http://localhost:81/api/reports/1?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
                 "&vuser=" + Session["userid_hash"] + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
             ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
+
+            refresh();
         }
 
         public override void VerifyRenderingInServerForm(Control control)

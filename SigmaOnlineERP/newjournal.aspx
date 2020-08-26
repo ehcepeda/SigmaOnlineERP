@@ -136,8 +136,8 @@
                                                             <div class="input-group-prepend">
                                                                 <div class="input-group-text"><i class="bx bx-calendar label-icon"></i></div>
                                                             </div>
-                                                            <asp:TextBox ID="create_date" runat="server" placeholder="Fecha" CssClass="form-control" required
-                                                                data-date-format="dd-mm-yyyy" data-provide="datepicker" data-date-autoclose="true"
+                                                            <asp:TextBox ID="create_date" runat="server" placeholder="Fecha" CssClass="form-control" required AutoPostBack="true"
+                                                                data-date-format="dd-mm-yyyy" data-provide="datepicker" data-date-autoclose="true" OnTextChanged="create_date_TextChanged"
                                                                 oninvalid="this.setCustomValidity('Debes introducir la Fecha')" MaxLength="10"
                                                                 oninput="setCustomValidity('')"></asp:TextBox>
                                                         </div>
@@ -289,13 +289,11 @@
                                                                     <ItemTemplate>
                                                                         <div style="text-align: center; text-wrap: avoid; width: 100%;" runat="server">
                                                                             <asp:LinkButton ID="lkedit" runat="server" CssClass="btn btn-outline-info btn-sm"
-                                                                                data-toggle="tooltip" data-placement="top" title="Modificar datos"
                                                                                 CommandArgument='<%# Eval("detailid").ToString() %>'
                                                                                 CommandName="Edit" CausesValidation="false">
                                                                                 <i class="mdi mdi-pencil font-size-12"></i>
                                                                             </asp:LinkButton>
                                                                             <asp:LinkButton ID="lkdelete" runat="server" CssClass="btn btn-outline-danger btn-sm"
-                                                                                data-toggle="tooltip" data-placement="top" title="Eliminar línea"
                                                                                 CommandArgument='<%# Eval("detailid").ToString() %>' CommandName="Delete" CausesValidation="false">
                                                                                 <i class="mdi mdi-trash-can font-size-12"></i>
                                                                             </asp:LinkButton>
@@ -304,12 +302,10 @@
                                                                     <EditItemTemplate>
                                                                         <div style="text-align: center; width: 100%; text-wrap: unset;" runat="server">
                                                                             <asp:LinkButton ID="lkcancel" runat="server" CssClass="btn btn-outline-danger btn-sm"
-                                                                                data-toggle="tooltip" data-placement="top" title="Deshacer datos digitados"
                                                                                 CommandArgument='<%# Eval("detailid").ToString() %>' CommandName="Cancel" CausesValidation="false">
                                                                                 <i class="mdi mdi-cancel font-size-12"></i>
                                                                             </asp:LinkButton>
                                                                             <asp:LinkButton ID="lksave" runat="server" CssClass="btn btn-outline-info btn-sm"
-                                                                                data-toggle="tooltip" data-placement="top" title="Grabar datos"
                                                                                 CommandArgument='<%# Eval("detailid").ToString() %>' CommandName="Update" CausesValidation="false">
                                                                                 <i class="fas fa-save font-size-12"></i>
                                                                             </asp:LinkButton>

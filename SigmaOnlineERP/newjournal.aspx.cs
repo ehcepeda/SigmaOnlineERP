@@ -199,7 +199,6 @@ namespace SigmaOnlineERP
             Label lbdescuadrado = (Label)gvdetail.FooterRow.FindControl("lbdescuadrado");
             lbdescuadrado.Text = "<-- Diferencia de " + (debit > credit ? (debit - credit) : credit - debit).ToString("###,###0.00");
             lbdescuadrado.Visible = debit != credit;
-            //btn_save.Enabled = (debit == credit) && (debit > 0);
         }
 
         protected DataTable getAccounts()
@@ -341,7 +340,7 @@ namespace SigmaOnlineERP
                                 }
 
                                 ViewState["myDetail"] = null;
-                                Response.Redirect("journalentry.aspx?t=" + Request["t"] + "&p=" + Request["p"]);
+                                Response.Redirect(Session["RefUrl"] + "?t=" + Request["t"] + "&p=" + Request["p"]);
                             }
                         }
                     }
@@ -351,8 +350,10 @@ namespace SigmaOnlineERP
 
         protected void lk_close_Click(object sender, EventArgs e)
         {
-            ViewState["myDetail"] = null;
-            Response.Redirect("journalentry.aspx?t=" + Request["t"] + "&p=" + Request["p"]);
+            Session["myDetail"] = null;
+            Response.Redirect(Session["RefUrl"] + "?t=" + Request["t"] + "&p=" + Request["p"]);
+           
+            //Response.Redirect("journalentry.aspx?t=" + Request["t"] + "&p=" + Request["p"]);
         }
 
         protected void gvdetail_RowEditing(object sender, GridViewEditEventArgs e)
@@ -393,6 +394,19 @@ namespace SigmaOnlineERP
             DropDownList cborigin = (DropDownList)gvdetail.Rows[gvdetail.EditIndex].FindControl("cborigin");
             cborigin.SelectedValue = lborigin;
             cborigin_SelectedIndexChanged(sender, e);
+
+            //totalizando
+            decimal debit = myDetail.AsEnumerable().Sum(row => row.Field<Decimal>("debit"));
+            decimal credit = myDetail.AsEnumerable().Sum(row => row.Field<Decimal>("credit"));
+
+            Label lbtotal_debit = (Label)gvdetail.FooterRow.FindControl("lbtotal_debit");
+            Label lbtotal_credit = (Label)gvdetail.FooterRow.FindControl("lbtotal_credit");
+            lbtotal_debit.Text = debit.ToString("$###,##0.00");
+            lbtotal_credit.Text = credit.ToString("$###,##0.00");
+
+            Label lbdescuadrado = (Label)gvdetail.FooterRow.FindControl("lbdescuadrado");
+            lbdescuadrado.Text = "<-- Diferencia de " + (debit > credit ? (debit - credit) : credit - debit).ToString("###,###0.00");
+            lbdescuadrado.Visible = debit != credit;
         }
 
         protected void gvdetail_RowDataBound(object sender, GridViewRowEventArgs e)
@@ -477,6 +491,21 @@ namespace SigmaOnlineERP
 
             gvdetail.EditIndex = myDetail.Rows.Count - 1;
             gvdetail.DataBind();
+
+            //totalizando
+            decimal debit = myDetail.AsEnumerable().Sum(row => row.Field<Decimal>("debit"));
+            decimal credit = myDetail.AsEnumerable().Sum(row => row.Field<Decimal>("credit"));
+
+            Label lbtotal_debit = (Label)gvdetail.FooterRow.FindControl("lbtotal_debit");
+            Label lbtotal_credit = (Label)gvdetail.FooterRow.FindControl("lbtotal_credit");
+            lbtotal_debit.Text = debit.ToString("$###,##0.00");
+            lbtotal_credit.Text = credit.ToString("$###,##0.00");
+
+            Label lbdescuadrado = (Label)gvdetail.FooterRow.FindControl("lbdescuadrado");
+            lbdescuadrado.Text = "<-- Diferencia de " + (debit > credit ? (debit - credit) : credit - debit).ToString("###,###0.00");
+            lbdescuadrado.Visible = debit != credit;
+
+            cborigin_SelectedIndexChanged(sender, e);
         }
 
         protected void gvdetail_RowUpdating(object sender, GridViewUpdateEventArgs e)
@@ -513,6 +542,18 @@ namespace SigmaOnlineERP
             DropDownList cbname = (DropDownList)gvdetail.Rows[gvdetail.EditIndex].FindControl("edit_cbname");
             Label lbedit_accountid = (Label)gvdetail.Rows[gvdetail.EditIndex].FindControl("lbedit_accountid");
             lbedit_accountid.Text = cbname.SelectedValue;
+
+            cborigin_SelectedIndexChanged(sender, e);
+
+            //buscando origen
+            /*DataSetAccountingTableAdapters.company_accountsTableAdapter taaccount = new DataSetAccountingTableAdapters.company_accountsTableAdapter();
+            DataTable dtaccount = taaccount.GetDataBy_Account(Convert.ToInt32(Session["companyid"]), lbedit_accountid.Text);
+            if (dtaccount.Rows.Count > 0)
+            {
+                DropDownList cborigin = (DropDownList)gvdetail.Rows[gvdetail.EditIndex].FindControl("cborigin");
+                cborigin.SelectedValue = dtaccount.Rows[0]["origin"].ToString();
+                cborigin_SelectedIndexChanged(sender, e);
+            }*/
         }
 
         protected void gvdetail_RowDeleting(object sender, GridViewDeleteEventArgs e)
@@ -619,6 +660,11 @@ namespace SigmaOnlineERP
                     }
                 }
             }
+        }
+
+        protected void create_date_TextChanged(object sender, EventArgs e)
+        {
+            cbtype_SelectedIndexChanged(sender, e);
         }
     }
 }

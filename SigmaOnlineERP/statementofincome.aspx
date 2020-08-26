@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="checkingbalance.aspx.cs" Inherits="SigmaOnlineERP.checkingbalance"
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/SiteSigma.Master" AutoEventWireup="true" CodeBehind="statementofincome.aspx.cs" Inherits="SigmaOnlineERP.statementofincome"
     EnableEventValidation="false" MaintainScrollPositionOnPostback="true" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
@@ -73,11 +73,11 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page-title-box d-flex align-items-center justify-content-between">
-                            <h4 class="mb-0 font-size-18">Balance de Comprobación</h4>
+                            <h4 class="mb-0 font-size-18">Estado de resultado</h4>
                             <div class="page-title-right">
                                 <ol class="breadcrumb m-0">
                                     <li class="breadcrumb-item"><a href="default.aspx">Inicio</a></li>
-                                    <li class="breadcrumb-item active">Balance de Comprobación</li>
+                                    <li class="breadcrumb-item active">Estado de resultado</li>
                                 </ol>
                             </div>
                         </div>
@@ -100,8 +100,8 @@
                                                                 <div class="input-group-prepend">
                                                                     <div class="input-group-text"><i class="bx bx-calendar label-icon"></i></div>
                                                                 </div>
-                                                                <asp:DropDownList ID="cbyear" runat="server" CssClass="form-control" OnSelectedIndexChanged="cbyear_SelectedIndexChanged"
-                                                                    AutoPostBack="true">
+                                                                <asp:DropDownList ID="cbyear" runat="server" CssClass="form-control" AutoPostBack="true" 
+                                                                    OnSelectedIndexChanged="cbyear_SelectedIndexChanged">
                                                                     <asp:ListItem Value="2019" Text="2019" />
                                                                     <asp:ListItem Value="2020" Text="2020" />
                                                                     <asp:ListItem Value="2021" Text="2021" />
@@ -140,14 +140,15 @@
                                                         </asp:TemplateField>
 
                                                         <asp:BoundField DataField="accountid" HeaderText="Cuenta" ItemStyle-Width="110" />
-                                                        <asp:BoundField DataField="name" HeaderText="Nombre de la cuenta" ItemStyle-Width="20%" />
+                                                        <asp:BoundField DataField="name" HeaderText="Nombre de la cuenta" ItemStyle-Width="250" />
 
                                                         <asp:TemplateField HeaderText="Ene" HeaderStyle-CssClass="text-right" ItemStyle-HorizontalAlign="Right" ItemStyle-Width="110">
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbene" runat="server" Text='<%# Convert.ToDecimal(Eval("ene").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("ene").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbene" runat="server" 
+                                                                            Text='<%# Eval("ene").ToString().Length > 0 ? Convert.ToDecimal(Eval("ene").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("ene").ToString().Length > 0) ? 
                                                                                 Eval("ene").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -160,7 +161,7 @@
                                                                         <asp:LinkButton ID="lkbal_ene" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_ene">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -171,8 +172,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbfeb" runat="server" Text='<%# Convert.ToDecimal(Eval("feb").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("feb").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbfeb" runat="server" 
+                                                                            Text='<%# Eval("feb").ToString().Length > 0 ? Convert.ToDecimal(Eval("feb").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("feb").ToString().Length > 0) ? 
                                                                                 Eval("feb").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -185,7 +187,7 @@
                                                                         <asp:LinkButton ID="lkbal_feb" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_feb">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -196,8 +198,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbmar" runat="server" Text='<%# Convert.ToDecimal(Eval("mar").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("mar").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbmar" runat="server" 
+                                                                            Text='<%# Eval("mar").ToString().Length > 0 ? Convert.ToDecimal(Eval("mar").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("mar").ToString().Length > 0) ? 
                                                                                 Eval("mar").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -210,7 +213,7 @@
                                                                         <asp:LinkButton ID="lkbal_mar" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_mar">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -221,8 +224,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbabr" runat="server" Text='<%# Convert.ToDecimal(Eval("abr").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("abr").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbabr" runat="server" 
+                                                                            Text='<%# Eval("abr").ToString().Length > 0 ? Convert.ToDecimal(Eval("abr").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("abr").ToString().Length > 0) ? 
                                                                                 Eval("abr").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -235,7 +239,7 @@
                                                                         <asp:LinkButton ID="lkbal_abr" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_abr">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -246,8 +250,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbmay" runat="server" Text='<%# Convert.ToDecimal(Eval("may").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("may").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbmay" runat="server" 
+                                                                            Text='<%# Eval("may").ToString().Length > 0 ? Convert.ToDecimal(Eval("may").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("may").ToString().Length > 0) ? 
                                                                                 Eval("may").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -260,7 +265,7 @@
                                                                         <asp:LinkButton ID="lkbal_may" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_may">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -271,8 +276,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbjun" runat="server" Text='<%# Convert.ToDecimal(Eval("jun").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("jun").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbjun" runat="server" 
+                                                                            Text='<%# Eval("jun").ToString().Length > 0 ? Convert.ToDecimal(Eval("jun").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("jun").ToString().Length > 0) ? 
                                                                                 Eval("jun").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -285,7 +291,7 @@
                                                                         <asp:LinkButton ID="lkbal_jun" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_jun">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -296,8 +302,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbjul" runat="server" Text='<%# Convert.ToDecimal(Eval("jul").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("jul").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbjul" runat="server" 
+                                                                            Text='<%# Eval("jul").ToString().Length > 0 ? Convert.ToDecimal(Eval("jul").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("jul").ToString().Length > 0) ? 
                                                                                 Eval("jul").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -310,7 +317,7 @@
                                                                         <asp:LinkButton ID="lkbal_jul" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_jul">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -321,8 +328,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbago" runat="server" Text='<%# Convert.ToDecimal(Eval("ago").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("ago").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbago" runat="server" 
+                                                                            Text='<%# Eval("ago").ToString().Length > 0 ? Convert.ToDecimal(Eval("ago").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("ago").ToString().Length > 0) ? 
                                                                                 Eval("ago").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -335,7 +343,7 @@
                                                                         <asp:LinkButton ID="lkbal_ago" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_ago">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -346,8 +354,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbsep" runat="server" Text='<%# Convert.ToDecimal(Eval("sep").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("sep").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbsep" runat="server" 
+                                                                            Text='<%# Eval("sep").ToString().Length > 0 ? Convert.ToDecimal(Eval("sep").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("sep").ToString().Length > 0) ? 
                                                                                 Eval("sep").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -360,7 +369,7 @@
                                                                         <asp:LinkButton ID="lkbal_sep" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_sep">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -371,8 +380,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lboct" runat="server" Text='<%# Convert.ToDecimal(Eval("oct").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("oct").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lboct" runat="server" 
+                                                                            Text='<%# Eval("oct").ToString().Length > 0 ? Convert.ToDecimal(Eval("oct").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("oct").ToString().Length > 0) ? 
                                                                                 Eval("oct").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -385,7 +395,7 @@
                                                                         <asp:LinkButton ID="lkbal_oct" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_oct">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -396,8 +406,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbnov" runat="server" Text='<%# Convert.ToDecimal(Eval("nov").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("nov").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbnov" runat="server" 
+                                                                            Text='<%# Eval("nov").ToString().Length > 0 ? Convert.ToDecimal(Eval("nov").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("nov").ToString().Length > 0) ? 
                                                                                 Eval("nov").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -410,7 +421,7 @@
                                                                         <asp:LinkButton ID="lkbal_nov" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_nov">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -421,8 +432,9 @@
                                                             <ItemTemplate>
                                                                 <div class="dropdown float-right">
                                                                     <a href="#" class="dropdown-toggle arrow-none" data-toggle="dropdown" aria-expanded="false">
-                                                                        <asp:Label ID="lbdic" runat="server" Text='<%# Convert.ToDecimal(Eval("dic").ToString()).ToString("N2") %>'
-                                                                             ForeColor='<%# (Eval("dic").ToString().Length > 0) ? 
+                                                                        <asp:Label ID="lbdic" runat="server" 
+                                                                            Text='<%# Eval("dic").ToString().Length > 0 ? Convert.ToDecimal(Eval("dic").ToString()).ToString("N2") : "" %>'
+                                                                            ForeColor='<%# (Eval("dic").ToString().Length > 0) ? 
                                                                                 Eval("dic").ToString().Substring(0,1) == "-" ? System.Drawing.Color.Red : System.Drawing.Color.Black :
                                                                                 System.Drawing.Color.Black %>'></asp:Label>
                                                                     </a>
@@ -435,7 +447,7 @@
                                                                         <asp:LinkButton ID="lkbal_dic" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("accountid").ToString() %>' 
                                                                             CommandName="bal_dic">
                                                                             <i class="bx bx-dollar-circle font-size-16 align-middle mr-1 text-info"></i>
-                                                                            Balance del mes
+                                                                            Estado de Resultado del mes
                                                                         </asp:LinkButton>
                                                                     </div>
                                                                 </div>
@@ -448,7 +460,6 @@
                                                     <PagerSettings Visible="true" />
                                                     <PagerStyle CssClass="pagination-lg" />
                                                 </asp:GridView>
-
                                             </div>
                                         </div>
                                     </div>
@@ -534,7 +545,7 @@
                                             <asp:BoundField DataField="create_date" HeaderText="Fecha" ItemStyle-Width="90" DataFormatString="{0:dd-MM-yyyy}"
                                                  HeaderStyle-CssClass="text-center" ItemStyle-HorizontalAlign="Center" />
                                             <asp:BoundField DataField="concept" HeaderText="Concepto" ItemStyle-Width="180" />
-                                            <asp:BoundField DataField="note" HeaderText="Observación" ItemStyle-Width="210" />
+                                            <asp:BoundField DataField="note" HeaderText="Nota" ItemStyle-Width="210" />
                                             <asp:BoundField DataField="debit" HeaderText="Débito" ItemStyle-Width="90" DataFormatString="{0:n}"
                                                 HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
                                             <asp:BoundField DataField="credit" HeaderText="Crédito" ItemStyle-Width="90" DataFormatString="{0:n}"
@@ -549,75 +560,6 @@
                             <Triggers>
                                 <asp:PostBackTrigger ControlID="gvdetail" />
                                 <asp:PostBackTrigger ControlID="lkprintdetail" />
-                            </Triggers>
-                        </asp:UpdatePanel>
-                    </div>
-                </div>
-                <!-- /.modal-content -->
-            </div>
-            <!-- /.modal-dialog -->
-        </div>
-        <!-- /.modal -->
-
-            <!-- modal content -->
-        <div id="myModalBalance" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
-            <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
-                <div class="modal-content" style="width: 1150px;">
-                    <div class="modal-header">
-                        <h5 class="modal-title mt-0">Balance del Mes</h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">
-                        <asp:UpdatePanel ID="UpdatePanel4" runat="server">
-                            <ContentTemplate>
-                                <div class="text-center">
-                                    <asp:Label ID="lbaccount_balance" runat="server" Text="" Font-Bold="true"></asp:Label>
-                                </div>
-                            </ContentTemplate>
-                        </asp:UpdatePanel>
-
-                        <asp:UpdatePanel ID="UpdatePanel5" runat="server">
-                            <ContentTemplate>
-                                <div class="row mb-2">
-                                    <div class="col-sm-8">
-                                        <ul class="list-inline user-chat-nav mb-0">
-                                            <asp:LinkButton ID="lkbalance" CssClass="btn btn-light waves-effect btn-label waves-light" runat="server"
-                                                OnClientClick="setTimeout(function () {document.body.removeChild(modal);loading.style.display='none';}, 2000);ShowProgress()"
-                                                OnClick="lkbalance_Click">
-                                                <i class="bx bx-printer label-icon"></i> Imprimir
-                                            </asp:LinkButton>
-                                        </ul>
-                                    </div>
-                                </div>
-                                <div class="table-responsive">
-                                    <asp:GridView ID="gvbalance_month" CssClass="table table-normal table-bordered table-hover" runat="server" 
-                                        AutoGenerateColumns="false" AllowPaging="false" PageSize="15" OnRowDataBound="gvbalance_month_RowDataBound"
-                                        EmptyDataText="No hay datos!" ShowHeaderWhenEmpty="true" ShowFooter="true" FooterStyle-BackColor="#EAFAF1"
-                                        FooterStyle-Font-Bold="true">
-                                        <Columns>
-                                            <asp:BoundField DataField="accountid" HeaderText="Cuenta" ItemStyle-Width="90" />
-                                            <asp:BoundField DataField="name" HeaderText="Nombre de la cuenta" ItemStyle-Width="210" />
-                                            <asp:BoundField DataField="bce_anterior" HeaderText="Balance anterior" ItemStyle-Width="90" DataFormatString="{0:n}"
-                                                HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
-                                            <asp:BoundField DataField="debit" HeaderText="Débitos del mes" ItemStyle-Width="90" DataFormatString="{0:n}"
-                                                HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
-                                            <asp:BoundField DataField="credit" HeaderText="Créditos del mes" ItemStyle-Width="90" DataFormatString="{0:n}"
-                                                HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
-                                            <asp:BoundField DataField="balance_debit" HeaderText="Balance débito" ItemStyle-Width="90" DataFormatString="{0:n}"
-                                                HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
-                                            <asp:BoundField DataField="balance_credit" HeaderText="Balance crédito" ItemStyle-Width="90" DataFormatString="{0:n}"
-                                                HeaderStyle-CssClass="text-right" ItemStyle-CssClass="text-right" FooterStyle-CssClass="text-right" />
-                                        </Columns>
-                                        <HeaderStyle BackColor="#5cb85c" BorderColor="#4CAE4C" ForeColor="White"></HeaderStyle>
-                                        <PagerStyle Font-Size="Larger" ForeColor="Black" HorizontalAlign="Center" />
-                                    </asp:GridView>
-                                </div>
-                            </ContentTemplate>
-                            <Triggers>
-                                <asp:PostBackTrigger ControlID="gvbalance_month" />
-                                <asp:PostBackTrigger ControlID="lkbalance" />
                             </Triggers>
                         </asp:UpdatePanel>
                     </div>

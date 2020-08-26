@@ -178,7 +178,7 @@ namespace SigmaOnlineERP
             }
             else if (cbtype.SelectedValue == "GA")
             {
-                cborigin.SelectedValue = "C";
+                cborigin.SelectedValue = "D";
             }
         }
 
@@ -191,6 +191,7 @@ namespace SigmaOnlineERP
                 if (dtaccount.Rows.Count > 0)
                 {
                     cbtype.SelectedValue = dtaccount.Rows[0]["account_type"].ToString();
+                    cbtype_SelectedIndexChanged(sender, e);
                 }
             }
         }

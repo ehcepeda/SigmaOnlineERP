@@ -245,7 +245,7 @@
                                                                 </div>
                                                             </ItemTemplate>
                                                         </asp:TemplateField>
-                                                        <asp:BoundField DataField="journalid" HeaderText="ID" ItemStyle-Width="50" HeaderStyle-CssClass="text-center"
+                                                        <asp:BoundField DataField="journalid" HeaderText="ED#" ItemStyle-Width="50" HeaderStyle-CssClass="text-center"
                                                             ItemStyle-HorizontalAlign="Center" />
                                                         <asp:BoundField DataField="doctype" HeaderText="Tipo de documento" ItemStyle-Width="120" HeaderStyle-HorizontalAlign="Center" />
                                                         <asp:BoundField DataField="create_date" HeaderText="Fecha" ItemStyle-Width="80" HeaderStyle-CssClass="text-center"
@@ -280,12 +280,11 @@
             </div>
         </div>
 
-    <!-- Footer Start -->
-    <%
-        Response.WriteFile("assets/footer.html");
-    %>
-    <!-- end Footer -->
-
+        <!-- Footer Start -->
+        <%
+            Response.WriteFile("assets/footer.html");
+        %>
+        <!-- end Footer -->
     </div>
 
     <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>

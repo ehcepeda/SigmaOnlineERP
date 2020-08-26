@@ -319,6 +319,7 @@
                                     <li><asp:HyperLink ID="maccounting_journal" runat="server" NavigateUrl="journalentry.aspx">Entradas de diario</asp:HyperLink></li>
                                     <li><asp:HyperLink ID="maccounting_diary" runat="server" NavigateUrl="generaldiary.aspx">Diario general</asp:HyperLink></li>
                                     <li><asp:HyperLink ID="maccounting_checking_balance" runat="server" NavigateUrl="checkingbalance.aspx">Bce. de comprobación</asp:HyperLink></li>
+                                    <li><asp:HyperLink ID="maccounting_statementofincome" runat="server" NavigateUrl="statementofincome.aspx">Estado de resultado</asp:HyperLink></li>
                                 </ul>
                             </li>
                         </ul>

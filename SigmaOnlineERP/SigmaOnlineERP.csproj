@@ -1099,6 +1099,7 @@
     <Content Include="newcompany.aspx" />
     <Content Include="newjournal.aspx" />
     <Content Include="register.aspx" />
+    <Content Include="statementofincome.aspx" />
     <Content Include="user-profile.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
@@ -1217,6 +1218,13 @@
     </Compile>
     <Compile Include="SiteSigma.Master.designer.cs">
       <DependentUpon>SiteSigma.Master</DependentUpon>
+    </Compile>
+    <Compile Include="statementofincome.aspx.cs">
+      <DependentUpon>statementofincome.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="statementofincome.aspx.designer.cs">
+      <DependentUpon>statementofincome.aspx</DependentUpon>
     </Compile>
     <Compile Include="user-profile.aspx.cs">
       <DependentUpon>user-profile.aspx</DependentUpon>

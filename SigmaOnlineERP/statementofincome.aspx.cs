@@ -10,7 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace SigmaOnlineERP
 {
-    public partial class checkingbalance : System.Web.UI.Page
+    public partial class statementofincome : System.Web.UI.Page
     {
         protected void Page_Load(object sender, EventArgs e)
         {
@@ -30,7 +30,7 @@ namespace SigmaOnlineERP
             System.Web.UI.HtmlControls.HtmlGenericControl option_main = (System.Web.UI.HtmlControls.HtmlGenericControl)Master.FindControl("maccounting");
             option_main.Attributes.Add("class", "active mm-active");
 
-            HyperLink option_menu = (HyperLink)Master.FindControl("maccounting_checking_balance");
+            HyperLink option_menu = (HyperLink)Master.FindControl("maccounting_statementofincome");
             option_menu.Attributes.Add("class", "active");
         }
 
@@ -40,7 +40,7 @@ namespace SigmaOnlineERP
             OleDbConnection conn = new OleDbConnection(strConnString);
             OleDbCommand cmd = new OleDbCommand();
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "pr_checking_balance";
+            cmd.CommandText = "pr_statement_of_income";
             cmd.Parameters.AddWithValue("@companyid", Convert.ToInt32(Session["companyid"]));
             cmd.Parameters.AddWithValue("@ano", Convert.ToInt32(cbyear.SelectedValue));
             cmd.Connection = conn;
@@ -50,6 +50,11 @@ namespace SigmaOnlineERP
             dt.Load(dr);
             gvbalance.DataSource = dt;
             gvbalance.DataBind();
+        }
+
+        protected void cbyear_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refresh();
         }
 
         protected void btn_refresh_Click(object sender, EventArgs e)
@@ -72,7 +77,7 @@ namespace SigmaOnlineERP
                     e.Row.BackColor = System.Drawing.Color.FromName("#F8F9F9");
                     e.Row.Font.Bold = true;
 
-                    ((Label)e.Row.FindControl("lbene")).Font.Bold = true;
+                    ((LinkButton)e.Row.FindControl("lkene")).Font.Bold = true;
                     ((LinkButton)e.Row.FindControl("lkfeb")).Font.Bold = true;
                     ((LinkButton)e.Row.FindControl("lkmar")).Font.Bold = true;
                     ((LinkButton)e.Row.FindControl("lkabr")).Font.Bold = true;
@@ -86,25 +91,26 @@ namespace SigmaOnlineERP
                     ((LinkButton)e.Row.FindControl("lkdic")).Font.Bold = true;
                 }
 
-                if (e.Row.Cells[1].Text == "9999999999")
+                if (e.Row.Cells[1].Text == "9999999999" || e.Row.Cells[1].Text == "59999999999999" || e.Row.Cells[1].Text == "89999999999999" ||
+                    e.Row.Cells[1].Text == "49999999999" || e.Row.Cells[1].Text == "59999999999" || e.Row.Cells[1].Text == "599999999999999" ||
+                    e.Row.Cells[1].Text == "8999999999999" || e.Row.Cells[1].Text == "899999999999999")
                 {
-
-                    ((Label)e.Row.FindControl("lbene")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lkfeb")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lkmar")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lkabr")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lkmay")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lkjun")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lkjul")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lkago")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lksep")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lkoct")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lknov")).Font.Bold = true;
-                    ((LinkButton)e.Row.FindControl("lkdic")).Font.Bold = true;
-
+                    if (e.Row.Cells[1].Text == "59999999999999" || e.Row.Cells[1].Text == "89999999999999")
+                    {
+                        e.Row.BackColor = System.Drawing.Color.FromName("#D6EAF8");
+                        e.Row.Font.Bold = true;
+                    }
+                    e.Row.Cells[1].Text = "";
+                }
+                else if (e.Row.Cells[1].Text == "4")
+                {
                     e.Row.BackColor = System.Drawing.Color.FromName("#EAFAF1");
                     e.Row.Font.Bold = true;
-                    e.Row.Cells[1].Text = "";
+                }
+                else if (e.Row.Cells[1].Text == "5" || e.Row.Cells[1].Text == "6")
+                {
+                    e.Row.BackColor = System.Drawing.Color.FromName("#F9EBEA");
+                    e.Row.Font.Bold = true;
                 }
             }
         }
@@ -128,7 +134,7 @@ namespace SigmaOnlineERP
                 ViewState["vdateini"] = "02/01/" + cbyear.SelectedValue;
                 ViewState["vdatefin"] = "02/" + DateTime.DaysInMonth(Convert.ToInt32(cbyear.SelectedValue), 2).ToString("00") + "/" + cbyear.SelectedValue;
 
-                refreshDetail(accountid, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 2, 1), new DateTime(Convert.ToInt32(cbyear.SelectedValue), 2, 
+                refreshDetail(accountid, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 2, 1), new DateTime(Convert.ToInt32(cbyear.SelectedValue), 2,
                     DateTime.DaysInMonth(Convert.ToInt32(cbyear.SelectedValue), 2)));
             }
             else if (e.CommandName == "mar")
@@ -221,139 +227,6 @@ namespace SigmaOnlineERP
 
                 refreshDetail(accountid, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 12, 1), new DateTime(Convert.ToInt32(cbyear.SelectedValue), 12, 31));
             }
-            else if (e.CommandName == "bal_ene")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "01/31/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "12/31/" + (Convert.ToInt32(cbyear.SelectedValue) - 1).ToString();
-                ViewState["vmonth"] = "1";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 1, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 1, 31),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue) - 1, 12, 31));
-            }
-            else if (e.CommandName == "bal_feb")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "02/" + DateTime.DaysInMonth(Convert.ToInt32(cbyear.SelectedValue), 2) + "/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "01/31/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "2";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 2, 
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 2, DateTime.DaysInMonth(Convert.ToInt32(cbyear.SelectedValue), 2)),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 1, 31));
-            }
-            else if (e.CommandName == "bal_mar")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "03/31/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "02/" + DateTime.DaysInMonth(Convert.ToInt32(cbyear.SelectedValue), 2) + "/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "3";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 3, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 2, 31),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 2, DateTime.DaysInMonth(Convert.ToInt32(cbyear.SelectedValue), 2)));
-            }
-            else if (e.CommandName == "bal_abr")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "04/30/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "03/31/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "4";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 4, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 4, 30), 
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 3, 31));
-            }
-            else if (e.CommandName == "bal_may")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "05/31/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "04/30/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "5";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 5, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 5, 31),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 4, 30));
-            }
-            else if (e.CommandName == "bal_jun")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "06/30/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "05/31/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "6";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 6, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 6, 30),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 5, 31));
-            }
-            else if (e.CommandName == "bal_jul")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "07/31/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "06/30/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "7";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 7, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 7, 31),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 6, 30));
-            }
-            else if (e.CommandName == "bal_ago")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "08/31/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "07/31/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "8";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 8, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 8, 31),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 7, 31));
-            }
-            else if (e.CommandName == "bal_sep")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "09/30/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "08/31/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "9";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 9, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 9, 30),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 8, 31));
-            }
-            else if (e.CommandName == "bal_oct")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "10/31/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "09/30/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "10";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 10, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 10, 31),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 9, 30));
-            }
-            else if (e.CommandName == "bal_nov")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "11/30/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "10/31/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "11";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 11, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 11, 30),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 10, 31));
-            }
-            else if (e.CommandName == "bal_dic")
-            {
-                string accountid = e.CommandArgument.ToString();
-                ViewState["vaccountid"] = accountid;
-                ViewState["vdateini"] = "12/31/" + cbyear.SelectedValue;
-                ViewState["vdatefin"] = "11/30/" + cbyear.SelectedValue;
-                ViewState["vmonth"] = "12";
-
-                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 12, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 12, 31),
-                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 11, 30));
-            }
         }
 
         protected string monthName(int monthcode)
@@ -407,6 +280,16 @@ namespace SigmaOnlineERP
             refresh();
         }
 
+        protected void lkprintdetail_Click(object sender, EventArgs e)
+        {
+            string _abre = "<script>window.open('http://localhost:81/api/reports/5?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
+                "&vaccountid=" + ViewState["vaccountid"] + "&vuser=" + Session["userid_hash"] + "&vdateini=" + ViewState["vdateini"] + "&vdatefin=" + ViewState["vdatefin"] +
+                "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
+            ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
+
+            refresh();
+        }
+
         protected void gvdetail_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -433,7 +316,7 @@ namespace SigmaOnlineERP
 
                 if (dtjournal.Rows.Count > 0)
                 {
-                    Session["RefUrl"] = "checkingbalance.aspx";
+                    Session["RefUrl"] = "statementofincome.aspx";
                     Response.Redirect("newjournal.aspx?c=" + dtjournal.Rows[0]["hashid"].ToString() + "&t=" + ViewState["doctypeid"] + "&p=" + ViewState["conceptid"]);
                 }
                 refresh();
@@ -451,82 +334,6 @@ namespace SigmaOnlineERP
 
                 refresh();
             }
-        }
-
-        protected void lkprintdetail_Click(object sender, EventArgs e)
-        {
-            string _abre = "<script>window.open('http://localhost:81/api/reports/5?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
-                "&vaccountid=" + ViewState["vaccountid"] + "&vuser=" + Session["userid_hash"] + "&vdateini=" + ViewState["vdateini"] + "&vdatefin=" + ViewState["vdatefin"] +
-                "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
-            ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
-
-            refresh();
-        }
-
-        protected void cbyear_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            refresh();
-        }
-
-        protected void lkbalance_Click(object sender, EventArgs e)
-        {
-            string _abre = "<script>window.open('http://localhost:81/api/reports/6?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
-                "&vyear=" + cbyear.SelectedValue + "&vmonth=" + ViewState["vmonth"] + "&vuser=" + Session["userid_hash"] + "&vdateini=" + ViewState["vdateini"] + 
-                "&vdatefin=" + ViewState["vdatefin"] + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
-            ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
-
-            refresh();
-        }
-
-        protected void refreshBalance(string accountid, int year, int month, DateTime datemonth, DateTime datebefore)
-        {
-            DataSetAccountingTableAdapters.company_accountsTableAdapter taaccount = new DataSetAccountingTableAdapters.company_accountsTableAdapter();
-            DataTable dtaccount = taaccount.GetDataBy_Account(Convert.ToInt32(Session["companyid"]), accountid);
-            lbaccount_balance.Text = accountid + ": " + dtaccount.Rows[0]["name"].ToString() + " (" + monthName(month) + "-" + cbyear.SelectedValue + ")";
-
-            string strConnString = ConfigurationManager.ConnectionStrings["ConnectionStringSigma"].ConnectionString;
-            OleDbConnection conn = new OleDbConnection(strConnString);
-            OleDbCommand cmd = new OleDbCommand();
-            cmd.CommandType = CommandType.StoredProcedure;
-            cmd.CommandText = "pr_checking_balance_month";
-            cmd.Parameters.AddWithValue("@companyid", Convert.ToInt32(Session["companyid"]));
-            cmd.Parameters.AddWithValue("@ano", year);
-            cmd.Parameters.AddWithValue("@mes", month);
-            cmd.Parameters.AddWithValue("@fec", datemonth);
-            cmd.Parameters.AddWithValue("@ant", datebefore);
-            cmd.Connection = conn;
-            conn.Open();
-            OleDbDataReader dr = cmd.ExecuteReader();
-            DataTable dt = new DataTable();
-            dt.Load(dr);
-            gvbalance_month.DataSource = dt;
-            gvbalance_month.DataBind();
-
-            if (dt.Rows.Count > 0)
-            {
-                decimal debit = dt.AsEnumerable().Where(row => row.Field<Int32>("isdetail") == 1).Sum(row => row.Field<Decimal>("debit"));
-                decimal credit = dt.AsEnumerable().Where(row => row.Field<Int32>("isdetail") == 1).Sum(row => row.Field<Decimal>("credit"));
-                decimal debit_detail = dt.AsEnumerable().Sum(row => row.Field<Decimal>("detail_debit"));
-                decimal credit_detail = dt.AsEnumerable().Sum(row => row.Field<Decimal>("detail_credit"));
-
-                gvbalance_month.FooterRow.Cells[3].Text = debit.ToString("###,###,##0.00");
-                gvbalance_month.FooterRow.Cells[4].Text = credit.ToString("###,###,##0.00");
-                gvbalance_month.FooterRow.Cells[5].Text = debit_detail.ToString("###,###,##0.00");
-                gvbalance_month.FooterRow.Cells[6].Text = credit_detail.ToString("###,###,##0.00");
-            }
-
-            System.Text.StringBuilder sb = new System.Text.StringBuilder();
-            sb.Append(@"<script type='text/javascript'>");
-            sb.Append("$('#myModalBalance').modal('show');");
-            sb.Append(@"</script>");
-            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "myModalBalance",
-            sb.ToString(), false);
-
-            refresh();
-        }
-
-        protected void gvbalance_month_RowDataBound(object sender, GridViewRowEventArgs e)
-        {
         }
     }
 }
