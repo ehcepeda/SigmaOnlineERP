@@ -491,17 +491,6 @@ namespace SigmaOnlineERP
             gvbalance_month.DataSource = dt;
             gvbalance_month.DataBind();
 
-            if (dt.Rows.Count > 0)
-            {
-                decimal bce_anterior = dt.AsEnumerable().Where(row => row.Field<Int32>("isdetail") == 1).Sum(row => row.Field<Decimal>("bce_anterior"));
-                decimal bce_actual = dt.AsEnumerable().Where(row => row.Field<Int32>("isdetail") == 1).Sum(row => row.Field<Decimal>("bce_actual"));
-                decimal bce_fecha = dt.AsEnumerable().Where(row => row.Field<Int32>("isdetail") == 1).Sum(row => row.Field<Decimal>("bce_fecha"));
-
-                gvbalance_month.FooterRow.Cells[2].Text = bce_anterior.ToString("###,###,##0.00");
-                gvbalance_month.FooterRow.Cells[3].Text = bce_actual.ToString("###,###,##0.00");
-                gvbalance_month.FooterRow.Cells[4].Text = bce_fecha.ToString("###,###,##0.00");
-            }
-
             System.Text.StringBuilder sb = new System.Text.StringBuilder();
             sb.Append(@"<script type='text/javascript'>");
             sb.Append("$('#myModalBalance').modal('show');");
@@ -515,6 +504,44 @@ namespace SigmaOnlineERP
         protected void btprintresult_ServerClick(object sender, EventArgs e)
         {
 
+        }
+
+        protected void gvbalance_month_RowDataBound(object sender, GridViewRowEventArgs e)
+        {
+            if (e.Row.RowType == DataControlRowType.DataRow)
+            {
+                Label isdetail = (Label)e.Row.FindControl("lbisdetail_month");
+                if (isdetail.Text.Trim() == "0")
+                {
+                    if (e.Row.Cells[1].Text == "59999999999999" || e.Row.Cells[1].Text == "89999999999999")
+                    {
+                        e.Row.BackColor = System.Drawing.Color.FromName("#F8F9F9");
+                        e.Row.Font.Bold = true;
+                    }
+                }
+
+                if (e.Row.Cells[1].Text == "59999999999999" || e.Row.Cells[1].Text == "89999999999999" || e.Row.Cells[1].Text == "49999999999" || 
+                    e.Row.Cells[1].Text == "59999999999" || e.Row.Cells[1].Text == "599999999999999" || e.Row.Cells[1].Text == "8999999999999" ||
+                    e.Row.Cells[1].Text == "899999999999999")
+                {
+                    if (e.Row.Cells[1].Text == "59999999999999" || e.Row.Cells[1].Text == "89999999999999")
+                    {
+                        e.Row.BackColor = System.Drawing.Color.FromName("#D6EAF8");
+                        e.Row.Font.Bold = true;
+                    }
+                    e.Row.Cells[1].Text = "";
+                }
+                else if (e.Row.Cells[1].Text == "4")
+                {
+                    e.Row.BackColor = System.Drawing.Color.FromName("#EAFAF1");
+                    e.Row.Font.Bold = true;
+                }
+                else if (e.Row.Cells[1].Text == "5" || e.Row.Cells[1].Text == "6")
+                {
+                    e.Row.BackColor = System.Drawing.Color.FromName("#F9EBEA");
+                    e.Row.Font.Bold = true;
+                }
+            }
         }
     }
 }

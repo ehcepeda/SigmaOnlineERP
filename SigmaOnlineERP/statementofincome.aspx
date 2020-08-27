@@ -532,24 +532,32 @@
                 <div class="modal-body">
                     <asp:UpdatePanel ID="UpdatePanel3" runat="server">
                         <ContentTemplate>
-                            <ul class="list-inline user-chat-nav mb-2">
-                                <div class="btn-group">
-                                    <asp:Label ID="lbaccount" runat="server" Text="" Font-Bold="true" CssClass="form-control"></asp:Label>
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <ul class="list-inline user-chat-nav mb-2">
+                                        <div class="btn-group">
+                                            <asp:Label ID="lbaccount" runat="server" Text="" Font-Bold="true" CssClass="form-control"></asp:Label>
+                                        </div>
+                                    </ul>
                                 </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-outline-info waves-effect waves-light" data-placement="top"
-                                        title="Imprimir listado" data-toggle="tooltip" runat="server" onserverclick="btprintdetail_ServerClick"
-                                        id="btprintdetail">
-                                        <i class="bx bx-printer"></i>
-                                    </button>
+                                <div class="col-sm-2">
+                                    <div class="text-sm-right">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-outline-info waves-effect waves-light" data-placement="top"
+                                                title="Imprimir listado" data-toggle="tooltip" runat="server" onserverclick="btprintdetail_ServerClick"
+                                                id="btprintdetail">
+                                                <i class="bx bx-printer"></i>
+                                            </button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-placement="top" data-dismiss="modal"
+                                                title="Salir" data-toggle="tooltip" aria-label="Close">
+                                                <i class="bx bx-exit"></i> Salir
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-placement="top" data-dismiss="modal"
-                                        title="Salir" data-toggle="tooltip" aria-label="Close">
-                                        <i class="bx bx-exit"></i> Salir
-                                    </button>
-                                </div>
-                            </ul>
+                            </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
 
@@ -621,24 +629,32 @@
                 <div class="modal-body">
                     <asp:UpdatePanel ID="UpdatePanel4" runat="server">
                         <ContentTemplate>
-                            <ul class="list-inline user-chat-nav mb-2">
-                                <div class="btn-group">
-                                    <asp:Label ID="lbaccount_result" runat="server" Text="" Font-Bold="true" CssClass="form-control"></asp:Label>
+                            <div class="row">
+                                <div class="col-sm-10">
+                                    <ul class="list-inline user-chat-nav mb-2">
+                                        <div class="btn-group">
+                                            <asp:Label ID="lbaccount_result" runat="server" Text="" Font-Bold="true" CssClass="form-control"></asp:Label>
+                                        </div>
+                                    </ul>
                                 </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-outline-info waves-effect waves-light" data-placement="top"
-                                        title="Imprimir Estado" data-toggle="tooltip" runat="server" onserverclick="btprintresult_ServerClick"
-                                        id="btprintresult">
-                                        <i class="bx bx-printer"></i>
-                                    </button>
+                                <div class="col-sm-2">
+                                    <div class="text-sm-right">
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-outline-info waves-effect waves-light" data-placement="top"
+                                                title="Imprimir Estado" data-toggle="tooltip" runat="server" onserverclick="btprintresult_ServerClick"
+                                                id="btprintresult">
+                                                <i class="bx bx-printer"></i>
+                                            </button>
+                                        </div>
+                                        <div class="btn-group">
+                                            <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-placement="top" data-dismiss="modal"
+                                                title="Salir" data-toggle="tooltip" aria-label="Close">
+                                                <i class="bx bx-exit"></i>Salir
+                                            </button>
+                                        </div>
+                                    </div>
                                 </div>
-                                <div class="btn-group">
-                                    <button type="button" class="btn btn-outline-danger waves-effect waves-light" data-placement="top" data-dismiss="modal"
-                                        title="Salir" data-toggle="tooltip" aria-label="Close">
-                                        <i class="bx bx-exit"></i>Salir
-                                    </button>
-                                </div>
-                            </ul>
+                            </div>
                         </ContentTemplate>
                     </asp:UpdatePanel>
 
@@ -646,10 +662,15 @@
                         <ContentTemplate>
                             <div class="table-responsive">
                                 <asp:GridView ID="gvbalance_month" CssClass="table table-normal table-bordered table-hover" runat="server"
-                                    AutoGenerateColumns="false" AllowPaging="false" PageSize="15"
-                                    EmptyDataText="No hay datos!" ShowHeaderWhenEmpty="true" ShowFooter="true" FooterStyle-BackColor="#EAFAF1"
-                                    FooterStyle-Font-Bold="true">
+                                    AutoGenerateColumns="false" AllowPaging="false" PageSize="15" OnRowDataBound="gvbalance_month_RowDataBound"
+                                    EmptyDataText="No hay datos!" ShowHeaderWhenEmpty="true" ShowFooter="false">
                                     <Columns>
+                                        <asp:TemplateField Visible="false">
+                                            <ItemTemplate>
+                                                <asp:Label ID="lbisdetail_month" runat="server" Text='<%# Eval("isdetail") %>'></asp:Label>
+                                            </ItemTemplate>
+                                        </asp:TemplateField>
+
                                         <asp:BoundField DataField="accountid" HeaderText="Cuenta" ItemStyle-Width="90" />
                                         <asp:BoundField DataField="name" HeaderText="Nombre de la cuenta" ItemStyle-Width="210" />
                                         <asp:BoundField DataField="bce_anterior" HeaderText="Balance anterior" ItemStyle-Width="90" DataFormatString="{0:n}"
