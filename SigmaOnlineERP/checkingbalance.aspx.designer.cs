@@ -87,6 +87,15 @@ namespace SigmaOnlineERP
         protected global::System.Web.UI.WebControls.Label lbaccount;
 
         /// <summary>
+        /// btprintdetail control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btprintdetail;
+
+        /// <summary>
         /// UpdatePanel2 control.
         /// </summary>
         /// <remarks>
@@ -94,15 +103,6 @@ namespace SigmaOnlineERP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel2;
-
-        /// <summary>
-        /// lkprintdetail control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lkprintdetail;
 
         /// <summary>
         /// gvdetail control.
@@ -132,6 +132,15 @@ namespace SigmaOnlineERP
         protected global::System.Web.UI.WebControls.Label lbaccount_balance;
 
         /// <summary>
+        /// btbalance control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlButton btbalance;
+
+        /// <summary>
         /// UpdatePanel5 control.
         /// </summary>
         /// <remarks>
@@ -139,15 +148,6 @@ namespace SigmaOnlineERP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.UpdatePanel UpdatePanel5;
-
-        /// <summary>
-        /// lkbalance control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.LinkButton lkbalance;
 
         /// <summary>
         /// gvbalance_month control.

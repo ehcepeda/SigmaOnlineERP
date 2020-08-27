@@ -28,6 +28,10 @@ namespace SigmaOnlineERP
 
                     img_logo_sm.Src = "./assets/images/logos/" + Session["image_logo"].ToString();
                     img_logo_lg.Src = "./assets/images/logos/" + Session["image_logo"].ToString();
+
+                    img_logo_light_sm.Src = "./assets/images/logos/" + Session["image_logo"].ToString();
+                    img_logo_light_lg.Src = "./assets/images/logos/" + Session["image_logo"].ToString();
+
                 }
                 else
                 {

@@ -252,7 +252,7 @@ namespace SigmaOnlineERP
                         else
                         {
                             //buscando número del mes
-                            int lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue),
+                            int lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]),
                                 new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), 1),
                                 new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)),
                                 DateTime.DaysInMonth(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2))))).Value;
@@ -290,7 +290,7 @@ namespace SigmaOnlineERP
                             cbdimension.SelectedValue = "0";
 
                             //buscando número del mes
-                            lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue),
+                            lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]),
                                 new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), 1),
                                 new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)),
                                 DateTime.DaysInMonth(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2))))).Value;
@@ -587,7 +587,7 @@ namespace SigmaOnlineERP
         {
             //buscando número del mes
             DataSetAccountingTableAdapters.journalTableAdapter tajournal = new DataSetAccountingTableAdapters.journalTableAdapter();
-            int lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(cbtype.SelectedValue),
+            int lastSequence = tajournal.LastMonthSequence(Convert.ToInt32(Session["companyid"]),
                 new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)), 1),
                 new DateTime(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2)),
                 DateTime.DaysInMonth(Convert.ToInt32(create_date.Text.Substring(6, 4)), Convert.ToInt32(create_date.Text.Substring(3, 2))))).Value;

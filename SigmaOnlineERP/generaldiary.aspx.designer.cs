@@ -69,33 +69,6 @@ namespace SigmaOnlineERP
         protected global::System.Web.UI.WebControls.TextBox date_end;
 
         /// <summary>
-        /// lbtype control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.Label lbtype;
-
-        /// <summary>
-        /// dldoctype control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dldoctype;
-
-        /// <summary>
-        /// dlconcept control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.WebControls.DataList dlconcept;
-
-        /// <summary>
         /// btn_refresh control.
         /// </summary>
         /// <remarks>
@@ -114,6 +87,15 @@ namespace SigmaOnlineERP
         protected global::System.Web.UI.WebControls.LinkButton btn_export;
 
         /// <summary>
+        /// btn_add control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.LinkButton btn_add;
+
+        /// <summary>
         /// gvjournal control.
         /// </summary>
         /// <remarks>
@@ -121,5 +103,32 @@ namespace SigmaOnlineERP
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
         protected global::System.Web.UI.WebControls.GridView gvjournal;
+
+        /// <summary>
+        /// UpdatePanel2 control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.UpdatePanel UpdatePanel2;
+
+        /// <summary>
+        /// cbdoctype control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cbdoctype;
+
+        /// <summary>
+        /// cbconcept control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList cbconcept;
     }
 }

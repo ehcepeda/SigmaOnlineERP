@@ -453,28 +453,8 @@ namespace SigmaOnlineERP
             }
         }
 
-        protected void lkprintdetail_Click(object sender, EventArgs e)
-        {
-            string _abre = "<script>window.open('http://localhost:81/api/reports/5?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
-                "&vaccountid=" + ViewState["vaccountid"] + "&vuser=" + Session["userid_hash"] + "&vdateini=" + ViewState["vdateini"] + "&vdatefin=" + ViewState["vdatefin"] +
-                "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
-            ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
-
-            refresh();
-        }
-
         protected void cbyear_SelectedIndexChanged(object sender, EventArgs e)
         {
-            refresh();
-        }
-
-        protected void lkbalance_Click(object sender, EventArgs e)
-        {
-            string _abre = "<script>window.open('http://localhost:81/api/reports/6?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
-                "&vyear=" + cbyear.SelectedValue + "&vmonth=" + ViewState["vmonth"] + "&vuser=" + Session["userid_hash"] + "&vdateini=" + ViewState["vdateini"] + 
-                "&vdatefin=" + ViewState["vdatefin"] + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
-            ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
-
             refresh();
         }
 
@@ -482,7 +462,7 @@ namespace SigmaOnlineERP
         {
             DataSetAccountingTableAdapters.company_accountsTableAdapter taaccount = new DataSetAccountingTableAdapters.company_accountsTableAdapter();
             DataTable dtaccount = taaccount.GetDataBy_Account(Convert.ToInt32(Session["companyid"]), accountid);
-            lbaccount_balance.Text = accountid + ": " + dtaccount.Rows[0]["name"].ToString() + " (" + monthName(month) + "-" + cbyear.SelectedValue + ")";
+            lbaccount_balance.Text = monthName(month) + "-" + cbyear.SelectedValue;
 
             string strConnString = ConfigurationManager.ConnectionStrings["ConnectionStringSigma"].ConnectionString;
             OleDbConnection conn = new OleDbConnection(strConnString);
@@ -525,8 +505,24 @@ namespace SigmaOnlineERP
             refresh();
         }
 
-        protected void gvbalance_month_RowDataBound(object sender, GridViewRowEventArgs e)
+        protected void btprintdetail_ServerClick(object sender, EventArgs e)
         {
+            string _abre = "<script>window.open('http://localhost:81/api/reports/5?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
+                "&vaccountid=" + ViewState["vaccountid"] + "&vuser=" + Session["userid_hash"] + "&vdateini=" + ViewState["vdateini"] + "&vdatefin=" + ViewState["vdatefin"] +
+                "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
+            ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
+
+            refresh();
+        }
+
+        protected void btbalance_ServerClick(object sender, EventArgs e)
+        {
+            string _abre = "<script>window.open('http://localhost:81/api/reports/6?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
+                "&vyear=" + cbyear.SelectedValue + "&vmonth=" + ViewState["vmonth"] + "&vuser=" + Session["userid_hash"] + "&vdateini=" + ViewState["vdateini"] +
+                "&vdatefin=" + ViewState["vdatefin"] + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
+            ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
+
+            refresh();
         }
     }
 }

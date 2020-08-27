@@ -29,21 +29,16 @@ namespace SigmaOnlineERP
             }
             else if (!IsPostBack)
             {
-                ViewState["doctype"] = "";
-                ViewState["concept"] = "";
-                ViewState["conceptid"] = "0";
-                ViewState["doctypeid"] = "0";
-
                 date_start.Text = "01-" + DateTime.Now.Month.ToString("00") + "-" + DateTime.Now.Year.ToString();
                 date_end.Text = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month).ToString("00") + "-" + DateTime.Now.Month.ToString("00") + "-" + DateTime.Now.Year.ToString("00");
 
                 DataSetAccountingTableAdapters.list_doctypeTableAdapter tadoctype = new DataSetAccountingTableAdapters.list_doctypeTableAdapter();
-                dldoctype.DataSource = tadoctype.GetData();
-                dldoctype.DataBind();
+                cbdoctype.DataSource = tadoctype.GetData();
+                cbdoctype.DataBind();
 
                 DataSetAdminTableAdapters.list_company_conceptsTableAdapter taconcept = new DataSetAdminTableAdapters.list_company_conceptsTableAdapter();
-                dlconcept.DataSource = taconcept.GetData(Convert.ToInt32(Session["companyid"]));
-                dlconcept.DataBind();
+                cbconcept.DataSource = taconcept.GetData(Convert.ToInt32(Session["companyid"]));
+                cbconcept.DataBind();
 
                 refresh();
             }
@@ -63,7 +58,7 @@ namespace SigmaOnlineERP
             string query = "";
             query += "select j.doctypeid, j.journalid, j.number, t.name as doctype, format(j.create_date, 'dd-MM-yyyy') as create_date, ";
             query += "j.create_date as create_date_real, d.accountid, c.name, isnull(i.name, '') as dimension, ";
-            query += "d.note, d.origin, isnull(l.name, '') as dimension_general, isnull(s.name,'') as concept, ";
+            query += "isnull(d.note,'') as note, d.origin, isnull(l.name, '') as dimension_general, isnull(s.name,'') as concept, ";
             query += "sum(d.debit) as debit, sum(d.credit) as credit ";
             query += "from journal j left outer join company_dimension l on (j.dimensionid = l.dimensionid) ";
             query += "left outer join company_concepts s on (j.companyid = s.companyid and j.conceptid = s.conceptid), journal_detail d ";
@@ -73,15 +68,17 @@ namespace SigmaOnlineERP
             query += "and j.create_date between '" + date_start.Text.Substring(6, 4) + date_start.Text.Substring(3, 2) + date_start.Text.Substring(0, 2) + "' and '";
             query += date_end.Text.Substring(6, 4) + date_end.Text.Substring(3, 2) + date_end.Text.Substring(0, 2) + "' ";
 
-            if (ViewState["conceptid"].ToString() != "0")
+            if (cbconcept.SelectedValue != "0")
             {
-                query += "and j.conceptid = " + ViewState["conceptid"].ToString() + " ";
+                query += "and j.conceptid = " + cbconcept.SelectedValue + " ";
             }
 
-            if (ViewState["doctypeid"].ToString() != "0")
+            if (cbdoctype.SelectedValue != "0")
             {
-                query += "and j.doctypeid = " + ViewState["doctypeid"].ToString() + " ";
+                query += "and j.doctypeid = " + cbdoctype.SelectedValue + " ";
             }
+
+            query += "and j.number+c.name+isnull(d.note,'')+d.accountid like '%" + tbsearch.Text + "%' ";
 
             query += "group by j.doctypeid, j.journalid, j.number, t.name, format(j.create_date, 'dd-MM-yyyy'),";
             query += "j.create_date, d.accountid, c.name, isnull(i.name, ''),";
@@ -149,20 +146,6 @@ namespace SigmaOnlineERP
             refresh();
         }
 
-        protected void dldoctype_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            ViewState["doctypeid"] = e.CommandArgument.ToString();
-            ViewState["doctype"] = e.CommandName;
-            refresh();
-        }
-
-        protected void dlconcept_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            ViewState["conceptid"] = e.CommandArgument.ToString();
-            ViewState["concept"] = e.CommandName;
-            refresh();
-        }
-
         protected void btn_refresh_Click(object sender, EventArgs e)
         {
             refresh();
@@ -175,8 +158,8 @@ namespace SigmaOnlineERP
             string datefin = date_end.Text.Trim().Substring(3, 2) + "/" + date_end.Text.Trim().Substring(0, 2) + "/" + date_end.Text.Trim().Substring(6, 4);
 
             string _abre = "<script>window.open('http://localhost:81/api/reports/4?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
-                "&vdateini=" + dateini + "&vdatefin=" + datefin + "&vuser=" + Session["userid_hash"] + "&vdoctype=" + ViewState["doctypeid"] +
-                "&vconcept=" + ViewState["conceptid"] + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
+                "&vdateini=" + dateini + "&vdatefin=" + datefin + "&vuser=" + Session["userid_hash"] + "&vdoctype=" + cbdoctype.SelectedValue +
+                "&vconcept=" + cbconcept.SelectedValue + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
             ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
 
             refresh();
@@ -184,7 +167,8 @@ namespace SigmaOnlineERP
 
         protected void btn_add_Click(object sender, EventArgs e)
         {
-            Response.Redirect("newjournal.aspx");
+            Session["RefUrl"] = "generaldiary.aspx";
+            Response.Redirect("newjournal.aspx?t=" + cbdoctype.SelectedValue + "&p=" + cbconcept.SelectedValue);
         }
 
         protected void gvjournal_PageIndexChanging(object sender, GridViewPageEventArgs e)
@@ -261,6 +245,16 @@ namespace SigmaOnlineERP
             }
             this.AddTotalRow("Sub Total", subTotal_debit.ToString("N2"), subTotal_credit.ToString("N2"));
             this.AddTotalRow("Total", total_debit.ToString("N2"), total_credit.ToString("N2"));
+        }
+
+        protected void cbdoctype_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refresh();
+        }
+
+        protected void cbconcept_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            refresh();
         }
     }
 }

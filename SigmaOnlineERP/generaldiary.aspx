@@ -23,15 +23,6 @@
             text-align: right;
         }
 
-        .modal {
-            top: 0;
-            left: 0;
-            filter: alpha(opacity=80);
-            -moz-opacity: 0.8;
-            min-height: 100%;
-            width: 100%;
-        }
-
         .loading {
             font-family: Arial;
             font-size: 10pt;
@@ -57,29 +48,6 @@
             border-top: 1px solid #cecece;
             border-bottom: 1px solid #E6E6E6;
         }
-
-        .modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            background-color: black;
-            z-index: 99;
-            opacity: 0.8;
-            filter: alpha(opacity=80);
-            -moz-opacity: 0.8;
-            min-height: 100%;
-            width: 100%;
-        }
- 
-        .loading {
-            font-family: Arial;
-            font-size: 10pt;
-            width: 200px;
-            height: 100px;
-            display: none;
-            position: fixed;
-            z-index: 999;
-        }
     </style>
 
     <!-- Sweet Alerts js -->
@@ -87,24 +55,6 @@
     <link href="assets/js/sweetalert.min.css" rel="stylesheet" type="text/css" />
 
     <asp:ScriptManager ID="ScriptManager1" runat="server"></asp:ScriptManager>
-
-    <div class="loading" align="center">
-        <img src="assets/images/loading_big.gif" alt="" />
-    </div>
-    <script type="text/javascript">
-        var modal, loading;
-        function ShowProgress() {
-            modal = document.createElement("DIV");
-            modal.className = "modal";
-            document.body.appendChild(modal);
-            loading = document.getElementsByClassName("loading")[0];
-            loading.style.display = "block";
-            var top = Math.max(window.innerHeight / 3 - loading.offsetHeight / 2, 0);
-            var left = Math.max(window.innerWidth / 2 - loading.offsetWidth / 2, 0);
-            loading.style.top = top + "px";
-            loading.style.left = left + "px";
-        };
-    </script>
 
     <div class="main-content">
         <div class="page-content">
@@ -131,82 +81,84 @@
                             <div class="col-12">
                                 <div class="card">
                                     <div class="card-body">
-                                        <div class="table-rep-plugin">
-                                            <div class="row mb-2">
-                                                <div class="col-sm-10">
-                                                    <ul class="list-inline user-chat-nav mb-0">
-                                                        <div class="d-inline-block">
-                                                            <div class="position-relative">
-                                                                <asp:TextBox ID="tbsearch" CssClass="form-control" runat="server" placeholder="Buscar..." 
-                                                                    AutoCompleteType="Disabled"></asp:TextBox>
-                                                                <div class="chat-input-links">
-                                                                    <ul class="list-inline mb-0">
-                                                                        <li class="list-inline-item">
-                                                                            <asp:LinkButton ID="btn_search" runat="server" OnClick="btn_search_Click">
+                                        <div class="row">
+                                            <div class="col-sm-10">
+                                                <ul class="list-inline user-chat-nav mb-0">
+                                                    <div class="d-inline-block">
+                                                        <div class="position-relative">
+                                                            <asp:TextBox ID="tbsearch" CssClass="form-control" runat="server" placeholder="Buscar..."
+                                                                AutoCompleteType="Disabled"></asp:TextBox>
+                                                            <div class="chat-input-links">
+                                                                <ul class="list-inline mb-0">
+                                                                    <li class="list-inline-item">
+                                                                        <asp:LinkButton ID="btn_search" runat="server" OnClick="btn_search_Click">
                                                                                 <i class="mdi mdi-magnify"></i>
-                                                                            </asp:LinkButton>
-                                                                        </li>
-                                                                    </ul>
-                                                                </div>
+                                                                        </asp:LinkButton>
+                                                                    </li>
+                                                                </ul>
                                                             </div>
                                                         </div>
-                                                        <div class="btn-group">
-                                                            <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <div class="input-group-text"><i class="bx bx-calendar label-icon"></i></div>
-                                                                </div>
-                                                                <asp:TextBox ID="date_start" runat="server" placeholder="Inicio" CssClass="form-control" Width="120px"
-                                                                    data-date-format="dd-mm-yyyy" data-provide="datepicker" data-date-autoclose="true"
-                                                                    MaxLength="10" oninput="setCustomValidity('')"></asp:TextBox>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text"><i class="bx bx-calendar label-icon"></i></div>
                                                             </div>
+                                                            <asp:TextBox ID="date_start" runat="server" placeholder="Inicio" CssClass="form-control" Width="120px"
+                                                                data-date-format="dd-mm-yyyy" data-provide="datepicker" data-date-autoclose="true"
+                                                                MaxLength="10" oninput="setCustomValidity('')"></asp:TextBox>
                                                         </div>
-                                                        <div class="btn-group">
-                                                            <div class="input-group">
-                                                                <div class="input-group-prepend">
-                                                                    <div class="input-group-text"><i class="bx bx-calendar label-icon"></i></div>
-                                                                </div>
-                                                                <asp:TextBox ID="date_end" runat="server" placeholder="Fin" CssClass="form-control" Width="120px"
-                                                                    data-date-format="dd-mm-yyyy" data-provide="datepicker" data-date-autoclose="true"
-                                                                    MaxLength="10" oninput="setCustomValidity('')"></asp:TextBox>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <div class="input-group">
+                                                            <div class="input-group-prepend">
+                                                                <div class="input-group-text"><i class="bx bx-calendar label-icon"></i></div>
                                                             </div>
+                                                            <asp:TextBox ID="date_end" runat="server" placeholder="Fin" CssClass="form-control" Width="120px"
+                                                                data-date-format="dd-mm-yyyy" data-provide="datepicker" data-date-autoclose="true"
+                                                                MaxLength="10" oninput="setCustomValidity('')"></asp:TextBox>
                                                         </div>
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" 
-                                                                aria-haspopup="true" aria-expanded="false"><asp:Label ID="lbtype" runat="server" Text="Tipo "></asp:Label> <i class="mdi mdi-chevron-down"></i></button>
-                                                            <asp:DataList ID="dldoctype" runat="server" CssClass="dropdown-menu" OnItemCommand="dldoctype_ItemCommand">
-                                                                <ItemTemplate>
-                                                                    <asp:LinkButton ID="lktypeoption" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("doctypeid") %>'
-                                                                        CommandName='<%# Eval("name") %>'>
-                                                                        <%# Eval("name").ToString() %>
-                                                                    </asp:LinkButton>
-                                                                </ItemTemplate>
-                                                            </asp:DataList>
-                                                        </div>
-                                                        <div class="btn-group">
-                                                            <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Concepto <i class="mdi mdi-chevron-down"></i></button>
-                                                            <asp:DataList ID="dlconcept" runat="server" CssClass="dropdown-menu" OnItemCommand="dlconcept_ItemCommand">
-                                                                <ItemTemplate>
-                                                                    <asp:LinkButton ID="lkconceptid" CssClass="dropdown-item" runat="server" CommandArgument='<%# Eval("conceptid") %>'
-                                                                        CommandName='<%# Eval("name") %>'>
-                                                                        <%# Eval("name").ToString() %>
-                                                                    </asp:LinkButton>
-                                                                </ItemTemplate>
-                                                            </asp:DataList>
-                                                        </div>
-                                                        <div class="btn-group">
-                                                            <asp:LinkButton ID="btn_refresh" CssClass="btn btn-light waves-effect btn-label waves-light" runat="server"
-                                                                OnClick="btn_refresh_Click">
-                                                                <i class="bx bx-repost label-icon"></i> Refrescar
-                                                            </asp:LinkButton>
-                                                        </div>
-                                                        <asp:LinkButton ID="btn_export" CssClass="btn btn-light waves-effect btn-label waves-light" runat="server"
-                                                            OnClientClick="setTimeout(function () {document.body.removeChild(modal);loading.style.display='none';}, 2000);ShowProgress()"
-                                                            OnClick="btn_export_Click">
-                                                            <i class="bx bx-printer label-icon"></i> Imprimir
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <span data-toggle="modal" data-target="#myModal">
+                                                            <button type="button" class="btn btn-outline-info waves-effect waves-light" data-placement="top" 
+                                                                title="Filtrar" data-toggle="tooltip">
+                                                                <i class="mdi mdi-filter-outline"></i>
+                                                            </button>
+                                                        </span>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <asp:LinkButton ID="btn_refresh" runat="server" CssClass="btn btn-outline-info waves-effect waves-light"
+                                                            data-toggle="tooltip" data-placement="top" title="Refrescar" OnClick="btn_refresh_Click">
+                                                            <i class="bx bx-repost"></i>
                                                         </asp:LinkButton>
-                                                    </ul>
+                                                    </div>
+                                                    <div class="btn-group">
+                                                        <asp:LinkButton ID="btn_export" runat="server" CssClass="btn btn-outline-info waves-effect waves-light"
+                                                            data-toggle="tooltip" data-placement="top" title="Imprimir listado"  OnClick="btn_export_Click">
+                                                            <i class="bx bx-printer"></i>
+                                                        </asp:LinkButton>
+                                                    </div>
+                                                </ul>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <div class="text-sm-right">
+                                                    <asp:LinkButton ID="btn_add" CssClass="btn btn-success waves-effect btn-label waves-light" runat="server"
+                                                        OnClick="btn_add_Click">
+                                                            <i class="bx bx-plus label-icon"></i> Nueva entrada
+                                                    </asp:LinkButton>
                                                 </div>
                                             </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card">
+                                    <div class="card-body">
+                                        <div class="table-rep-plugin">
                                             <div class="table-responsive mb-0" data-pattern="priority-columns">
                                                 <asp:GridView ID="gvjournal" runat="server" CssClass="table table-normal mb-0 table-bordered" 
                                                     AutoGenerateColumns="false" AllowPaging="true" PageSize="40" GridLines="Vertical" Font-Size="Smaller"
@@ -249,13 +201,63 @@
             </div>
         </div>
 
-    <!-- Footer Start -->
-    <%
-        Response.WriteFile("assets/footer.html");
-    %>
-    <!-- end Footer -->
+        <!-- Footer Start -->
+        <%
+            Response.WriteFile("assets/footer.html");
+        %>
+        <!-- end Footer -->
 
     </div>
+
+    <!-- modal content -->
+    <div id="myModal" class="modal fade bs-example-modal-center" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-scrollable modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title mt-0">Movimientos de la cuenta</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <asp:UpdatePanel ID="UpdatePanel2" runat="server">
+                        <ContentTemplate>
+                            <div class="row mb-2">
+                                <div class="col-sm-12">
+                                    <div class="form-group">
+                                        <label for="cbdoctype">Tipo</label>
+                                        <div class="input-group mb-2 mr-sm-3">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="mdi mdi-grid label-icon"></i></div>
+                                            </div>
+                                            <asp:DropDownList ID="cbdoctype" runat="server" CssClass="form-control"
+                                                DataTextField="name" DataValueField="doctypeid" AutoPostBack="true" OnSelectedIndexChanged="cbdoctype_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="cbconcept">Concepto</label>
+                                        <div class="input-group mb-2 mr-sm-3">
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text"><i class="mdi mdi-grid label-icon"></i></div>
+                                            </div>
+                                            <asp:DropDownList ID="cbconcept" runat="server" CssClass="form-control"
+                                                DataTextField="name" DataValueField="conceptid" AutoPostBack="true" OnSelectedIndexChanged="cbconcept_SelectedIndexChanged">
+                                            </asp:DropDownList>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </ContentTemplate>
+                    </asp:UpdatePanel>
+                </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
 
     <script src="assets/libs/pdfmake/build/pdfmake.min.js"></script>
     <script src="assets/libs/pdfmake/build/vfs_fonts.js"></script>

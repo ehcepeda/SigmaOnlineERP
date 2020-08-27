@@ -10474,11 +10474,10 @@ values
             this._commandCollection[5].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("companyid", global::System.Data.OleDb.OleDbType.Integer, 4, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "companyid", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6] = new global::System.Data.OleDb.OleDbCommand();
             this._commandCollection[6].Connection = this.Connection;
-            this._commandCollection[6].CommandText = "SELECT \r\nisnull(max(sequenceid),0)\r\nFROM \r\njournal\r\nwhere\r\ncompanyid = ?\r\nand doc" +
-                "typeid = ?\r\nand create_date between ? and ?";
+            this._commandCollection[6].CommandText = "SELECT \r\nisnull(max(sequenceid),0)\r\nFROM \r\njournal\r\nwhere\r\ncompanyid = ?\r\nand cre" +
+                "ate_date between ? and ?";
             this._commandCollection[6].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[6].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("companyid", global::System.Data.OleDb.OleDbType.Integer, 4, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "companyid", global::System.Data.DataRowVersion.Current, false, null));
-            this._commandCollection[6].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("doctypeid", global::System.Data.OleDb.OleDbType.Integer, 4, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "doctypeid", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("create_date", global::System.Data.OleDb.OleDbType.DBTimeStamp, 8, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "create_date", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[6].Parameters.Add(new global::System.Data.OleDb.OleDbParameter("create_date1", global::System.Data.OleDb.OleDbType.DBTimeStamp, 8, global::System.Data.ParameterDirection.Input, ((byte)(0)), ((byte)(0)), "create_date", global::System.Data.DataRowVersion.Current, false, null));
             this._commandCollection[7] = new global::System.Data.OleDb.OleDbCommand();
@@ -10690,22 +10689,11 @@ values
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "16.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual global::System.Nullable<int> LastMonthSequence(int companyid, int doctypeid, global::System.Nullable<global::System.DateTime> create_date, global::System.Nullable<global::System.DateTime> create_date1) {
+        public virtual global::System.Nullable<int> LastMonthSequence(int companyid, System.DateTime create_date, System.DateTime create_date1) {
             global::System.Data.OleDb.OleDbCommand command = this.CommandCollection[6];
             command.Parameters[0].Value = ((int)(companyid));
-            command.Parameters[1].Value = ((int)(doctypeid));
-            if ((create_date.HasValue == true)) {
-                command.Parameters[2].Value = ((System.DateTime)(create_date.Value));
-            }
-            else {
-                command.Parameters[2].Value = global::System.DBNull.Value;
-            }
-            if ((create_date1.HasValue == true)) {
-                command.Parameters[3].Value = ((System.DateTime)(create_date1.Value));
-            }
-            else {
-                command.Parameters[3].Value = global::System.DBNull.Value;
-            }
+            command.Parameters[1].Value = ((System.DateTime)(create_date));
+            command.Parameters[2].Value = ((System.DateTime)(create_date1));
             global::System.Data.ConnectionState previousConnectionState = command.Connection.State;
             if (((command.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {

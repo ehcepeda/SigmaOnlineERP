@@ -18,31 +18,26 @@ namespace SigmaOnlineERP
             }
             else if (!IsPostBack)
             {
-                ViewState["doctype"] = "";
-                ViewState["concept"] = "";
-                ViewState["conceptid"] = "0";
-                ViewState["doctypeid"] = "0";
-
-                if (Request["t"] != null)
-                {
-                    ViewState["doctypeid"] = Request["t"];
-                }
-
-                if (Request["p"] != null)
-                {
-                    ViewState["conceptid"] = Request["p"];
-                }
-
                 date_start.Text = "01-" + DateTime.Now.Month.ToString("00") + "-" + DateTime.Now.Year.ToString();
                 date_end.Text = DateTime.DaysInMonth(DateTime.Now.Year, DateTime.Now.Month).ToString("00") + "-" + DateTime.Now.Month.ToString("00") + "-" + DateTime.Now.Year.ToString("00");
 
                 DataSetAccountingTableAdapters.list_doctypeTableAdapter tadoctype = new DataSetAccountingTableAdapters.list_doctypeTableAdapter();
-                dldoctype.DataSource = tadoctype.GetData();
-                dldoctype.DataBind();
+                cbdoctype.DataSource = tadoctype.GetData();
+                cbdoctype.DataBind();
 
                 DataSetAdminTableAdapters.list_company_conceptsTableAdapter taconcept = new DataSetAdminTableAdapters.list_company_conceptsTableAdapter();
-                dlconcept.DataSource = taconcept.GetData(Convert.ToInt32(Session["companyid"]));
-                dlconcept.DataBind();
+                cbconcept.DataSource = taconcept.GetData(Convert.ToInt32(Session["companyid"]));
+                cbconcept.DataBind();
+
+                if (Request["t"] != null)
+                {
+                    cbdoctype.SelectedValue = Request["t"];
+                }
+
+                if (Request["p"] != null)
+                {
+                    cbconcept.SelectedValue = Request["p"];
+                }
 
                 refresh();
             }
@@ -59,37 +54,13 @@ namespace SigmaOnlineERP
 
         protected void refresh()
         {
-            //buscando concepto
-            if (ViewState["conceptid"].ToString() != "0")
-            {
-                DataSetAdminTableAdapters.company_conceptsTableAdapter taconcept = new DataSetAdminTableAdapters.company_conceptsTableAdapter();
-                DataTable dtconcept = taconcept.GetDataBy_ID(Convert.ToInt32(Session["companyid"]), Convert.ToInt32(ViewState["conceptid"]));
-                ViewState["concept"] = dtconcept.Rows[0]["name"].ToString();
-            }
-            else
-            {
-                ViewState["concept"] = "";
-            }
-
-            //buscando concepto
-            if (ViewState["doctypeid"].ToString() != "0")
-            {
-                DataSetAccountingTableAdapters.doctypeTableAdapter tadoctype = new DataSetAccountingTableAdapters.doctypeTableAdapter();
-                DataTable dtdoctype = tadoctype.GetDataBy_ID(Convert.ToInt32(ViewState["doctypeid"]));
-                ViewState["doctype"] = dtdoctype.Rows[0]["name"].ToString();
-            }
-            else
-            {
-                ViewState["doctype"] = "";
-            }
-
             DataSetAccountingTableAdapters.list_journalTableAdapter tajouornal = new DataSetAccountingTableAdapters.list_journalTableAdapter();
             var qjournal = tajouornal.GetDataBy_Date(Convert.ToInt32(Session["companyid"]),
                 new DateTime(Convert.ToInt32(date_start.Text.Substring(6, 4)), Convert.ToInt32(date_start.Text.Substring(3, 2)), Convert.ToInt32(date_start.Text.Substring(0, 2))),
                 new DateTime(Convert.ToInt32(date_end.Text.Substring(6, 4)), Convert.ToInt32(date_end.Text.Substring(3, 2)), Convert.ToInt32(date_end.Text.Substring(0, 2)))).AsEnumerable().
                 Where(row => (row.Field<String>("number").ToUpper() + row.Field<String>("note").ToUpper()).Contains(tbsearch.Text.Trim().ToUpper())
-                && row.Field<String>("doctype").ToUpper().ToUpper().Contains(ViewState["doctype"].ToString().ToUpper())
-                && row.Field<String>("concept").ToUpper().ToUpper().Contains(ViewState["concept"].ToString().ToUpper())).ToList();
+                && row.Field<String>("doctype").ToUpper().ToUpper().Contains(cbdoctype.SelectedItem.Text.ToUpper())
+                && row.Field<String>("concept").ToUpper().ToUpper().Contains(cbconcept.SelectedItem.Text.ToUpper())).ToList();
 
             gvjournal.DataSource = qjournal;
             gvjournal.DataBind();
@@ -149,8 +120,8 @@ namespace SigmaOnlineERP
             string datefin = date_end.Text.Trim().Substring(3, 2) + "/" + date_end.Text.Trim().Substring(0, 2) + "/" + date_end.Text.Trim().Substring(6, 4);
 
             string _abre = "<script>window.open('http://localhost:81/api/reports/3?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
-                "&vdateini=" + dateini + "&vdatefin=" + datefin + "&vuser=" + Session["userid_hash"] + "&vdoctype=" + ViewState["doctypeid"] +
-                "&vconcept=" + ViewState["conceptid"] + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
+                "&vdateini=" + dateini + "&vdatefin=" + datefin + "&vuser=" + Session["userid_hash"] + "&vdoctype=" + cbdoctype.SelectedValue +
+                "&vconcept=" + cbconcept.SelectedValue + "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
             ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
          }
 
@@ -228,25 +199,6 @@ namespace SigmaOnlineERP
 
         protected void cbdoctype_SelectedIndexChanged(object sender, EventArgs e)
         {
-            refresh();
-        }
-
-        protected void dldoctype_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            lbtype.Text = dldoctype.SelectedValue.ToString();
-        }
-
-        protected void dldoctype_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            ViewState["doctypeid"] = e.CommandArgument.ToString();
-            ViewState["doctype"] = e.CommandName;
-            refresh();
-        }
-
-        protected void dlconcept_ItemCommand(object source, DataListCommandEventArgs e)
-        {
-            ViewState["conceptid"] = e.CommandArgument.ToString();
-            ViewState["concept"] = e.CommandName;
             refresh();
         }
     }

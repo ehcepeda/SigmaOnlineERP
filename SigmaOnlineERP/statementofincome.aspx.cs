@@ -227,6 +227,139 @@ namespace SigmaOnlineERP
 
                 refreshDetail(accountid, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 12, 1), new DateTime(Convert.ToInt32(cbyear.SelectedValue), 12, 31));
             }
+            else if (e.CommandName == "bal_ene")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "01/31/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "12/31/" + (Convert.ToInt32(cbyear.SelectedValue) - 1).ToString();
+                ViewState["vmonth"] = "1";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 1, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 1, 31),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue) - 1, 12, 31));
+            }
+            else if (e.CommandName == "bal_feb")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "02/" + DateTime.DaysInMonth(Convert.ToInt32(cbyear.SelectedValue), 2) + "/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "01/31/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "2";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 2,
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 2, DateTime.DaysInMonth(Convert.ToInt32(cbyear.SelectedValue), 2)),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 1, 31));
+            }
+            else if (e.CommandName == "bal_mar")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "03/31/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "02/" + DateTime.DaysInMonth(Convert.ToInt32(cbyear.SelectedValue), 2) + "/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "3";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 3, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 2, 31),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 2, DateTime.DaysInMonth(Convert.ToInt32(cbyear.SelectedValue), 2)));
+            }
+            else if (e.CommandName == "bal_abr")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "04/30/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "03/31/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "4";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 4, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 4, 30),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 3, 31));
+            }
+            else if (e.CommandName == "bal_may")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "05/31/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "04/30/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "5";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 5, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 5, 31),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 4, 30));
+            }
+            else if (e.CommandName == "bal_jun")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "06/30/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "05/31/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "6";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 6, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 6, 30),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 5, 31));
+            }
+            else if (e.CommandName == "bal_jul")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "07/31/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "06/30/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "7";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 7, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 7, 31),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 6, 30));
+            }
+            else if (e.CommandName == "bal_ago")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "08/31/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "07/31/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "8";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 8, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 8, 31),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 7, 31));
+            }
+            else if (e.CommandName == "bal_sep")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "09/30/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "08/31/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "9";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 9, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 9, 30),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 8, 31));
+            }
+            else if (e.CommandName == "bal_oct")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "10/31/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "09/30/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "10";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 10, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 10, 31),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 9, 30));
+            }
+            else if (e.CommandName == "bal_nov")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "11/30/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "10/31/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "11";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 11, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 11, 30),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 10, 31));
+            }
+            else if (e.CommandName == "bal_dic")
+            {
+                string accountid = e.CommandArgument.ToString();
+                ViewState["vaccountid"] = accountid;
+                ViewState["vdateini"] = "12/31/" + cbyear.SelectedValue;
+                ViewState["vdatefin"] = "11/30/" + cbyear.SelectedValue;
+                ViewState["vmonth"] = "12";
+
+                refreshBalance(accountid, Convert.ToInt32(cbyear.SelectedValue), 12, new DateTime(Convert.ToInt32(cbyear.SelectedValue), 12, 31),
+                    new DateTime(Convert.ToInt32(cbyear.SelectedValue), 11, 30));
+            }
         }
 
         protected string monthName(int monthcode)
@@ -280,16 +413,6 @@ namespace SigmaOnlineERP
             refresh();
         }
 
-        protected void lkprintdetail_Click(object sender, EventArgs e)
-        {
-            string _abre = "<script>window.open('http://localhost:81/api/reports/5?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
-                "&vaccountid=" + ViewState["vaccountid"] + "&vuser=" + Session["userid_hash"] + "&vdateini=" + ViewState["vdateini"] + "&vdatefin=" + ViewState["vdatefin"] +
-                "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
-            ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
-
-            refresh();
-        }
-
         protected void gvdetail_RowDataBound(object sender, GridViewRowEventArgs e)
         {
             if (e.Row.RowType == DataControlRowType.DataRow)
@@ -334,6 +457,64 @@ namespace SigmaOnlineERP
 
                 refresh();
             }
+        }
+
+        protected void btprintdetail_ServerClick(object sender, EventArgs e)
+        {
+            string _abre = "<script>window.open('http://localhost:81/api/reports/5?format=pdf&inline=true&vcompanyid=" + Session["companyid_hash"] +
+                "&vaccountid=" + ViewState["vaccountid"] + "&vuser=" + Session["userid_hash"] + "&vdateini=" + ViewState["vdateini"] + "&vdatefin=" + ViewState["vdatefin"] +
+                "','','scrollbars=no,resizable=no,status=no,location=no,toolbar=no,menubar=no,width=1100, height=800,left=200,top=100');</script>";
+            ClientScript.RegisterStartupScript(this.GetType(), "OpenWindow", _abre);
+
+            refresh();
+        }
+
+        protected void refreshBalance(string accountid, int year, int month, DateTime datemonth, DateTime datebefore)
+        {
+            DataSetAccountingTableAdapters.company_accountsTableAdapter taaccount = new DataSetAccountingTableAdapters.company_accountsTableAdapter();
+            DataTable dtaccount = taaccount.GetDataBy_Account(Convert.ToInt32(Session["companyid"]), accountid);
+            lbaccount_result.Text = monthName(month) + "-" + cbyear.SelectedValue;
+
+            string strConnString = ConfigurationManager.ConnectionStrings["ConnectionStringSigma"].ConnectionString;
+            OleDbConnection conn = new OleDbConnection(strConnString);
+            OleDbCommand cmd = new OleDbCommand();
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.CommandText = "pr_statement_of_income_month";
+            cmd.Parameters.AddWithValue("@companyid", Convert.ToInt32(Session["companyid"]));
+            cmd.Parameters.AddWithValue("@year", year);
+            cmd.Parameters.AddWithValue("@mes", month);
+            cmd.Connection = conn;
+            conn.Open();
+            OleDbDataReader dr = cmd.ExecuteReader();
+            DataTable dt = new DataTable();
+            dt.Load(dr);
+            gvbalance_month.DataSource = dt;
+            gvbalance_month.DataBind();
+
+            if (dt.Rows.Count > 0)
+            {
+                decimal bce_anterior = dt.AsEnumerable().Where(row => row.Field<Int32>("isdetail") == 1).Sum(row => row.Field<Decimal>("bce_anterior"));
+                decimal bce_actual = dt.AsEnumerable().Where(row => row.Field<Int32>("isdetail") == 1).Sum(row => row.Field<Decimal>("bce_actual"));
+                decimal bce_fecha = dt.AsEnumerable().Where(row => row.Field<Int32>("isdetail") == 1).Sum(row => row.Field<Decimal>("bce_fecha"));
+
+                gvbalance_month.FooterRow.Cells[2].Text = bce_anterior.ToString("###,###,##0.00");
+                gvbalance_month.FooterRow.Cells[3].Text = bce_actual.ToString("###,###,##0.00");
+                gvbalance_month.FooterRow.Cells[4].Text = bce_fecha.ToString("###,###,##0.00");
+            }
+
+            System.Text.StringBuilder sb = new System.Text.StringBuilder();
+            sb.Append(@"<script type='text/javascript'>");
+            sb.Append("$('#myModalBalance').modal('show');");
+            sb.Append(@"</script>");
+            ScriptManager.RegisterClientScriptBlock(this, this.GetType(), "myModalBalance",
+            sb.ToString(), false);
+
+            refresh();
+        }
+
+        protected void btprintresult_ServerClick(object sender, EventArgs e)
+        {
+
         }
     }
 }

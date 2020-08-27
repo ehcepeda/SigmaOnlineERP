@@ -51,6 +51,24 @@ namespace SigmaOnlineERP
         protected global::System.Web.UI.HtmlControls.HtmlImage img_logo_lg;
 
         /// <summary>
+        /// img_logo_light_sm control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage img_logo_light_sm;
+
+        /// <summary>
+        /// img_logo_light_lg control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.HtmlControls.HtmlImage img_logo_light_lg;
+
+        /// <summary>
         /// img_site_username control.
         /// </summary>
         /// <remarks>
